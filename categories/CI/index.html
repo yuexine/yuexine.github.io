@@ -2,7 +2,7 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>カテゴリ: CI - Yuexin-Space</title>
+<title>Category: CI - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -138,7 +138,7 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/categories">カテゴリ</a></li>
+            <li><a href="/categories">Categories</a></li>
             
             <li class="is-active"><a href="#" aria-current="page">CI</a></li>
         </ul>
@@ -200,7 +200,35 @@
 <p>  通过重新设定chart的image.tag完成容器的版本升级，<code>--reuse-values</code> 表示在原本参数的基础上进行更新</p>
 </li>
 </ul>
-<h2 id="完整的Pipeline脚本"><a href="#完整的Pipeline脚本" class="headerlink" title="完整的Pipeline脚本"></a>完整的Pipeline脚本</h2><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">node('worker') &#123;</span><br><span class="line">    stage('Clone') &#123;</span><br><span class="line">        echo "1.Clone Stage"</span><br><span class="line">        git credentialsId: 'gitlab-auth', url: 'https://gitlab.3incloud.com/xxx/xxx-server.git'</span><br><span class="line">        script &#123;</span><br><span class="line">            build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Test') &#123;</span><br><span class="line">        echo "2.Test Stage"</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Build') &#123;</span><br><span class="line">        echo "3.Build Docker Image Stage"</span><br><span class="line">        sh "docker build -t harbor.3incloud.com/xxx/xxx-server:$&#123;build_tag&#125; ."</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Push') &#123;</span><br><span class="line">        echo "4.Push Docker Image Stage"</span><br><span class="line">        withDockerRegistry(credentialsId: 'harbor-ci', url: 'https://harbor.3incloud.com') &#123;</span><br><span class="line">            sh "docker push harbor.3incloud.com/xxx/xxx-server:$&#123;build_tag&#125;"</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Deploy') &#123;</span><br><span class="line">        echo "5. Deploy Stage"</span><br><span class="line">        sh "helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/xxx &amp;&amp; helm repo update"</span><br><span class="line">        sh "helm upgrade --reuse-values --set-string image.tag='$&#123;build_tag&#125;' avic-server --version 0.1.0 myharbor/xxx-server"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="完整的Pipeline脚本"><a href="#完整的Pipeline脚本" class="headerlink" title="完整的Pipeline脚本"></a>完整的Pipeline脚本</h2><pre><code class="shell">node(&#39;worker&#39;) {
+    stage(&#39;Clone&#39;) {
+        echo &quot;1.Clone Stage&quot;
+        git credentialsId: &#39;gitlab-auth&#39;, url: &#39;https://gitlab.3incloud.com/xxx/xxx-server.git&#39;
+        script {
+            build_tag = sh(returnStdout: true, script: &#39;git rev-parse --short HEAD&#39;).trim()
+        }
+    }
+    stage(&#39;Test&#39;) {
+        echo &quot;2.Test Stage&quot;
+    }
+    stage(&#39;Build&#39;) {
+        echo &quot;3.Build Docker Image Stage&quot;
+        sh &quot;docker build -t harbor.3incloud.com/xxx/xxx-server:${build_tag} .&quot;
+    }
+    stage(&#39;Push&#39;) {
+        echo &quot;4.Push Docker Image Stage&quot;
+        withDockerRegistry(credentialsId: &#39;harbor-ci&#39;, url: &#39;https://harbor.3incloud.com&#39;) {
+            sh &quot;docker push harbor.3incloud.com/xxx/xxx-server:${build_tag}&quot;
+        }
+    }
+    stage(&#39;Deploy&#39;) {
+        echo &quot;5. Deploy Stage&quot;
+        sh &quot;helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/xxx &amp;&amp; helm repo update&quot;
+        sh &quot;helm upgrade --reuse-values --set-string image.tag=&#39;${build_tag}&#39; avic-server --version 0.1.0 myharbor/xxx-server&quot;
+    }
+}
+</code></pre>
+
         </div>
         
         
@@ -255,7 +283,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        投稿
+                        Posts
                     </p>
                     <p class="title has-text-weight-normal">
                         3
@@ -265,7 +293,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        カテゴリ
+                        Category
                     </p>
                     <p class="title has-text-weight-normal">
                         1
@@ -275,7 +303,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        タグ
+                        Tags
                     </p>
                     <p class="title has-text-weight-normal">
                         2
@@ -285,7 +313,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="http://github.com/ppoffice" target="_blank">
-                フォローする</a>
+                Follow</a>
         </div>
         
         
@@ -334,7 +362,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            リンク
+            Links
         </h3>
         <ul class="menu-list">
         
@@ -372,7 +400,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                カテゴリ
+                Categories
             </h3>
             <ul class="menu-list">
             <li>
@@ -393,7 +421,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            タグクラウド
+            Tag Cloud
         </h3>
         <a href="/tags/helm/" style="font-size: 10px;">helm</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a>
     </div>
@@ -407,7 +435,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            最近の記事
+            Recent
         </h3>
         
         <article class="media">
@@ -475,7 +503,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            アーカイブ
+            Archives
         </h3>
         <ul class="menu-list">
         
@@ -499,7 +527,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                タグ
+                Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -537,7 +565,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            最近の記事
+            Recent
         </h3>
         
         <article class="media">
@@ -605,7 +633,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            アーカイブ
+            Archives
         </h3>
         <ul class="menu-list">
         
@@ -629,7 +657,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                タグ
+                Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -822,10 +850,10 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: '投稿',
+                POSTS: 'Posts',
                 PAGES: 'Pages',
-                CATEGORIES: 'カテゴリ',
-                TAGS: 'タグ',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',

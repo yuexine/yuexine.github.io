@@ -16,7 +16,7 @@
 <meta property="og:description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级  前提 在使用Helm之前，已经完成了Jenkins的部署，并且已经正常运行脚本与Kubernetes平台进行 通过kubectl命令执行配置文件完成应用的版本更新  实现步骤 helm chart制作，此步骤略  包含helm工具的jenkins">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-04-25T09:17:40.571Z">
+<meta property="og:updated_time" content="2019-04-26T02:01:06.725Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jenkins集成Helm进行应用持续发布">
 <meta name="twitter:description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级  前提 在使用Helm之前，已经完成了Jenkins的部署，并且已经正常运行脚本与Kubernetes平台进行 通过kubectl命令执行配置文件完成应用的版本更新  实现步骤 helm chart制作，此步骤略  包含helm工具的jenkins">
@@ -94,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Jenkins集成Helm进行应用持续发布" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Jenkins集成Helm进行应用持续发布" height="28">
             
             </a>
         </div>
@@ -118,7 +118,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/yuexine">
                         
                         <i class="fab fa-github"></i>
                         
@@ -146,10 +146,6 @@
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-04-25T08:17:50.000Z">2019-04-25</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/CI/">CI</a>
-                </div>
                 
                 
                 <span class="level-item has-text-grey">
@@ -193,35 +189,7 @@
 <p>  通过重新设定chart的image.tag完成容器的版本升级，<code>--reuse-values</code> 表示在原本参数的基础上进行更新</p>
 </li>
 </ul>
-<h2 id="完整的Pipeline脚本"><a href="#完整的Pipeline脚本" class="headerlink" title="完整的Pipeline脚本"></a>完整的Pipeline脚本</h2><pre><code class="shell">node(&#39;worker&#39;) {
-    stage(&#39;Clone&#39;) {
-        echo &quot;1.Clone Stage&quot;
-        git credentialsId: &#39;gitlab-auth&#39;, url: &#39;https://gitlab.3incloud.com/xxx/xxx-server.git&#39;
-        script {
-            build_tag = sh(returnStdout: true, script: &#39;git rev-parse --short HEAD&#39;).trim()
-        }
-    }
-    stage(&#39;Test&#39;) {
-        echo &quot;2.Test Stage&quot;
-    }
-    stage(&#39;Build&#39;) {
-        echo &quot;3.Build Docker Image Stage&quot;
-        sh &quot;docker build -t harbor.3incloud.com/xxx/xxx-server:${build_tag} .&quot;
-    }
-    stage(&#39;Push&#39;) {
-        echo &quot;4.Push Docker Image Stage&quot;
-        withDockerRegistry(credentialsId: &#39;harbor-ci&#39;, url: &#39;https://harbor.3incloud.com&#39;) {
-            sh &quot;docker push harbor.3incloud.com/xxx/xxx-server:${build_tag}&quot;
-        }
-    }
-    stage(&#39;Deploy&#39;) {
-        echo &quot;5. Deploy Stage&quot;
-        sh &quot;helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/xxx &amp;&amp; helm repo update&quot;
-        sh &quot;helm upgrade --reuse-values --set-string image.tag=&#39;${build_tag}&#39; avic-server --version 0.1.0 myharbor/xxx-server&quot;
-    }
-}
-</code></pre>
-
+<h2 id="完整的Pipeline脚本"><a href="#完整的Pipeline脚本" class="headerlink" title="完整的Pipeline脚本"></a>完整的Pipeline脚本</h2><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">node('worker') &#123;</span><br><span class="line">    stage('Clone') &#123;</span><br><span class="line">        echo "1.Clone Stage"</span><br><span class="line">        git credentialsId: 'gitlab-auth', url: 'https://gitlab.3incloud.com/xxx/xxx-server.git'</span><br><span class="line">        script &#123;</span><br><span class="line">            build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Test') &#123;</span><br><span class="line">        echo "2.Test Stage"</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Build') &#123;</span><br><span class="line">        echo "3.Build Docker Image Stage"</span><br><span class="line">        sh "docker build -t harbor.3incloud.com/xxx/xxx-server:$&#123;build_tag&#125; ."</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Push') &#123;</span><br><span class="line">        echo "4.Push Docker Image Stage"</span><br><span class="line">        withDockerRegistry(credentialsId: 'harbor-ci', url: 'https://harbor.3incloud.com') &#123;</span><br><span class="line">            sh "docker push harbor.3incloud.com/xxx/xxx-server:$&#123;build_tag&#125;"</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Deploy') &#123;</span><br><span class="line">        echo "5. Deploy Stage"</span><br><span class="line">        sh "helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/xxx &amp;&amp; helm repo update"</span><br><span class="line">        sh "helm upgrade --reuse-values --set-string image.tag='$&#123;build_tag&#125;' avic-server --version 0.1.0 myharbor/xxx-server"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -248,25 +216,6 @@
                 
 <div class="notification is-danger">
     You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
-
-<div class="notification is-danger">
-    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                
-<div class="notification is-danger">
-    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
 </div>
 
                 
@@ -306,22 +255,22 @@
             <div class="level-item has-text-centered">
                 <div>
                     
-                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="Your name">
+                        <img class="image is-128x128 has-mb-6" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/16471324.jpeg" alt="吴月新">
                     
                     
                     <p class="is-size-4 is-block">
-                        Your name
+                        吴月新
                     </p>
                     
                     
                     <p class="is-size-6 is-block">
-                        Your title
+                        不入流的开发者
                     </p>
                     
                     
                     <p class="is-size-6 is-flex is-flex-center has-text-grey">
                         <i class="fas fa-map-marker-alt has-mr-7"></i>
-                        <span>Your location</span>
+                        <span>Shanghai, China</span>
                     </p>
                     
                 </div>
@@ -341,10 +290,10 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Category
+                        Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        1
+                        0
                     </p>
                 </div>
             </div>
@@ -360,40 +309,16 @@
             </div>
         </nav>
         <div class="level">
-            <a class="level-item button is-link is-rounded" href="http://github.com/ppoffice" target="_blank">
+            <a class="level-item button is-link is-rounded" href="https://github.com/yuexine" target="_blank">
                 Follow</a>
         </div>
         
         
         <div class="level is-mobile">
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="http://github.com/ppoffice">
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/yuexine">
                 
                 <i class="fab fa-github"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="http://facebook.com">
-                
-                <i class="fab fa-facebook"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
-                
-                <i class="fab fa-twitter"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
-                
-                <i class="fab fa-dribbble"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
-                
-                <i class="fas fa-rss"></i>
                 
             </a>
             
@@ -415,23 +340,12 @@
         <ul class="menu-list">
         
             <li>
-                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                <a class="level is-mobile" href="https://turlingxian.github.io/" target="_blank">
                     <span class="level-left">
-                        <span class="level-item">Hexo</span>
+                        <span class="level-item">Turlingxian</span>
                     </span>
                     <span class="level-right">
-                        <span class="level-item tag">hexo.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">PPOffice</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">github.com</span>
+                        <span class="level-item tag">turlingxian.github.io</span>
                     </span>
                 </a>
             </li>
@@ -451,15 +365,7 @@
                 Categories
             </h3>
             <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/CI/">
-            <span class="level-start">
-                <span class="level-item">CI</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li>
+            
             </ul>
         </div>
     </div>
@@ -499,7 +405,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-25T08:17:50.000Z">2019-04-25</time></div>
                     <a href="/2019/04/25/Jenkins集成Helm进行应用持续发布/" class="has-link-black-ter is-size-6">Jenkins集成Helm进行应用持续发布</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CI/">CI</a>
+                        
                     </p>
                 </div>
             </div>
@@ -629,7 +535,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-25T08:17:50.000Z">2019-04-25</time></div>
                     <a href="/2019/04/25/Jenkins集成Helm进行应用持续发布/" class="has-link-black-ter is-size-6">Jenkins集成Helm进行应用持续发布</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CI/">CI</a>
+                        
                     </p>
                 </div>
             </div>
@@ -740,7 +646,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Jenkins集成Helm进行应用持续发布" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Jenkins集成Helm进行应用持续发布" height="28">
                 
                 </a>
                 <p class="is-size-7">
@@ -750,35 +656,6 @@
                 </p>
             </div>
             <div class="level-end">
-            
-                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
-                
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
-                        
-                        <i class="fab fa-creative-commons"></i>
-                        
-                    </a>
-                </p>
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
-                        
-                        <i class="fab fa-creative-commons-by"></i>
-                        
-                    </a>
-                </p>
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
-                        
-                        <i class="fab fa-github"></i>
-                        
-                    </a>
-                </p>
-                
-                </div>
             
             </div>
         </div>

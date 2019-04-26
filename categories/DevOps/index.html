@@ -2,24 +2,19 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Jenkins集成Helm进行应用持续发布 - Yuexin-Space</title>
+<title>分类: DevOps - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级  前提 在使用Helm之前，已经完成了Jenkins的部署，并且已经正常运行脚本与Kubernetes平台进行 通过kubectl命令执行配置文件完成应用的版本更新  实现步骤 helm chart制作，此步骤略  包含helm工具的jenkins">
-<meta name="keywords" content="jenkins,helm">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Jenkins集成Helm进行应用持续发布">
-<meta property="og:url" content="http://yuexine.github.io/2019/04/25/Jenkins集成Helm进行应用持续发布/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Yuexin-Space">
+<meta property="og:url" content="http://yuexine.github.io/categories/DevOps/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级  前提 在使用Helm之前，已经完成了Jenkins的部署，并且已经正常运行脚本与Kubernetes平台进行 通过kubectl命令执行配置文件完成应用的版本更新  实现步骤 helm chart制作，此步骤略  包含helm工具的jenkins">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-04-26T02:16:02.314Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jenkins集成Helm进行应用持续发布">
-<meta name="twitter:description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级  前提 在使用Helm之前，已经完成了Jenkins的部署，并且已经正常运行脚本与Kubernetes平台进行 通过kubectl命令执行配置文件完成应用的版本更新  实现步骤 helm chart制作，此步骤略  包含helm工具的jenkins">
+<meta name="twitter:title" content="Yuexin-Space">
 <meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
 
 
@@ -98,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Jenkins集成Helm进行应用持续发布" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
             
             </a>
         </div>
@@ -144,6 +139,18 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">分类</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">DevOps</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
     
     <div class="card-content article ">
         
@@ -163,17 +170,12 @@
                 </span>
                 
                 
-                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
-                    <i class="far fa-eye"></i>
-                    <span id="busuanzi_value_page_pv">0</span>次访问
-                </span>
-                
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Jenkins集成Helm进行应用持续发布
+                <a class="has-link-black-ter" href="/2019/04/25/Jenkins集成Helm进行应用持续发布/">Jenkins集成Helm进行应用持续发布</a>
             
         </h1>
         <div class="content">
@@ -205,15 +207,6 @@
 <h2 id="完整的Pipeline脚本"><a href="#完整的Pipeline脚本" class="headerlink" title="完整的Pipeline脚本"></a>完整的Pipeline脚本</h2><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">node('worker') &#123;</span><br><span class="line">    stage('Clone') &#123;</span><br><span class="line">        echo "1.Clone Stage"</span><br><span class="line">        git credentialsId: 'gitlab-auth', url: 'https://gitlab.3incloud.com/xxx/xxx-server.git'</span><br><span class="line">        script &#123;</span><br><span class="line">            build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Test') &#123;</span><br><span class="line">        echo "2.Test Stage"</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Build') &#123;</span><br><span class="line">        echo "3.Build Docker Image Stage"</span><br><span class="line">        sh "docker build -t harbor.3incloud.com/xxx/xxx-server:$&#123;build_tag&#125; ."</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Push') &#123;</span><br><span class="line">        echo "4.Push Docker Image Stage"</span><br><span class="line">        withDockerRegistry(credentialsId: 'harbor-ci', url: 'https://harbor.3incloud.com') &#123;</span><br><span class="line">            sh "docker push harbor.3incloud.com/xxx/xxx-server:$&#123;build_tag&#125;"</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Deploy') &#123;</span><br><span class="line">        echo "5. Deploy Stage"</span><br><span class="line">        sh "helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/xxx &amp;&amp; helm repo update"</span><br><span class="line">        sh "helm upgrade --reuse-values --set-string image.tag='$&#123;build_tag&#125;' avic-server --version 0.1.0 myharbor/xxx-server"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/helm/">helm</a>, <a class="has-link-grey -link" href="/tags/jenkins/">jenkins</a>
-                </div>
-            </div>
-        </div>
-        
         
         
     </div>
@@ -223,44 +216,9 @@
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/04/24/test-my-site/">
-                <span class="level-item">test_my_site</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="comment-container"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-	var gitment = new Gitment({
-		id: '2019/04/25/Jenkins集成Helm进行应用持续发布/',
-		owner: 'wuyuexin',
-		repo: 'my-blog',
-		oauth: {
-			client_id: '07bd1be05349a17a8209',
-			client_secret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
-		},
-	})
-	gitment.render('comment-container')
-</script>
-
-    </div>
-</div>
 </div>
                 
 
@@ -675,7 +633,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Jenkins集成Helm进行应用持续发布" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
                 
                 </a>
                 <p class="is-size-7">

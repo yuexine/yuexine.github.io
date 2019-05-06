@@ -161,7 +161,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 666 words)
+                    4 minutes read (About 665 words)
                 </span>
                 
                 
@@ -201,7 +201,7 @@
 <h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><p>通过集成<code>spring-boot-starter-security</code>使用默认的HTTP Basic来保护配置数据</p>
 <p>配置用户名密码</p>
 <figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">spring:</span></span><br><span class="line"><span class="hljs-attr">  security:</span></span><br><span class="line"><span class="hljs-attr">    user:</span></span><br><span class="line"><span class="hljs-attr">      name:</span> <span class="hljs-string">yuexin</span></span><br><span class="line"><span class="hljs-attr">      password:</span> <span class="hljs-string">XXX</span></span><br></pre></td></tr></table></figure>
-<h2 id="加密与解密"><a href="#加密与解密" class="headerlink" title="加密与解密"></a>加密与解密</h2><p>不想看了，用的的时候再去看文档</p>
+<h2 id="加密与解密"><a href="#加密与解密" class="headerlink" title="加密与解密"></a>加密与解密</h2><p>不想看了，用的时候再去看文档</p>
 <hr>
 <p>附上完整的配置</p>
 <figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">spring:</span></span><br><span class="line"><span class="hljs-attr">  application:</span></span><br><span class="line"><span class="hljs-attr">    name:</span> <span class="hljs-string">clivia-config-server</span></span><br><span class="line"><span class="hljs-attr">  cloud:</span></span><br><span class="line"><span class="hljs-attr">    config:</span></span><br><span class="line"><span class="hljs-attr">      server:</span></span><br><span class="line"><span class="hljs-attr">        git:</span></span><br><span class="line"><span class="hljs-attr">          uri:</span> <span class="hljs-attr">https://github.com/yuexine/cloud-repo.git</span></span><br><span class="line"><span class="hljs-attr">          username:</span> <span class="hljs-string">yuexine</span></span><br><span class="line"><span class="hljs-attr">          password:</span> <span class="hljs-string">XXX</span></span><br><span class="line"><span class="hljs-attr">          search-paths:</span> <span class="hljs-string">clivia</span></span><br><span class="line"><span class="hljs-attr">        health:</span></span><br><span class="line"><span class="hljs-attr">          repositories:</span></span><br><span class="line"><span class="hljs-attr">            cloud-repo:</span></span><br><span class="line"><span class="hljs-attr">              name:</span> <span class="hljs-string">foo</span></span><br><span class="line"><span class="hljs-attr">              profiles:</span> <span class="hljs-string">dev</span></span><br><span class="line"><span class="hljs-attr">  security:</span></span><br><span class="line"><span class="hljs-attr">    user:</span></span><br><span class="line"><span class="hljs-attr">      name:</span> <span class="hljs-string">yuexin</span></span><br><span class="line"><span class="hljs-attr">      password:</span> <span class="hljs-string">XXX</span></span><br><span class="line"><span class="hljs-attr">server:</span></span><br><span class="line"><span class="hljs-attr">  port:</span> <span class="hljs-number">8888</span></span><br><span class="line"><span class="hljs-attr">management:</span></span><br><span class="line"><span class="hljs-attr">  endpoints:</span></span><br><span class="line"><span class="hljs-attr">    enabled-by-default:</span> <span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-attr">    web:</span></span><br><span class="line"><span class="hljs-attr">      base-path:</span> <span class="hljs-string">/admin</span></span><br><span class="line"><span class="hljs-attr">  endpoint:</span></span><br><span class="line"><span class="hljs-attr">    health:</span></span><br><span class="line"><span class="hljs-attr">      show-details:</span> <span class="hljs-string">always</span></span><br></pre></td></tr></table></figure>
@@ -429,7 +429,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Entradas
+                        Posts
                     </p>
                     <p class="title has-text-weight-normal">
                         4
@@ -439,7 +439,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categorias
+                        Categories
                     </p>
                     <p class="title has-text-weight-normal">
                         2
@@ -449,7 +449,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Etiquetas
+                        Tags
                     </p>
                     <p class="title has-text-weight-normal">
                         4
@@ -459,7 +459,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/yuexine" target="_blank">
-                SEGUIR</a>
+                Follow</a>
         </div>
         
         
@@ -511,7 +511,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categorias
+                Categories
             </h3>
             <ul class="menu-list">
             <li>
@@ -540,9 +540,9 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Nube de etiquetas
+            Tag Cloud
         </h3>
-        <a href="/tags/helm/" style="font-size: 10px;">helm</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring-cloud</a>
+        <a href="/tags/helm/" style="font-size: 10px;">helm</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/springcloud/" style="font-size: 10px;">springcloud</a>
     </div>
 </div>
 
@@ -554,7 +554,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recientes
+            Recent
         </h3>
         
         <article class="media">
@@ -641,7 +641,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archivos
+            Archives
         </h3>
         <ul class="menu-list">
         
@@ -676,7 +676,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Etiquetas
+                Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -702,8 +702,8 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/spring-cloud/">
-                        <span class="tag">spring-cloud</span>
+                    <a class="tags has-addons" href="/tags/springcloud/">
+                        <span class="tag">springcloud</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -728,7 +728,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recientes
+            Recent
         </h3>
         
         <article class="media">
@@ -815,7 +815,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archivos
+            Archives
         </h3>
         <ul class="menu-list">
         
@@ -850,7 +850,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Etiquetas
+                Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -876,8 +876,8 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/spring-cloud/">
-                        <span class="tag">spring-cloud</span>
+                    <a class="tags has-addons" href="/tags/springcloud/">
+                        <span class="tag">springcloud</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1035,10 +1035,10 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Entradas',
+                POSTS: 'Posts',
                 PAGES: 'Pages',
-                CATEGORIES: 'Categorias',
-                TAGS: 'Etiquetas',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',

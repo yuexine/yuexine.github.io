@@ -16,7 +16,7 @@
 <meta property="og:description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/jenkins-helm.png">
-<meta property="og:updated_time" content="2019-05-06T05:59:41.995Z">
+<meta property="og:updated_time" content="2019-05-06T06:14:58.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jenkins集成Helm进行应用持续发布">
 <meta name="twitter:description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级">
@@ -130,6 +130,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -158,7 +162,7 @@
                 <time class="level-item has-text-grey" datetime="2019-04-25T08:17:50.000Z">2019-04-25</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/DevOps/">DevOps</a>
+                <a class="has-link-grey -link" href="/categories/DevOps-jenkins/">DevOps/jenkins</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/DevOps-jenkins/DevOps-helm/">DevOps/helm</a>
                 </div>
                 
                 
@@ -199,10 +203,9 @@
 <p>  制作完成的镜像文件 <code>harbor.3incloud.com/library/jenkins-jnlp:latest</code></p>
 <p>  <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556181538711.jpg" alt="-w1118"></p>
 </li>
-</ul>
-<ul>
 <li><p>初始化应用安装</p>
-<p>  <code>helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/XXXX &amp;&amp; helm repo update</code><br>  这里主要就是在slave中初始化helm，并且添加私有的chart仓库</p>
+<p>  <code>helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/XXXX &amp;&amp; helm repo update</code></p>
+<p>  这里主要就是在slave中初始化helm，并且添加私有的chart仓库</p>
 </li>
 <li><p>Jenkins完成应用持续部署</p>
 <p>  <code>helm upgrade --reuse-values --set-string image.tag=&#39;${build_tag}&#39; deploy-name --version 0.1.0 myharbor/chart-name</code></p>
@@ -331,7 +334,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        2
+                        3
                     </p>
                 </div>
             </div>
@@ -366,6 +369,33 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#目标">
+        <span class="has-mr-6">1</span>
+        <span>目标</span>
+        </a></li><li>
+        <a class="is-flex" href="#前提">
+        <span class="has-mr-6">2</span>
+        <span>前提</span>
+        </a></li><li>
+        <a class="is-flex" href="#实现步骤">
+        <span class="has-mr-6">3</span>
+        <span>实现步骤</span>
+        </a></li><li>
+        <a class="is-flex" href="#完整的Pipeline脚本">
+        <span class="has-mr-6">4</span>
+        <span>完整的Pipeline脚本</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -404,14 +434,22 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/DevOps/">
+        <a class="level is-marginless" href="/categories/DevOps-jenkins/">
             <span class="level-start">
-                <span class="level-item">DevOps</span>
+                <span class="level-item">DevOps/jenkins</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
             </span>
-        </a></li><li>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/DevOps-jenkins/DevOps-helm/">
+            <span class="level-start">
+                <span class="level-item">DevOps/helm</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/SpringCloud/">
             <span class="level-start">
                 <span class="level-item">SpringCloud</span>
@@ -478,7 +516,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-25T08:17:50.000Z">2019-04-25</time></div>
                     <a href="/2019/04/25/Jenkins集成Helm进行应用持续发布/" class="has-link-black-ter is-size-6">Jenkins集成Helm进行应用持续发布</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/DevOps/">DevOps</a>
+                        <a class="has-link-grey -link" href="/categories/DevOps-jenkins/">DevOps/jenkins</a> / <a class="has-link-grey -link" href="/categories/DevOps-jenkins/DevOps-helm/">DevOps/helm</a>
                     </p>
                 </div>
             </div>
@@ -633,7 +671,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-25T08:17:50.000Z">2019-04-25</time></div>
                     <a href="/2019/04/25/Jenkins集成Helm进行应用持续发布/" class="has-link-black-ter is-size-6">Jenkins集成Helm进行应用持续发布</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/DevOps/">DevOps</a>
+                        <a class="has-link-grey -link" href="/categories/DevOps-jenkins/">DevOps/jenkins</a> / <a class="has-link-grey -link" href="/categories/DevOps-jenkins/DevOps-helm/">DevOps/helm</a>
                     </p>
                 </div>
             </div>

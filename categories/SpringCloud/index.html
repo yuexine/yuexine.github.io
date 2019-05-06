@@ -190,14 +190,6 @@
 <li>配置值的加解密（对称或非对称）</li>
 <li>与springboot继承简单</li>
 </ul>
-<h2 id="环境仓库"><a href="#环境仓库" class="headerlink" title="环境仓库"></a>环境仓库</h2><p>你的配置数据应该存放在哪里？Spring Cloud Config提供了多种策略，比如可以是filesystem，git，vault等，这里我们使用git管理我们的配置数据</p>
-<p>Config Server如何做到管理应用的多个环节配置呢，它主要是用了以下三个变量来对配置数据进行区分</p>
-<ul>
-<li><code>{application}</code> 对应到客户端的<code>spring.application.name</code></li>
-<li><code>{profile}</code> 对应到客户端<code>spring.application.profile</code></li>
-<li><code>{label}</code> 这是服务端标记版本化的配置文件集合</li>
-</ul>
-<p>这样客户端spring boot应用在启动的时候通过指定应用启动的参数，从而获取对应的配置数据</p>
         </div>
         
         
@@ -273,7 +265,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        2
+                        3
                     </p>
                 </div>
             </div>
@@ -346,14 +338,22 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/DevOps/">
+        <a class="level is-marginless" href="/categories/DevOps-jenkins/">
             <span class="level-start">
-                <span class="level-item">DevOps</span>
+                <span class="level-item">DevOps/jenkins</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
             </span>
-        </a></li><li>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/DevOps-jenkins/DevOps-helm/">
+            <span class="level-start">
+                <span class="level-item">DevOps/helm</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/SpringCloud/">
             <span class="level-start">
                 <span class="level-item">SpringCloud</span>
@@ -420,7 +420,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-25T08:17:50.000Z">2019-04-25</time></div>
                     <a href="/2019/04/25/Jenkins集成Helm进行应用持续发布/" class="has-link-black-ter is-size-6">Jenkins集成Helm进行应用持续发布</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/DevOps/">DevOps</a>
+                        <a class="has-link-grey -link" href="/categories/DevOps-jenkins/">DevOps/jenkins</a> / <a class="has-link-grey -link" href="/categories/DevOps-jenkins/DevOps-helm/">DevOps/helm</a>
                     </p>
                 </div>
             </div>
@@ -575,7 +575,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-25T08:17:50.000Z">2019-04-25</time></div>
                     <a href="/2019/04/25/Jenkins集成Helm进行应用持续发布/" class="has-link-black-ter is-size-6">Jenkins集成Helm进行应用持续发布</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/DevOps/">DevOps</a>
+                        <a class="has-link-grey -link" href="/categories/DevOps-jenkins/">DevOps/jenkins</a> / <a class="has-link-grey -link" href="/categories/DevOps-jenkins/DevOps-helm/">DevOps/helm</a>
                     </p>
                 </div>
             </div>

@@ -158,14 +158,14 @@
                 <time class="level-item has-text-grey" datetime="2019-05-08T05:58:13.000Z">2019-05-08</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ComputerNetwork/">ComputerNetwork</a>
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 923 words)
+                    6 minutes read (About 924 words)
                 </span>
                 
                 
@@ -180,43 +180,16 @@
         <div class="content">
             <h2 id="传输层的作用"><a href="#传输层的作用" class="headerlink" title="传输层的作用"></a>传输层的作用</h2><p>作为传输层的两个主要协议，为了识别自己传输的数据属于哪个应用，在协议内设定了端口号</p>
 <p><strong>将接收和发送的数据与特定的应用程序进行关联起来,通过socket，也就是绑定了端口</strong></p>
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ul>
-<li><em>TCP</em> 是面向连接的，可靠的的流协议，它提供了可靠性传输，实行<code>顺序控制`</code>重发控制<code>流量控制</code>拥塞控制<code></code>提高网络利用率`等多种功能</li>
-<li><em>UDP</em> 是不具有可靠性的数据报协议，细微的处理交给上层的应用去完成</li>
-</ul>
-<h2 id="TCP头部"><a href="#TCP头部" class="headerlink" title="TCP头部"></a>TCP头部</h2><p>就不解释每个字段的意思了</p>
-<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-h.png" alt="TCP头部"></p>
-<h2 id="TCP的特点"><a href="#TCP的特点" class="headerlink" title="TCP的特点"></a>TCP的特点</h2><h3 id="1-通过序列号和确认应答提高可靠性"><a href="#1-通过序列号和确认应答提高可靠性" class="headerlink" title="1. 通过序列号和确认应答提高可靠性"></a>1. 通过序列号和确认应答提高可靠性</h3><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s1.png" alt="通过序列号和确认应答提高可靠性"></p>
-<h3 id="2-数据包丢失"><a href="#2-数据包丢失" class="headerlink" title="2. 数据包丢失"></a>2. 数据包丢失</h3><ol>
-<li><p>数据无法到达</p>
-<p> <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s2.png" alt="TCP数据无法到达"></p>
-</li>
-<li><p>数据应答丢失</p>
-<p> <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s3.png" alt="TCP数据应答丢失"></p>
-</li>
-</ol>
-<h3 id="3-重发的超时时间如何确定"><a href="#3-重发的超时时间如何确定" class="headerlink" title="3. 重发的超时时间如何确定"></a>3. 重发的超时时间如何确定</h3><p>在BSD的Unix以及Windows系统中，超时都是以0.5s为单位进行控制的，因此重发超时的都是0.5的整数倍，不过由于最初的数据包还不知道往返时间，所以其重发的超时一般设置在6s左右。</p>
-<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s5.png" alt="TCP重发的超时时间如何确定"></p>
-<h3 id="4-连接管理"><a href="#4-连接管理" class="headerlink" title="4. 连接管理"></a>4. 连接管理</h3><p>这个会经常提到</p>
-<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s6.png" alt="TCP连接管理"></p>
-<h3 id="5-TCP以段发送数据"><a href="#5-TCP以段发送数据" class="headerlink" title="5. TCP以段发送数据"></a>5. TCP以段发送数据</h3><p>在建立TCP连接的同时，也可以确定发送数据包的单位，称为<code>最大消息长度</code>（MSS），TCP在传送大量数据时，是以MSS的大小将数据进行分割发送。</p>
-<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s7.png" alt="TCP以段发送数据"></p>
-<h3 id="6-利用窗口控制提高速度"><a href="#6-利用窗口控制提高速度" class="headerlink" title="6. 利用窗口控制提高速度"></a>6. 利用窗口控制提高速度</h3><p>TCP以1个段为单位，每发一个段进行一次确认应答，性能太差了，为了解决这个问题。</p>
-<p>确认应答不再是以每个分段，而是以更大的单位进行确认，转发的时间被大幅度缩短。也就是说，发送端主机，在发送了一个段以后不必要一直等待确认应答，而是继续发送</p>
-<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s8.png" alt="TCP利用窗口控制提高速度"></p>
-<h3 id="7-窗口控制与重发控制"><a href="#7-窗口控制与重发控制" class="headerlink" title="7. 窗口控制与重发控制"></a>7. 窗口控制与重发控制</h3><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s9.png" alt="没有确认应答也不受影响"></p>
-<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s10.png" alt="TCP高速重发控制"></p>
-<h3 id="8-流控制"><a href="#8-流控制" class="headerlink" title="8. 流控制"></a>8. 流控制</h3><p>为了防止流量浪费，比如说，数据接收端在高负荷的情况下无法接受任何数据。如果将本来接受的数据丢弃，则会触发重发机制。</p>
-<p>为了防止这种现象，TCP提供了一种机制可以让发送端根据接收端的实际接受能力控制发送的数据量。这就是流控制。</p>
-<p>做法就是在TCP首部中，有一个字段来通知窗口的大小，值越大，吞吐量越高</p>
-<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-11.png" alt="TCP流控制"></p>
-<h3 id="9-拥塞控制"><a href="#9-拥塞控制" class="headerlink" title="9. 拥塞控制"></a>9. 拥塞控制</h3><p>慢启动，慢慢变快</p>
-<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-12.png" alt="TCP拥塞控制">    </p>
-<h3 id="10-捎带应答"><a href="#10-捎带应答" class="headerlink" title="10. 捎带应答"></a>10. 捎带应答</h3><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-13.png" alt="TCP捎带应答"></p>
-<h2 id="UDP头部"><a href="#UDP头部" class="headerlink" title="UDP头部"></a>UDP头部</h2><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/udp-h.png" alt="UDP头信息"></p>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/05/08/TCP与UDP/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -355,14 +328,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/ComputerNetwork/">
-            <span class="level-start">
-                <span class="level-item">ComputerNetwork</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/DevOps/">
             <span class="level-start">
                 <span class="level-item">DevOps</span>
@@ -379,6 +344,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Spring/">
             <span class="level-start">
                 <span class="level-item">Spring</span>
@@ -434,7 +407,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-08T05:58:13.000Z">2019-05-08</time></div>
                     <a href="/2019/05/08/TCP与UDP/" class="has-link-black-ter is-size-6">TCP与UDP</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ComputerNetwork/">ComputerNetwork</a>
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
                     </p>
                 </div>
             </div>
@@ -634,7 +607,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-08T05:58:13.000Z">2019-05-08</time></div>
                     <a href="/2019/05/08/TCP与UDP/" class="has-link-black-ter is-size-6">TCP与UDP</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ComputerNetwork/">ComputerNetwork</a>
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
                     </p>
                 </div>
             </div>

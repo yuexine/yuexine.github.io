@@ -15,12 +15,12 @@
 <meta property="og:site_name" content="Yuexin-Space">
 <meta property="og:description" content="传输层的作用作为传输层的两个主要协议，为了识别自己传输的数据属于哪个应用，在协议内设定了端口号 将接收和发送的数据与特定的应用程序进行关联起来,通过socket，也就是绑定了端口">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-05-08T06:09:43.518Z">
+<meta property="og:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/network.png">
+<meta property="og:updated_time" content="2019-05-08T06:13:45.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP与UDP">
 <meta name="twitter:description" content="传输层的作用作为传输层的两个主要协议，为了识别自己传输的数据属于哪个应用，在协议内设定了端口号 将接收和发送的数据与特定的应用程序进行关联起来,通过socket，也就是绑定了端口">
-<meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
+<meta name="twitter:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/network.png">
 
 
 
@@ -149,6 +149,12 @@
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/network.png" alt="TCP与UDP">
+        </span>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
@@ -190,8 +196,8 @@
 </ul>
 <h2 id="TCP头部"><a href="#TCP头部" class="headerlink" title="TCP头部"></a>TCP头部</h2><p>就不解释每个字段的意思了</p>
 <p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-h.png" alt="TCP头部"></p>
-<h2 id="TCP的特点"><a href="#TCP的特点" class="headerlink" title="TCP的特点"></a>TCP的特点</h2><h3 id="1-通过序列号和确认应答提高可靠性"><a href="#1-通过序列号和确认应答提高可靠性" class="headerlink" title="1. 通过序列号和确认应答提高可靠性"></a>1. 通过序列号和确认应答提高可靠性</h3><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s1.png" alt="通过序列号和确认应答提高可靠性"></p>
-<h3 id="2-数据包丢失"><a href="#2-数据包丢失" class="headerlink" title="2. 数据包丢失"></a>2. 数据包丢失</h3><ol>
+<h2 id="TCP的特点"><a href="#TCP的特点" class="headerlink" title="TCP的特点"></a>TCP的特点</h2><h3 id="通过序列号和确认应答提高可靠性"><a href="#通过序列号和确认应答提高可靠性" class="headerlink" title="通过序列号和确认应答提高可靠性"></a>通过序列号和确认应答提高可靠性</h3><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s1.png" alt="通过序列号和确认应答提高可靠性"></p>
+<h3 id="数据包丢失"><a href="#数据包丢失" class="headerlink" title="数据包丢失"></a>数据包丢失</h3><ol>
 <li><p>数据无法到达</p>
 <p> <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s2.png" alt="TCP数据无法到达"></p>
 </li>
@@ -199,24 +205,24 @@
 <p> <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s3.png" alt="TCP数据应答丢失"></p>
 </li>
 </ol>
-<h3 id="3-重发的超时时间如何确定"><a href="#3-重发的超时时间如何确定" class="headerlink" title="3. 重发的超时时间如何确定"></a>3. 重发的超时时间如何确定</h3><p>在BSD的Unix以及Windows系统中，超时都是以0.5s为单位进行控制的，因此重发超时的都是0.5的整数倍，不过由于最初的数据包还不知道往返时间，所以其重发的超时一般设置在6s左右。</p>
+<h3 id="重发的超时时间如何确定"><a href="#重发的超时时间如何确定" class="headerlink" title="重发的超时时间如何确定"></a>重发的超时时间如何确定</h3><p>在BSD的Unix以及Windows系统中，超时都是以0.5s为单位进行控制的，因此重发超时的都是0.5的整数倍，不过由于最初的数据包还不知道往返时间，所以其重发的超时一般设置在6s左右。</p>
 <p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s5.png" alt="TCP重发的超时时间如何确定"></p>
-<h3 id="4-连接管理"><a href="#4-连接管理" class="headerlink" title="4. 连接管理"></a>4. 连接管理</h3><p>这个会经常提到</p>
+<h3 id="连接管理"><a href="#连接管理" class="headerlink" title="连接管理"></a>连接管理</h3><p>这个会经常提到</p>
 <p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s6.png" alt="TCP连接管理"></p>
-<h3 id="5-TCP以段发送数据"><a href="#5-TCP以段发送数据" class="headerlink" title="5. TCP以段发送数据"></a>5. TCP以段发送数据</h3><p>在建立TCP连接的同时，也可以确定发送数据包的单位，称为<code>最大消息长度</code>（MSS），TCP在传送大量数据时，是以MSS的大小将数据进行分割发送。</p>
+<h3 id="TCP以段发送数据"><a href="#TCP以段发送数据" class="headerlink" title="TCP以段发送数据"></a>TCP以段发送数据</h3><p>在建立TCP连接的同时，也可以确定发送数据包的单位，称为<code>最大消息长度</code>（MSS），TCP在传送大量数据时，是以MSS的大小将数据进行分割发送。</p>
 <p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s7.png" alt="TCP以段发送数据"></p>
-<h3 id="6-利用窗口控制提高速度"><a href="#6-利用窗口控制提高速度" class="headerlink" title="6. 利用窗口控制提高速度"></a>6. 利用窗口控制提高速度</h3><p>TCP以1个段为单位，每发一个段进行一次确认应答，性能太差了，为了解决这个问题。</p>
+<h3 id="利用窗口控制提高速度"><a href="#利用窗口控制提高速度" class="headerlink" title="利用窗口控制提高速度"></a>利用窗口控制提高速度</h3><p>TCP以1个段为单位，每发一个段进行一次确认应答，性能太差了，为了解决这个问题。</p>
 <p>确认应答不再是以每个分段，而是以更大的单位进行确认，转发的时间被大幅度缩短。也就是说，发送端主机，在发送了一个段以后不必要一直等待确认应答，而是继续发送</p>
 <p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s8.png" alt="TCP利用窗口控制提高速度"></p>
-<h3 id="7-窗口控制与重发控制"><a href="#7-窗口控制与重发控制" class="headerlink" title="7. 窗口控制与重发控制"></a>7. 窗口控制与重发控制</h3><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s9.png" alt="没有确认应答也不受影响"></p>
+<h3 id="窗口控制与重发控制"><a href="#窗口控制与重发控制" class="headerlink" title="窗口控制与重发控制"></a>窗口控制与重发控制</h3><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s9.png" alt="没有确认应答也不受影响"></p>
 <p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s10.png" alt="TCP高速重发控制"></p>
-<h3 id="8-流控制"><a href="#8-流控制" class="headerlink" title="8. 流控制"></a>8. 流控制</h3><p>为了防止流量浪费，比如说，数据接收端在高负荷的情况下无法接受任何数据。如果将本来接受的数据丢弃，则会触发重发机制。</p>
+<h3 id="流控制"><a href="#流控制" class="headerlink" title="流控制"></a>流控制</h3><p>为了防止流量浪费，比如说，数据接收端在高负荷的情况下无法接受任何数据。如果将本来接受的数据丢弃，则会触发重发机制。</p>
 <p>为了防止这种现象，TCP提供了一种机制可以让发送端根据接收端的实际接受能力控制发送的数据量。这就是流控制。</p>
 <p>做法就是在TCP首部中，有一个字段来通知窗口的大小，值越大，吞吐量越高</p>
 <p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-11.png" alt="TCP流控制"></p>
-<h3 id="9-拥塞控制"><a href="#9-拥塞控制" class="headerlink" title="9. 拥塞控制"></a>9. 拥塞控制</h3><p>慢启动，慢慢变快</p>
+<h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><p>慢启动，慢慢变快</p>
 <p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-12.png" alt="TCP拥塞控制">    </p>
-<h3 id="10-捎带应答"><a href="#10-捎带应答" class="headerlink" title="10. 捎带应答"></a>10. 捎带应答</h3><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-13.png" alt="TCP捎带应答"></p>
+<h3 id="捎带应答"><a href="#捎带应答" class="headerlink" title="捎带应答"></a>捎带应答</h3><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-13.png" alt="TCP捎带应答"></p>
 <h2 id="UDP头部"><a href="#UDP头部" class="headerlink" title="UDP头部"></a>UDP头部</h2><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/udp-h.png" alt="UDP头信息"></p>
 
         </div>
@@ -261,7 +267,7 @@
 
 <div class="card">
     <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        <h3 class="title is-5 has-text-weight-normal">Commentaires</h3>
         
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
@@ -320,7 +326,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Posts
+                        Articles
                     </p>
                     <p class="title has-text-weight-normal">
                         5
@@ -330,7 +336,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Catégories
                     </p>
                     <p class="title has-text-weight-normal">
                         5
@@ -350,7 +356,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/yuexine" target="_blank">
-                Follow</a>
+                SUIVRE</a>
         </div>
         
         
@@ -391,45 +397,45 @@
         <span class="has-mr-6">4</span>
         <span>TCP的特点</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#1-通过序列号和确认应答提高可靠性">
+        <a class="is-flex" href="#通过序列号和确认应答提高可靠性">
         <span class="has-mr-6">4.1</span>
-        <span>1. 通过序列号和确认应答提高可靠性</span>
+        <span>通过序列号和确认应答提高可靠性</span>
         </a></li><li>
-        <a class="is-flex" href="#2-数据包丢失">
+        <a class="is-flex" href="#数据包丢失">
         <span class="has-mr-6">4.2</span>
-        <span>2. 数据包丢失</span>
+        <span>数据包丢失</span>
         </a></li><li>
-        <a class="is-flex" href="#3-重发的超时时间如何确定">
+        <a class="is-flex" href="#重发的超时时间如何确定">
         <span class="has-mr-6">4.3</span>
-        <span>3. 重发的超时时间如何确定</span>
+        <span>重发的超时时间如何确定</span>
         </a></li><li>
-        <a class="is-flex" href="#4-连接管理">
+        <a class="is-flex" href="#连接管理">
         <span class="has-mr-6">4.4</span>
-        <span>4. 连接管理</span>
+        <span>连接管理</span>
         </a></li><li>
-        <a class="is-flex" href="#5-TCP以段发送数据">
+        <a class="is-flex" href="#TCP以段发送数据">
         <span class="has-mr-6">4.5</span>
-        <span>5. TCP以段发送数据</span>
+        <span>TCP以段发送数据</span>
         </a></li><li>
-        <a class="is-flex" href="#6-利用窗口控制提高速度">
+        <a class="is-flex" href="#利用窗口控制提高速度">
         <span class="has-mr-6">4.6</span>
-        <span>6. 利用窗口控制提高速度</span>
+        <span>利用窗口控制提高速度</span>
         </a></li><li>
-        <a class="is-flex" href="#7-窗口控制与重发控制">
+        <a class="is-flex" href="#窗口控制与重发控制">
         <span class="has-mr-6">4.7</span>
-        <span>7. 窗口控制与重发控制</span>
+        <span>窗口控制与重发控制</span>
         </a></li><li>
-        <a class="is-flex" href="#8-流控制">
+        <a class="is-flex" href="#流控制">
         <span class="has-mr-6">4.8</span>
-        <span>8. 流控制</span>
+        <span>流控制</span>
         </a></li><li>
-        <a class="is-flex" href="#9-拥塞控制">
+        <a class="is-flex" href="#拥塞控制">
         <span class="has-mr-6">4.9</span>
-        <span>9. 拥塞控制</span>
+        <span>拥塞控制</span>
         </a></li><li>
-        <a class="is-flex" href="#10-捎带应答">
+        <a class="is-flex" href="#捎带应答">
         <span class="has-mr-6">4.10</span>
-        <span>10. 捎带应答</span>
+        <span>捎带应答</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#UDP头部">
         <span class="has-mr-6">5</span>
@@ -446,7 +452,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Links
+            Liens
         </h3>
         <ul class="menu-list">
         
@@ -473,7 +479,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                Catégories
             </h3>
             <ul class="menu-list">
             <li>
@@ -526,7 +532,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Tag Cloud
+            Nuage de tags
         </h3>
         <a href="/tags/helm/" style="font-size: 10px;">helm</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springcloud/" style="font-size: 20px;">springcloud</a>
     </div>
@@ -540,14 +546,14 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Récents
         </h3>
         
         <article class="media">
             
             <a href="/2019/05/08/TCP与UDP/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="TCP与UDP">
+                    <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/network.png" alt="TCP与UDP">
                 </p>
             </a>
             
@@ -740,14 +746,14 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Récents
         </h3>
         
         <article class="media">
             
             <a href="/2019/05/08/TCP与UDP/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="TCP与UDP">
+                    <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/network.png" alt="TCP与UDP">
                 </p>
             </a>
             
@@ -1073,9 +1079,9 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
+                POSTS: 'Articles',
                 PAGES: 'Pages',
-                CATEGORIES: 'Categories',
+                CATEGORIES: 'Catégories',
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },

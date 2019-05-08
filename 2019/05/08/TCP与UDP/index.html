@@ -2,19 +2,24 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Archives: 2019 - Yuexin-Space</title>
+<title>TCP与UDP - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Yuexin-Space">
-<meta property="og:url" content="http://yuexine.github.io/archives/2019/index.html">
+    <meta name="description" content="传输层的作用作为传输层的两个主要协议，为了识别自己传输的数据属于哪个应用，在协议内设定了端口号 将接收和发送的数据与特定的应用程序进行关联起来,通过socket，也就是绑定了端口 区别 TCP 是面向连接的，可靠的的流协议，它提供了可靠性传输，实行顺序控制`重发控制流量控制拥塞控制提高网络利用率`等多种功能 UDP 是不具有可靠性的数据报协议，细微的处理交给上层的应用去完成  TCP头部就不解释每">
+<meta name="keywords" content="network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP与UDP">
+<meta property="og:url" content="http://yuexine.github.io/2019/05/08/TCP与UDP/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
+<meta property="og:description" content="传输层的作用作为传输层的两个主要协议，为了识别自己传输的数据属于哪个应用，在协议内设定了端口号 将接收和发送的数据与特定的应用程序进行关联起来,通过socket，也就是绑定了端口 区别 TCP 是面向连接的，可靠的的流协议，它提供了可靠性传输，实行顺序控制`重发控制流量控制拥塞控制提高网络利用率`等多种功能 UDP 是不具有可靠性的数据报协议，细微的处理交给上层的应用去完成  TCP头部就不解释每">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
+<meta property="og:updated_time" content="2019-05-08T06:03:37.431Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuexin-Space">
+<meta name="twitter:title" content="TCP与UDP">
+<meta name="twitter:description" content="传输层的作用作为传输层的两个主要协议，为了识别自己传输的数据属于哪个应用，在协议内设定了端口号 将接收和发送的数据与特定的应用程序进行关联起来,通过socket，也就是绑定了端口 区别 TCP 是面向连接的，可靠的的流协议，它提供了可靠性传输，实行顺序控制`重发控制流量控制拥塞控制提高网络利用率`等多种功能 UDP 是不具有可靠性的数据报协议，细微的处理交给上层的应用去完成  TCP头部就不解释每">
 <meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
 
 
@@ -93,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="TCP与UDP" height="28">
             
             </a>
         </div>
@@ -125,6 +130,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -138,129 +147,138 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="tag is-link">
-        2019
-        </h3>
-        <div class="timeline">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
         
-            <article class="media">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-08T05:58:13.000Z">2019-05-08</time>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-05-08T05:58:13.000Z">2019-05-08</time>
-                        <a href="/2019/05/08/TCP与UDP/" class="has-link-black-ter is-size-6">TCP与UDP</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/ComputerNetwork/">ComputerNetwork</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/ComputerNetwork/">ComputerNetwork</a>
                 </div>
-            </article>
-        
-            <article class="media">
                 
-                <a href="/2019/05/08/Spring-Cloud-Eureka-Client/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/eureka.png" alt="Spring Cloud Eureka Client">
-                    </p>
-                </a>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-05-08T02:01:55.000Z">2019-05-08</time>
-                        <a href="/2019/05/08/Spring-Cloud-Eureka-Client/" class="has-link-black-ter is-size-6">Spring Cloud Eureka Client</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a> / <a class="has-link-grey -link" href="/categories/Spring/SpringCloud/">SpringCloud</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 923 words)
+                </span>
                 
-                <a href="/2019/05/06/Spring-Cloud-Config-Server/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/Spring-Cloud-Config-Server.png" alt="Spring Cloud Config Server">
-                    </p>
-                </a>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-05-06T03:27:55.000Z">2019-05-06</time>
-                        <a href="/2019/05/06/Spring-Cloud-Config-Server/" class="has-link-black-ter is-size-6">Spring Cloud Config Server</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a> / <a class="has-link-grey -link" href="/categories/Spring/SpringCloud/">SpringCloud</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
                 
-                <a href="/2019/04/25/Jenkins集成Helm进行应用持续发布/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/jenkins-helm.png" alt="Jenkins集成Helm进行应用持续发布">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-04-25T08:17:50.000Z">2019-04-25</time>
-                        <a href="/2019/04/25/Jenkins集成Helm进行应用持续发布/" class="has-link-black-ter is-size-6">Jenkins集成Helm进行应用持续发布</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/DevOps/">DevOps</a> / <a class="has-link-grey -link" href="/categories/DevOps/Jenkins/">Jenkins</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-04-24T07:42:39.338Z">2019-04-24</time>
-                        <a href="/2019/04/24/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
+            </div>
         </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                TCP与UDP
+            
+        </h1>
+        <div class="content">
+            <h2 id="传输层的作用"><a href="#传输层的作用" class="headerlink" title="传输层的作用"></a>传输层的作用</h2><p>作为传输层的两个主要协议，为了识别自己传输的数据属于哪个应用，在协议内设定了端口号</p>
+<p><strong>将接收和发送的数据与特定的应用程序进行关联起来,通过socket，也就是绑定了端口</strong></p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ul>
+<li><em>TCP</em> 是面向连接的，可靠的的流协议，它提供了可靠性传输，实行<code>顺序控制`</code>重发控制<code>流量控制</code>拥塞控制<code></code>提高网络利用率`等多种功能</li>
+<li><em>UDP</em> 是不具有可靠性的数据报协议，细微的处理交给上层的应用去完成</li>
+</ul>
+<h2 id="TCP头部"><a href="#TCP头部" class="headerlink" title="TCP头部"></a>TCP头部</h2><p>就不解释每个字段的意思了</p>
+<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-h.png" alt="TCP头部"></p>
+<h2 id="TCP的特点"><a href="#TCP的特点" class="headerlink" title="TCP的特点"></a>TCP的特点</h2><h3 id="1-通过序列号和确认应答提高可靠性"><a href="#1-通过序列号和确认应答提高可靠性" class="headerlink" title="1. 通过序列号和确认应答提高可靠性"></a>1. 通过序列号和确认应答提高可靠性</h3><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s1.png" alt="通过序列号和确认应答提高可靠性"></p>
+<h3 id="2-数据包丢失"><a href="#2-数据包丢失" class="headerlink" title="2. 数据包丢失"></a>2. 数据包丢失</h3><ol>
+<li><p>数据无法到达</p>
+<p> <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s2.png" alt="TCP数据无法到达"></p>
+</li>
+<li><p>数据应答丢失</p>
+<p> <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s3.png" alt="TCP数据应答丢失"></p>
+</li>
+</ol>
+<h3 id="3-重发的超时时间如何确定"><a href="#3-重发的超时时间如何确定" class="headerlink" title="3. 重发的超时时间如何确定"></a>3. 重发的超时时间如何确定</h3><p>在BSD的Unix以及Windows系统中，超时都是以0.5s为单位进行控制的，因此重发超时的都是0.5的整数倍，不过由于最初的数据包还不知道往返时间，所以其重发的超时一般设置在6s左右。</p>
+<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s5.png" alt="TCP重发的超时时间如何确定"></p>
+<h3 id="4-连接管理"><a href="#4-连接管理" class="headerlink" title="4. 连接管理"></a>4. 连接管理</h3><p>这个会经常提到</p>
+<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s6.png" alt="TCP连接管理"></p>
+<h3 id="5-TCP以段发送数据"><a href="#5-TCP以段发送数据" class="headerlink" title="5. TCP以段发送数据"></a>5. TCP以段发送数据</h3><p>在建立TCP连接的同时，也可以确定发送数据包的单位，称为<code>最大消息长度</code>（MSS），TCP在传送大量数据时，是以MSS的大小将数据进行分割发送。</p>
+<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s7.png" alt="TCP以段发送数据"></p>
+<h3 id="6-利用窗口控制提高速度"><a href="#6-利用窗口控制提高速度" class="headerlink" title="6. 利用窗口控制提高速度"></a>6. 利用窗口控制提高速度</h3><p>TCP以1个段为单位，每发一个段进行一次确认应答，性能太差了，为了解决这个问题。</p>
+<p>确认应答不再是以每个分段，而是以更大的单位进行确认，转发的时间被大幅度缩短。也就是说，发送端主机，在发送了一个段以后不必要一直等待确认应答，而是继续发送</p>
+<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s8.png" alt="TCP利用窗口控制提高速度"></p>
+<h3 id="7-窗口控制与重发控制"><a href="#7-窗口控制与重发控制" class="headerlink" title="7. 窗口控制与重发控制"></a>7. 窗口控制与重发控制</h3><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s9.png" alt="没有确认应答也不受影响"></p>
+<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-s10.png" alt="TCP高速重发控制"></p>
+<h3 id="8-流控制"><a href="#8-流控制" class="headerlink" title="8. 流控制"></a>8. 流控制</h3><p>为了防止流量浪费，比如说，数据接收端在高负荷的情况下无法接受任何数据。如果将本来接受的数据丢弃，则会触发重发机制。</p>
+<p>为了防止这种现象，TCP提供了一种机制可以让发送端根据接收端的实际接受能力控制发送的数据量。这就是流控制。</p>
+<p>做法就是在TCP首部中，有一个字段来通知窗口的大小，值越大，吞吐量越高</p>
+<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-11.png" alt="TCP流控制"></p>
+<h3 id="9-拥塞控制"><a href="#9-拥塞控制" class="headerlink" title="9. 拥塞控制"></a>9. 拥塞控制</h3><p>慢启动，慢慢变快</p>
+<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-12.png" alt="TCP拥塞控制">    </p>
+<h3 id="10-捎带应答"><a href="#10-捎带应答" class="headerlink" title="10. 捎带应答"></a>10. 捎带应答</h3><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/tcp-13.png" alt="TCP捎带应答"></p>
+<h2 id="UDP头部"><a href="#UDP头部" class="headerlink" title="UDP头部"></a>UDP头部</h2><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/udp-h.png" alt="UDP头信息"></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/network/">network</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
     </div>
 </div>
 
 
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/08/Spring-Cloud-Eureka-Client/">
+                <span class="level-item">Spring Cloud Eureka Client</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '07bd1be05349a17a8209',
+        clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
+        id: '6c11dc06e030b22dd5c8a353cd21bb53',
+        repo: 'yuexine.github.io',
+        owner: 'yuexine',
+        admin: "yuexine"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -349,6 +367,77 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#传输层的作用">
+        <span class="has-mr-6">1</span>
+        <span>传输层的作用</span>
+        </a></li><li>
+        <a class="is-flex" href="#区别">
+        <span class="has-mr-6">2</span>
+        <span>区别</span>
+        </a></li><li>
+        <a class="is-flex" href="#TCP头部">
+        <span class="has-mr-6">3</span>
+        <span>TCP头部</span>
+        </a></li><li>
+        <a class="is-flex" href="#TCP的特点">
+        <span class="has-mr-6">4</span>
+        <span>TCP的特点</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-通过序列号和确认应答提高可靠性">
+        <span class="has-mr-6">4.1</span>
+        <span>1. 通过序列号和确认应答提高可靠性</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-数据包丢失">
+        <span class="has-mr-6">4.2</span>
+        <span>2. 数据包丢失</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-重发的超时时间如何确定">
+        <span class="has-mr-6">4.3</span>
+        <span>3. 重发的超时时间如何确定</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-连接管理">
+        <span class="has-mr-6">4.4</span>
+        <span>4. 连接管理</span>
+        </a></li><li>
+        <a class="is-flex" href="#5-TCP以段发送数据">
+        <span class="has-mr-6">4.5</span>
+        <span>5. TCP以段发送数据</span>
+        </a></li><li>
+        <a class="is-flex" href="#6-利用窗口控制提高速度">
+        <span class="has-mr-6">4.6</span>
+        <span>6. 利用窗口控制提高速度</span>
+        </a></li><li>
+        <a class="is-flex" href="#7-窗口控制与重发控制">
+        <span class="has-mr-6">4.7</span>
+        <span>7. 窗口控制与重发控制</span>
+        </a></li><li>
+        <a class="is-flex" href="#8-流控制">
+        <span class="has-mr-6">4.8</span>
+        <span>8. 流控制</span>
+        </a></li><li>
+        <a class="is-flex" href="#9-拥塞控制">
+        <span class="has-mr-6">4.9</span>
+        <span>9. 拥塞控制</span>
+        </a></li><li>
+        <a class="is-flex" href="#10-捎带应答">
+        <span class="has-mr-6">4.10</span>
+        <span>10. 捎带应答</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#UDP头部">
+        <span class="has-mr-6">5</span>
+        <span>UDP头部</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -847,7 +936,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="TCP与UDP" height="28">
                 
                 </a>
                 <p class="is-size-7">

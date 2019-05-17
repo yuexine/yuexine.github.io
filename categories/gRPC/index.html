@@ -2,25 +2,20 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Jenkins集成Helm进行应用持续发布 - Yuexin-Space</title>
+<title>Category: gRPC - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级">
-<meta name="keywords" content="jenkins,helm">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Jenkins集成Helm进行应用持续发布">
-<meta property="og:url" content="http://yuexine.github.io/2019/04/25/Jenkins集成Helm进行应用持续发布/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Yuexin-Space">
+<meta property="og:url" content="http://yuexine.github.io/categories/gRPC/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/jenkins-helm.png">
-<meta property="og:updated_time" content="2019-05-06T06:19:25.195Z">
+<meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jenkins集成Helm进行应用持续发布">
-<meta name="twitter:description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级">
-<meta name="twitter:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/jenkins-helm.png">
+<meta name="twitter:title" content="Yuexin-Space">
+<meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
 
 
 
@@ -98,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Jenkins集成Helm进行应用持续发布" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
             
             </a>
         </div>
@@ -130,10 +125,6 @@
                     
                 
                 
-                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -148,158 +139,123 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">Categories</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">gRPC</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
     
     <div class="card-image">
-        <span class="image is-7by1">
-            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/jenkins-helm.png" alt="Jenkins集成Helm进行应用持续发布">
-        </span>
+        <a href="/2019/05/17/gRPC-入门学习/" class="image is-7by1">
+            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/landing-2.svg" alt="gRPC 入门学习">
+        </a>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-04-25T08:17:50.000Z">2019-04-25</time>
+                <time class="level-item has-text-grey" datetime="2019-05-17T03:34:05.000Z">2019-05-17</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/DevOps/">DevOps</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/DevOps/Jenkins/">Jenkins</a>
+                <a class="has-link-grey -link" href="/categories/gRPC/">gRPC</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 413 words)
+                    7 minutes read (About 1039 words)
                 </span>
                 
-                
-                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
-                    <i class="far fa-eye"></i>
-                    <span id="busuanzi_value_page_pv">0</span> visits
-                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Jenkins集成Helm进行应用持续发布
+                <a class="has-link-black-ter" href="/2019/05/17/gRPC-入门学习/">gRPC 入门学习</a>
             
         </h1>
         <div class="content">
-            <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
-<li>在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中</li>
-<li>使用Helm工具以chart升级的方式完成不同版本应用的发布升级</li>
+            <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>gRPC是Google公司开源的一个远程服务调用框架，基于HTTP2协议。</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>通过接口定义语言(IDL)定义了客户端与服务端数据交换的格式，该文件的扩展名为<code>.proto</code>, 通过将文件编译到对应的开发语言来完成系统的集成。</li>
+<li>gRPC使用高效的序列化序列化工具<code>Protocol buffer</code></li>
 </ul>
-<a id="more"></a>
-<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><ul>
-<li>在使用Helm之前，已经完成了Jenkins的部署，并且已经正常运行脚本与Kubernetes平台进行</li>
-<li>通过<code>kubectl</code>命令执行配置文件完成应用的版本更新</li>
+<h2 id="在SpringBoot中使用gRPC完成服务间调用"><a href="#在SpringBoot中使用gRPC完成服务间调用" class="headerlink" title="在SpringBoot中使用gRPC完成服务间调用"></a>在SpringBoot中使用gRPC完成服务间调用</h2><p><a href="https://github.com/yuexine/grpc-demo" target="_blank" rel="noopener">完整的代码地址</a></p>
+<h3 id="方法及参数对象声明"><a href="#方法及参数对象声明" class="headerlink" title="方法及参数对象声明"></a>方法及参数对象声明</h3><p>首先我们需要声明服务调用的接口方法与参数，推荐使用<code>proto3</code>，通过在pom中使用<code>protobuf-maven-plugin</code>插件，可以在编译的时候将<code>.proto</code>文件生成java class文件。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="hljs-string">"proto3"</span>;</span><br><span class="line"></span><br><span class="line">option java_multiple_files = <span class="hljs-keyword">true</span>;</span><br><span class="line"><span class="hljs-keyword">package</span> com.vcors.demo.grpcproto;</span><br><span class="line"></span><br><span class="line">message Person &#123;</span><br><span class="line">    string first_name = <span class="hljs-number">1</span>;</span><br><span class="line">    string last_name = <span class="hljs-number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message Greeting &#123;</span><br><span class="line">    string message = <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">service HelloWorldService &#123;</span><br><span class="line">    <span class="hljs-function">rpc <span class="hljs-title">sayHello</span> <span class="hljs-params">(Person)</span> <span class="hljs-title">returns</span> <span class="hljs-params">(Greeting)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="服务端开发"><a href="#服务端开发" class="headerlink" title="服务端开发"></a>服务端开发</h3><h4 id="理解-proto代码生成"><a href="#理解-proto代码生成" class="headerlink" title="理解.proto代码生成"></a>理解<code>.proto</code>代码生成</h4><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/grpc-1.png" alt="GRpc代码生成"></p>
+<ol>
+<li>对于<code>.proto</code>文件中定义的对象，会生成对应的JavaClass，这是可以通过<code>Protocal Buffers</code>序列化的对象模型</li>
+<li>对于<code>.proto</code>文件中定义的方法，会生成XXXGrpc</li>
+<li><p>XXXGrpc</p>
+<ol>
+<li><p>接口方法声明</p>
+ <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorldServiceImplBase</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">io</span>.<span class="hljs-title">grpc</span>.<span class="hljs-title">BindableService</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p> 这个抽象内部类主要用来集成在服务端，作为方法实现的父级接口</p>
+</li>
+<li><p>方法存根</p>
+<p> 种类分为</p>
+<ul>
+<li><code>XXXBlockingStub</code> blocking-style stub that supports unary and streaming output calls on the service</li>
+<li><code>XXXFutureStub</code> ListenableFuture-style stub that supports unary calls on the service</li>
+<li><p><code>XXXStub</code> async stub that supports all call types for the service</p>
+<p>方法存根用来集成到客户端，方法客户端调用在服务端实现的方法。</p>
+</li>
 </ul>
-<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><ul>
-<li><p>helm chart制作，此步骤略</p>
 </li>
-<li><p>包含helm工具的jenkins容器镜像制作</p>
-<p>  制作完成的镜像文件 <code>harbor.3incloud.com/library/jenkins-jnlp:latest</code></p>
-<p>  <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556181538711.jpg" alt="-w1118"></p>
+</ol>
 </li>
-<li><p>初始化应用安装</p>
-<p>  <code>helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/XXXX &amp;&amp; helm repo update</code></p>
-<p>  这里主要就是在slave中初始化helm，并且添加私有的chart仓库</p>
-</li>
-<li><p>Jenkins完成应用持续部署</p>
-<p>  <code>helm upgrade --reuse-values --set-string image.tag=&#39;${build_tag}&#39; deploy-name --version 0.1.0 myharbor/chart-name</code></p>
-<p>  通过重新设定chart的image.tag完成容器的版本升级，<code>--reuse-values</code> 表示在原本参数的基础上进行更新</p>
-</li>
+</ol>
+<h4 id="集成依赖"><a href="#集成依赖" class="headerlink" title="集成依赖"></a>集成依赖</h4><p>在服务端中集成proto模块声明的模型和接口方法</p>
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.vcors.demo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>grpc-proto<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="方法实现"><a href="#方法实现" class="headerlink" title="方法实现"></a>方法实现</h4><p>通过继承<code>HelloWorldServiceGrpc.HelloWorldServiceImplBase</code>来重写<code>.proto</code>接口中声明的方法，也就是具体业务需要实现的逻辑代码都在这</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@GRpcService</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorldServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HelloWorldServiceGrpc</span>.<span class="hljs-title">HelloWorldServiceImplBase</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Logger LOGGER =</span><br><span class="line">            LoggerFactory.getLogger(HelloWorldServiceImpl.class);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sayHello</span><span class="hljs-params">(Person request, StreamObserver&lt;Greeting&gt; responseObserver)</span> </span>&#123;</span><br><span class="line">        LOGGER.info(<span class="hljs-string">"server received &#123;&#125;"</span>, request);</span><br><span class="line"></span><br><span class="line">        String message = <span class="hljs-string">"Hello "</span> + request.getFirstName() + <span class="hljs-string">" "</span></span><br><span class="line">                + request.getLastName() + <span class="hljs-string">"!"</span>;</span><br><span class="line">        Greeting greeting =</span><br><span class="line">                Greeting.newBuilder().setMessage(message).build();</span><br><span class="line">        LOGGER.info(<span class="hljs-string">"server responded &#123;&#125;"</span>, greeting);</span><br><span class="line"></span><br><span class="line">        responseObserver.onNext(greeting);</span><br><span class="line">        responseObserver.onCompleted();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="客户端调用服务端"><a href="#客户端调用服务端" class="headerlink" title="客户端调用服务端"></a>客户端调用服务端</h3><h4 id="创建存根接口"><a href="#创建存根接口" class="headerlink" title="创建存根接口"></a>创建存根接口</h4><p>首先在客户端中也同样要在pom中集成<code>proto</code>声明模块</p>
+<p>创建存根方法对象</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ManagedChannel managedChannel = ManagedChannelBuilder</span><br><span class="line">                .forAddress(<span class="hljs-string">"localhost"</span>, <span class="hljs-number">6565</span>).usePlaintext().build();</span><br><span class="line">        helloWorldServiceBlockingStub =</span><br><span class="line">                HelloWorldServiceGrpc.newBlockingStub(managedChannel);</span><br></pre></td></tr></table></figure>
+<h4 id="执行方法调用"><a href="#执行方法调用" class="headerlink" title="执行方法调用"></a>执行方法调用</h4><p>像调用本地方法一样，实现不同应用接口的调用</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Greeting greeting =</span><br><span class="line">                helloWorldServiceBlockingStub.sayHello(person);</span><br></pre></td></tr></table></figure>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>同时启动服务端与客户端应用，调用客户端接口来收到服务端的正确响应</p>
+<h3 id="理解gRPC-spring-boot-starter"><a href="#理解gRPC-spring-boot-starter" class="headerlink" title="理解gRPC-spring-boot-starter"></a>理解<code>gRPC-spring-boot-starter</code></h3><p>gRPC-spring-boot-starter 是对<code>GRpcServer</code>的一个封装，可以使我们在spring-boot项目中更简单的使用GRpc，核心功能就是启动了GRpcServer，并将通过<code>@GRpcServer</code>注解的Service注册到Server中</p>
+<h4 id="理解GRpcAutoConfiguration"><a href="#理解GRpcAutoConfiguration" class="headerlink" title="理解GRpcAutoConfiguration"></a>理解<code>GRpcAutoConfiguration</code></h4><p>在<code>grpc-spring-boot-starter/META-INF/spring.factories</code>配置了<code>GRpcAutoConfiguration</code>, springboot启动时会自动加载该配置文件</p>
+<p>该文件主要初始化了以下几个Bean实例</p>
+<ul>
+<li>GRpcServerRunner</li>
+<li>HealthStatusManager</li>
+<li>GRpcServerBuilderConfigurer</li>
 </ul>
-<h2 id="完整的Pipeline脚本"><a href="#完整的Pipeline脚本" class="headerlink" title="完整的Pipeline脚本"></a>完整的Pipeline脚本</h2><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">node('worker') &#123;</span><br><span class="line">    stage('Clone') &#123;</span><br><span class="line">        echo "1.Clone Stage"</span><br><span class="line">        git credentialsId: 'gitlab-auth', url: 'https://gitlab.3incloud.com/xxx/xxx-server.git'</span><br><span class="line">        script &#123;</span><br><span class="line">            build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Test') &#123;</span><br><span class="line">        echo "2.Test Stage"</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Build') &#123;</span><br><span class="line">        echo "3.Build Docker Image Stage"</span><br><span class="line">        sh "docker build -t harbor.3incloud.com/xxx/xxx-server:$&#123;build_tag&#125; ."</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Push') &#123;</span><br><span class="line">        echo "4.Push Docker Image Stage"</span><br><span class="line">        withDockerRegistry(credentialsId: 'harbor-ci', url: 'https://harbor.3incloud.com') &#123;</span><br><span class="line">            sh "docker push harbor.3incloud.com/xxx/xxx-server:$&#123;build_tag&#125;"</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Deploy') &#123;</span><br><span class="line">        echo "5. Deploy Stage"</span><br><span class="line">        sh "helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/xxx &amp;&amp; helm repo update"</span><br><span class="line">        sh "helm upgrade --reuse-values --set-string image.tag='$&#123;build_tag&#125;' avic-server --version 0.1.0 myharbor/xxx-server"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="GRpcServerRunner"><a href="#GRpcServerRunner" class="headerlink" title="GRpcServerRunner"></a><code>GRpcServerRunner</code></h4><p>启动一个<code>GRpc Server</code>, 集成到SpringBoot中后，项目无需再集成其他的web server</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">(String... args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    log.info(<span class="hljs-string">"Starting gRPC Server ..."</span>);</span><br><span class="line">    Collection&lt;ServerInterceptor&gt; globalInterceptors = (Collection)<span class="hljs-keyword">this</span>.getBeanNamesByTypeWithAnnotation(GRpcGlobalInterceptor.class, ServerInterceptor.class).map((name) -&gt; &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> (ServerInterceptor)<span class="hljs-keyword">this</span>.applicationContext.getBeanFactory().getBean(name, ServerInterceptor.class);</span><br><span class="line">    &#125;).collect(Collectors.toList());</span><br><span class="line">    <span class="hljs-keyword">this</span>.serverBuilder.addService(<span class="hljs-keyword">this</span>.healthStatusManager.getHealthService());</span><br><span class="line">    <span class="hljs-keyword">this</span>.getBeanNamesByTypeWithAnnotation(GRpcService.class, BindableService.class).forEach((name) -&gt; &#123;</span><br><span class="line">        BindableService srv = (BindableService)<span class="hljs-keyword">this</span>.applicationContext.getBeanFactory().getBean(name, BindableService.class);</span><br><span class="line">        ServerServiceDefinition serviceDefinition = srv.bindService();</span><br><span class="line">        GRpcService gRpcServiceAnn = (GRpcService)<span class="hljs-keyword">this</span>.applicationContext.findAnnotationOnBean(name, GRpcService.class);</span><br><span class="line">        serviceDefinition = <span class="hljs-keyword">this</span>.bindInterceptors(serviceDefinition, gRpcServiceAnn, globalInterceptors);</span><br><span class="line">        <span class="hljs-keyword">this</span>.serverBuilder.addService(serviceDefinition);</span><br><span class="line">        String serviceName = serviceDefinition.getServiceDescriptor().getName();</span><br><span class="line">        <span class="hljs-keyword">this</span>.healthStatusManager.setStatus(serviceName, ServingStatus.SERVING);</span><br><span class="line">        log.info(<span class="hljs-string">"'&#123;&#125;' service has been registered."</span>, srv.getClass().getName());</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.gRpcServerProperties.isEnableReflection()) &#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.serverBuilder.addService(ProtoReflectionService.newInstance());</span><br><span class="line">        log.info(<span class="hljs-string">"'&#123;&#125;' service has been registered."</span>, ProtoReflectionService.class.getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">this</span>.configurer.configure(<span class="hljs-keyword">this</span>.serverBuilder);</span><br><span class="line">    <span class="hljs-keyword">this</span>.server = <span class="hljs-keyword">this</span>.serverBuilder.build().start();</span><br><span class="line">    <span class="hljs-keyword">this</span>.applicationContext.publishEvent(<span class="hljs-keyword">new</span> GRpcServerInitializedEvent(<span class="hljs-keyword">this</span>.server));</span><br><span class="line">    log.info(<span class="hljs-string">"gRPC Server started, listening on port &#123;&#125;."</span>, <span class="hljs-keyword">this</span>.server.getPort());</span><br><span class="line">    <span class="hljs-keyword">this</span>.startDaemonAwaitThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="GRpcService"><a href="#GRpcService" class="headerlink" title="@GRpcService"></a><code>@GRpcService</code></h4><p>通过该注解声明的方法会被声明为Spring Bean，本质上它是一个<code>@Service</code>注解，另外就是在启动GRpcServer时会注册该Bean。</p>
+<h3 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h3><ul>
+<li>接口调用的认证处理</li>
+<li>结合Kubernetes平台实现服务发现与负载均衡</li>
+</ul>
+
         </div>
         
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/helm/">helm</a>, <a class="has-link-grey -link" href="/tags/jenkins/">jenkins</a>
-                </div>
-            </div>
-        </div>
         
-        
-        
-        <div class="social-share"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
-<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>Wechat</span>
-    <div class="qrcode"><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/wechat_pay.jpg" alt="Wechat"></div>
-</a>
-
-                
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/05/06/Spring-Cloud-Config-Server/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Spring Cloud Config Server</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/04/24/hello-world/">
-                <span class="level-item">Hello World</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
-        
-<div id="comment-container"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
-<script>
-    var gitalk = new Gitalk({
-        clientID: '07bd1be05349a17a8209',
-        clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
-        id: '8ae8ec7a8c59f2a985cd9300c5e2efa0',
-        repo: 'yuexine.github.io',
-        owner: 'yuexine',
-        admin: "yuexine"
-    })
-    gitalk.render('comment-container')
-</script>
-
-    </div>
-</div>
 </div>
                 
 
@@ -394,33 +350,6 @@
 </div>
     
         
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                Catalogue
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#目标">
-        <span class="has-mr-6">1</span>
-        <span>目标</span>
-        </a></li><li>
-        <a class="is-flex" href="#前提">
-        <span class="has-mr-6">2</span>
-        <span>前提</span>
-        </a></li><li>
-        <a class="is-flex" href="#实现步骤">
-        <span class="has-mr-6">3</span>
-        <span>实现步骤</span>
-        </a></li><li>
-        <a class="is-flex" href="#完整的Pipeline脚本">
-        <span class="has-mr-6">4</span>
-        <span>完整的Pipeline脚本</span>
-        </a></li></ul>
-        </div>
-    </div>
-</div>
-
     
         
 
@@ -941,7 +870,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Jenkins集成Helm进行应用持续发布" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
                 
                 </a>
                 <p class="is-size-7">

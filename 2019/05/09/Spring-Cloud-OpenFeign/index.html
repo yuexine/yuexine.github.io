@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="理解OpenFeign它声明一个REST客户端，来完成远程服务的调用，Feign会动态实现由JAX-RS或Spring MVC注解修饰的接口，主要用途是用来简化服务之间的相互调用 在SpringBoot中集成Feign前提已经准备好由SpringBoot构建的客户端和服务端，并且已经成功注册到Eureka注册中心。 引入相关jar在客户端中Pom中加入 123456789&amp;lt;dependen">
+    <meta name="description" content="理解OpenFeign它声明一个REST客户端，来完成远程服务的调用，Feign会动态实现由JAX-RS或Spring MVC注解修饰的接口，主要用途是用来简化服务之间的相互调用">
 <meta name="keywords" content="spring,springcloud">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Cloud OpenFeign">
 <meta property="og:url" content="http://yuexine.github.io/2019/05/09/Spring-Cloud-OpenFeign/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="理解OpenFeign它声明一个REST客户端，来完成远程服务的调用，Feign会动态实现由JAX-RS或Spring MVC注解修饰的接口，主要用途是用来简化服务之间的相互调用 在SpringBoot中集成Feign前提已经准备好由SpringBoot构建的客户端和服务端，并且已经成功注册到Eureka注册中心。 引入相关jar在客户端中Pom中加入 123456789&amp;lt;dependen">
+<meta property="og:description" content="理解OpenFeign它声明一个REST客户端，来完成远程服务的调用，Feign会动态实现由JAX-RS或Spring MVC注解修饰的接口，主要用途是用来简化服务之间的相互调用">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg">
-<meta property="og:updated_time" content="2019-05-20T02:35:32.382Z">
+<meta property="og:updated_time" content="2019-05-20T02:40:06.176Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Cloud OpenFeign">
-<meta name="twitter:description" content="理解OpenFeign它声明一个REST客户端，来完成远程服务的调用，Feign会动态实现由JAX-RS或Spring MVC注解修饰的接口，主要用途是用来简化服务之间的相互调用 在SpringBoot中集成Feign前提已经准备好由SpringBoot构建的客户端和服务端，并且已经成功注册到Eureka注册中心。 引入相关jar在客户端中Pom中加入 123456789&amp;lt;dependen">
+<meta name="twitter:description" content="理解OpenFeign它声明一个REST客户端，来完成远程服务的调用，Feign会动态实现由JAX-RS或Spring MVC注解修饰的接口，主要用途是用来简化服务之间的相互调用">
 <meta name="twitter:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg">
 
 
@@ -187,8 +187,8 @@
             
         </h1>
         <div class="content">
-            <a id="more"></a>
-<h2 id="理解OpenFeign"><a href="#理解OpenFeign" class="headerlink" title="理解OpenFeign"></a>理解OpenFeign</h2><p>它声明一个REST客户端，来完成远程服务的调用，Feign会动态实现由JAX-RS或Spring MVC注解修饰的接口，主要用途是用来简化服务之间的相互调用</p>
+            <h2 id="理解OpenFeign"><a href="#理解OpenFeign" class="headerlink" title="理解OpenFeign"></a>理解OpenFeign</h2><p>它声明一个REST客户端，来完成远程服务的调用，Feign会动态实现由JAX-RS或Spring MVC注解修饰的接口，主要用途是用来简化服务之间的相互调用</p>
+<a id="more"></a>
 <h2 id="在SpringBoot中集成Feign"><a href="#在SpringBoot中集成Feign" class="headerlink" title="在SpringBoot中集成Feign"></a>在SpringBoot中集成Feign</h2><h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>已经准备好由SpringBoot构建的客户端和服务端，并且已经成功注册到Eureka注册中心。</p>
 <h3 id="引入相关jar"><a href="#引入相关jar" class="headerlink" title="引入相关jar"></a>引入相关jar</h3><p>在客户端中Pom中加入</p>
 <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.github.openfeign<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>feign-okhttp<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>

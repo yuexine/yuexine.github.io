@@ -185,34 +185,20 @@
             
         </h1>
         <div class="content">
-            <a id="more"></a>
-<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
+            <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
 <li>在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中</li>
 <li>使用Helm工具以chart升级的方式完成不同版本应用的发布升级</li>
 </ul>
-<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><ul>
-<li>在使用Helm之前，已经完成了Jenkins的部署，并且已经正常运行脚本与Kubernetes平台进行</li>
-<li>通过<code>kubectl</code>命令执行配置文件完成应用的版本更新</li>
-</ul>
-<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><ul>
-<li><p>helm chart制作，此步骤略</p>
-</li>
-<li><p>包含helm工具的jenkins容器镜像制作</p>
-<p>  制作完成的镜像文件 <code>harbor.3incloud.com/library/jenkins-jnlp:latest</code></p>
-<p>  <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556181538711.jpg" alt="-w1118"></p>
-</li>
-<li><p>初始化应用安装</p>
-<p>  <code>helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/XXXX &amp;&amp; helm repo update</code></p>
-<p>  这里主要就是在slave中初始化helm，并且添加私有的chart仓库</p>
-</li>
-<li><p>Jenkins完成应用持续部署</p>
-<p>  <code>helm upgrade --reuse-values --set-string image.tag=&#39;${build_tag}&#39; deploy-name --version 0.1.0 myharbor/chart-name</code></p>
-<p>  通过重新设定chart的image.tag完成容器的版本升级，<code>--reuse-values</code> 表示在原本参数的基础上进行更新</p>
-</li>
-</ul>
-<h2 id="完整的Pipeline脚本"><a href="#完整的Pipeline脚本" class="headerlink" title="完整的Pipeline脚本"></a>完整的Pipeline脚本</h2><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">node('worker') &#123;</span><br><span class="line">    stage('Clone') &#123;</span><br><span class="line">        echo "1.Clone Stage"</span><br><span class="line">        git credentialsId: 'gitlab-auth', url: 'https://gitlab.3incloud.com/xxx/xxx-server.git'</span><br><span class="line">        script &#123;</span><br><span class="line">            build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Test') &#123;</span><br><span class="line">        echo "2.Test Stage"</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Build') &#123;</span><br><span class="line">        echo "3.Build Docker Image Stage"</span><br><span class="line">        sh "docker build -t harbor.3incloud.com/xxx/xxx-server:$&#123;build_tag&#125; ."</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Push') &#123;</span><br><span class="line">        echo "4.Push Docker Image Stage"</span><br><span class="line">        withDockerRegistry(credentialsId: 'harbor-ci', url: 'https://harbor.3incloud.com') &#123;</span><br><span class="line">            sh "docker push harbor.3incloud.com/xxx/xxx-server:$&#123;build_tag&#125;"</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Deploy') &#123;</span><br><span class="line">        echo "5. Deploy Stage"</span><br><span class="line">        sh "helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/xxx &amp;&amp; helm repo update"</span><br><span class="line">        sh "helm upgrade --reuse-values --set-string image.tag='$&#123;build_tag&#125;' avic-server --version 0.1.0 myharbor/xxx-server"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/04/25/Jenkins集成Helm进行应用持续发布/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>

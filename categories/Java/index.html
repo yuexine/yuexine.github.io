@@ -172,7 +172,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 624 words)
+                    4 minutes read (About 625 words)
                 </span>
                 
                 
@@ -185,7 +185,8 @@
             
         </h1>
         <div class="content">
-            <h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><ol>
+            <a id="more"></a>
+<h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><ol>
 <li><p>Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值</p>
  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@FunctionalInterface</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Function</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">R</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     * Applies this function to the given argument.</span></span><br><span class="line"><span class="hljs-comment">     *</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> t the function argument</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the function result</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-function">R <span class="hljs-title">apply</span><span class="hljs-params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p> 这里需要注意的是定义的范型，这个接口中声明了2个类型，其中T为方法参数类型，R为方法返回类型</p>

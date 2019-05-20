@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="Function Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值  1234567891011@FunctionalInterfacepublic interface Function&amp;lt;T, R&amp;gt; &amp;#123;    /**     * Applies this function to the given argument.     *     * @p">
+    <meta name="description" content="Function Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值  1234567891011@FunctionalInterfacepublic interface Function&amp;lt;T, R&amp;gt; &amp;#123;    /**     * Applies this function to the given argument.     *     * @">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解Function和BiFunction">
 <meta property="og:url" content="http://yuexine.github.io/2019/05/20/理解Function和BiFunction/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="Function Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值  1234567891011@FunctionalInterfacepublic interface Function&amp;lt;T, R&amp;gt; &amp;#123;    /**     * Applies this function to the given argument.     *     * @p">
+<meta property="og:description" content="Function Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值  1234567891011@FunctionalInterfacepublic interface Function&amp;lt;T, R&amp;gt; &amp;#123;    /**     * Applies this function to the given argument.     *     * @">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/java8.jpg">
-<meta property="og:updated_time" content="2019-05-20T02:30:15.402Z">
+<meta property="og:updated_time" content="2019-05-20T02:33:36.141Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解Function和BiFunction">
-<meta name="twitter:description" content="Function Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值  1234567891011@FunctionalInterfacepublic interface Function&amp;lt;T, R&amp;gt; &amp;#123;    /**     * Applies this function to the given argument.     *     * @p">
+<meta name="twitter:description" content="Function Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值  1234567891011@FunctionalInterfacepublic interface Function&amp;lt;T, R&amp;gt; &amp;#123;    /**     * Applies this function to the given argument.     *     * @">
 <meta name="twitter:image" content="http://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/java8.jpg">
 
 
@@ -169,7 +169,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 624 words)
+                    4 minutes read (About 625 words)
                 </span>
                 
                 
@@ -187,7 +187,8 @@
             
         </h1>
         <div class="content">
-            <h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><ol>
+            <a id="more"></a>
+<h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><ol>
 <li><p>Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值</p>
  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@FunctionalInterface</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Function</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">R</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     * Applies this function to the given argument.</span></span><br><span class="line"><span class="hljs-comment">     *</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> t the function argument</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the function result</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-function">R <span class="hljs-title">apply</span><span class="hljs-params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p> 这里需要注意的是定义的范型，这个接口中声明了2个类型，其中T为方法参数类型，R为方法返回类型</p>

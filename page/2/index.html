@@ -161,7 +161,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 377 words)
+                    3 minutes read (About 378 words)
                 </span>
                 
                 
@@ -174,18 +174,41 @@
             
         </h1>
         <div class="content">
-            <h2 id="使用Eureka-Client"><a href="#使用Eureka-Client" class="headerlink" title="使用Eureka Client"></a>使用Eureka Client</h2><p>在pom中包含jar</p>
+            <a id="more"></a>
+<h2 id="使用Eureka-Client"><a href="#使用Eureka-Client" class="headerlink" title="使用Eureka Client"></a>使用Eureka Client</h2><p>在pom中包含jar</p>
 <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<!-- more -->
+<h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>指定注册中心的位置</p>
+<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">eureka:</span></span><br><span class="line"><span class="hljs-attr">  client:</span></span><br><span class="line"><span class="hljs-attr">    serviceUrl:</span></span><br><span class="line"><span class="hljs-attr">      defaultZone:</span> <span class="hljs-attr">http://localhost:8761/eureka/</span></span><br></pre></td></tr></table></figure>
+<h2 id="注册认证"><a href="#注册认证" class="headerlink" title="注册认证"></a>注册认证</h2><p>HTTP Basic认证已经自动添加到eureka客户端中, 更复杂的需求，参考文档实现</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://user:password@localhost:8761/eureka</span><br></pre></td></tr></table></figure>
+<h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><p>在阅读源码的时候，我们根据它本身提供的功能去关注它实现的过程，以及代码是怎么被触发的</p>
+<ol>
+<li><p>入口</p>
+<p> 通过观察<code>spring-cloud-netflix-eureka-client</code>包中的<code>META-INF/spring.factories</code>可以看到里面配置了一组<code>EnableAutoConfiguration</code>, 我们重点关注<code>EurekaClientAutoConfiguration</code></p>
+</li>
+<li><p>EurekaClientAutoConfiguration</p>
+<p> 在这个对象中，主要是根据条件创建了一组<code>spring bean</code>, 包括</p>
+<ul>
+<li><code>EurekaClientConfigBean</code></li>
+<li><code>ManagementMetadataProvider</code></li>
+<li><code>EurekaInstanceConfigBean</code></li>
+<li><code>DiscoveryClient</code></li>
+<li><code>EurekaServiceRegistry</code></li>
+<li><code>EurekaClient</code></li>
+</ul>
+</li>
+<li><p>EurekaClient</p>
+<p> 继续跟踪代码，观察EurekaClient的初始化过程</p>
+ <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CloudEurekaClient</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DiscoveryClient</span> </span>&#123;</span><br><span class="line">   ...</span><br><span class="line">   	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CloudEurekaClient</span><span class="hljs-params">(ApplicationInfoManager applicationInfoManager,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">		EurekaClientConfig config, AbstractDiscoveryClientOptionalArgs&lt;?&gt; args,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">		ApplicationEventPublisher publisher)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">super</span>(applicationInfoManager, config, args);</span><br><span class="line">	<span class="hljs-keyword">this</span>.applicationInfoManager = applicationInfoManager;</span><br><span class="line">	<span class="hljs-keyword">this</span>.publisher = publisher;</span><br><span class="line">	<span class="hljs-keyword">this</span>.eurekaTransportField = ReflectionUtils.findField(DiscoveryClient.class,</span><br><span class="line">			<span class="hljs-string">"eurekaTransport"</span>);</span><br><span class="line">	ReflectionUtils.makeAccessible(<span class="hljs-keyword">this</span>.eurekaTransportField);</span><br><span class="line">   &#125;</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 这里会调用父级的构造方法去执行注册、心跳、缓存刷新等任务</p>
+ <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">    DiscoveryClient(ApplicationInfoManager applicationInfoManager, EurekaClientConfig config, AbstractDiscoveryClientOptionalArgs args,</span><br><span class="line">                    Provider&lt;BackupRegistry&gt; backupRegistryProvider) &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="hljs-comment">// default size of 2 - 1 each for heartbeat and cacheRefresh</span></span><br><span class="line">            scheduler = Executors.newScheduledThreadPool(<span class="hljs-number">2</span>,</span><br><span class="line">                    <span class="hljs-keyword">new</span> ThreadFactoryBuilder()</span><br><span class="line">                            .setNameFormat(<span class="hljs-string">"DiscoveryClient-%d"</span>)</span><br><span class="line">                            .setDaemon(<span class="hljs-keyword">true</span>)</span><br><span class="line">                            .build());</span><br><span class="line"></span><br><span class="line">            heartbeatExecutor = <span class="hljs-keyword">new</span> ThreadPoolExecutor(</span><br><span class="line">                    <span class="hljs-number">1</span>, clientConfig.getHeartbeatExecutorThreadPoolSize(), <span class="hljs-number">0</span>, TimeUnit.SECONDS,</span><br><span class="line">                    <span class="hljs-keyword">new</span> SynchronousQueue&lt;Runnable&gt;(),</span><br><span class="line">                    <span class="hljs-keyword">new</span> ThreadFactoryBuilder()</span><br><span class="line">                            .setNameFormat(<span class="hljs-string">"DiscoveryClient-HeartbeatExecutor-%d"</span>)</span><br><span class="line">                            .setDaemon(<span class="hljs-keyword">true</span>)</span><br><span class="line">                            .build()</span><br><span class="line">            );  <span class="hljs-comment">// use direct handoff</span></span><br><span class="line"></span><br><span class="line">            cacheRefreshExecutor = <span class="hljs-keyword">new</span> ThreadPoolExecutor(</span><br><span class="line">                    <span class="hljs-number">1</span>, clientConfig.getCacheRefreshExecutorThreadPoolSize(), <span class="hljs-number">0</span>, TimeUnit.SECONDS,</span><br><span class="line">                    <span class="hljs-keyword">new</span> SynchronousQueue&lt;Runnable&gt;(),</span><br><span class="line">                    <span class="hljs-keyword">new</span> ThreadFactoryBuilder()</span><br><span class="line">                            .setNameFormat(<span class="hljs-string">"DiscoveryClient-CacheRefreshExecutor-%d"</span>)</span><br><span class="line">                            .setDaemon(<span class="hljs-keyword">true</span>)</span><br><span class="line">                            .build()</span><br><span class="line">            );  <span class="hljs-comment">// use direct handoff</span></span><br><span class="line">    ...                   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 到这里我们可以发现，<code>spring cloud eureka client</code>将这些任务都委托给了Netflix的Eureka组建去执行</p>
+</li>
+</ol>
+
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/08/Spring-Cloud-Eureka-Client/#more">Read More</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -233,21 +256,46 @@
             
         </h1>
         <div class="content">
-            <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
+            <a id="more"></a>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
 <li>基于rest形式提供额外的配置（键值对或yaml文本）</li>
 <li>配置值的加解密（对称或非对称）</li>
 <li>与springboot集成简单</li>
 </ul>
+<h2 id="环境仓库"><a href="#环境仓库" class="headerlink" title="环境仓库"></a>环境仓库</h2><p>你的配置数据应该存放在哪里？Spring Cloud Config提供了多种策略，比如可以是filesystem，git，vault等，这里我们使用git管理我们的配置数据</p>
+<p>Config Server如何做到管理应用的多个环节配置呢，它主要是用了以下三个变量来对配置数据进行区分</p>
+<ul>
+<li><code>{application}</code> 对应到客户端的<code>spring.application.name</code></li>
+<li><code>{profile}</code> 对应到客户端<code>spring.application.profile</code></li>
+<li><code>{label}</code> 这是服务端标记版本化的配置文件集合</li>
+</ul>
+<p>这样客户端spring boot应用在启动的时候通过指定应用启动的参数，从而获取对应的配置数据</p>
+<p>一个客户端应用程序引导配置示例</p>
+<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">spring:</span></span><br><span class="line"><span class="hljs-attr">   application:</span></span><br><span class="line"><span class="hljs-attr">     name:</span> <span class="hljs-string">foo</span></span><br><span class="line"><span class="hljs-attr">   profiles:</span></span><br><span class="line"><span class="hljs-attr">     active:</span> <span class="hljs-string">dev，mysql</span></span><br></pre></td></tr></table></figure>
+<p>使用git作为存储库的一些配置</p>
+<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">spring:</span></span><br><span class="line"><span class="hljs-attr">   cloud:</span></span><br><span class="line"><span class="hljs-attr">     config:</span></span><br><span class="line"><span class="hljs-attr">       server:</span></span><br><span class="line"><span class="hljs-attr">         git:</span></span><br><span class="line"><span class="hljs-attr">           uri:</span> <span class="hljs-string">https：//example.com/my/&#123;application&#125;</span> <span class="hljs-comment"># 占位符</span></span><br><span class="line"><span class="hljs-attr">           skipSslValidation:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># 跳过ssl证书验证，默认false</span></span><br><span class="line"><span class="hljs-attr">           timeout:</span> <span class="hljs-number">4</span> <span class="hljs-comment"># 超时时间（秒）</span></span><br><span class="line"><span class="hljs-attr">           username:</span> <span class="hljs-string">user</span></span><br><span class="line"><span class="hljs-attr">           password:</span> <span class="hljs-string">pw</span> <span class="hljs-comment"># 配置认证</span></span><br><span class="line"><span class="hljs-attr">           searchPaths:</span> <span class="hljs-string">'&#123;application&#125;'</span> <span class="hljs-comment"># 带占位符的搜索路径</span></span><br><span class="line"><span class="hljs-attr">           refreshRate:</span> <span class="hljs-number">0</span> <span class="hljs-comment"># 刷新频率，0表示每次请求都会获取最新的配置</span></span><br></pre></td></tr></table></figure>
+<h2 id="健康指标"><a href="#健康指标" class="headerlink" title="健康指标"></a>健康指标</h2><p>Config Server附带一个运行状况指示器，用于检查配置<code>EnvironmentRepository</code>是否正常，默认情况下指示器请求的<code>{application}</code>是app，{profile}是default</p>
+<p>配置健康指示器</p>
+<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">spring:</span></span><br><span class="line"><span class="hljs-attr">   cloud:</span></span><br><span class="line"><span class="hljs-attr">     config:</span></span><br><span class="line"><span class="hljs-attr">       server:</span></span><br><span class="line"><span class="hljs-attr">         health:</span></span><br><span class="line"><span class="hljs-attr">           repositories:</span></span><br><span class="line"><span class="hljs-attr">             myservice:</span></span><br><span class="line"><span class="hljs-attr">               label:</span> <span class="hljs-string">mylabel</span></span><br><span class="line"><span class="hljs-attr">             myservice-dev:</span></span><br><span class="line"><span class="hljs-attr">               name:</span> <span class="hljs-string">myservice</span></span><br><span class="line"><span class="hljs-attr">               profiles:</span> <span class="hljs-string">development</span></span><br></pre></td></tr></table></figure>
+<p>如果想要禁用健康检查需要设置 <code>spring.cloud.config.server.health.enabled=false</code></p>
+<p>另外在配置健康检查之后，如果需要获取详细的健康指标数据还需要做额外的配置</p>
+<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">management:</span></span><br><span class="line"><span class="hljs-attr">  endpoints:</span></span><br><span class="line"><span class="hljs-attr">    enabled-by-default:</span> <span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-attr">    web:</span></span><br><span class="line"><span class="hljs-attr">      base-path:</span> <span class="hljs-string">/admin</span></span><br><span class="line"><span class="hljs-attr">  endpoint:</span></span><br><span class="line"><span class="hljs-attr">    health:</span></span><br><span class="line"><span class="hljs-attr">      show-details:</span> <span class="hljs-string">always</span> <span class="hljs-comment"># 显示详细数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-config-health-check.png" alt="健康检查"></p>
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><p>通过集成<code>spring-boot-starter-security</code>使用默认的HTTP Basic来保护配置数据</p>
+<p>配置用户名密码</p>
+<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">spring:</span></span><br><span class="line"><span class="hljs-attr">  security:</span></span><br><span class="line"><span class="hljs-attr">    user:</span></span><br><span class="line"><span class="hljs-attr">      name:</span> <span class="hljs-string">yuexin</span></span><br><span class="line"><span class="hljs-attr">      password:</span> <span class="hljs-string">XXX</span></span><br></pre></td></tr></table></figure>
+<h2 id="加密与解密"><a href="#加密与解密" class="headerlink" title="加密与解密"></a>加密与解密</h2><p>不想看了，用的时候再去看文档</p>
+<hr>
+<p>附上完整的配置</p>
+<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">spring:</span></span><br><span class="line"><span class="hljs-attr">  application:</span></span><br><span class="line"><span class="hljs-attr">    name:</span> <span class="hljs-string">clivia-config-server</span></span><br><span class="line"><span class="hljs-attr">  cloud:</span></span><br><span class="line"><span class="hljs-attr">    config:</span></span><br><span class="line"><span class="hljs-attr">      server:</span></span><br><span class="line"><span class="hljs-attr">        git:</span></span><br><span class="line"><span class="hljs-attr">          uri:</span> <span class="hljs-attr">https://github.com/yuexine/cloud-repo.git</span></span><br><span class="line"><span class="hljs-attr">          username:</span> <span class="hljs-string">yuexine</span></span><br><span class="line"><span class="hljs-attr">          password:</span> <span class="hljs-string">XXX</span></span><br><span class="line"><span class="hljs-attr">          search-paths:</span> <span class="hljs-string">clivia</span></span><br><span class="line"><span class="hljs-attr">        health:</span></span><br><span class="line"><span class="hljs-attr">          repositories:</span></span><br><span class="line"><span class="hljs-attr">            cloud-repo:</span></span><br><span class="line"><span class="hljs-attr">              name:</span> <span class="hljs-string">foo</span></span><br><span class="line"><span class="hljs-attr">              profiles:</span> <span class="hljs-string">dev</span></span><br><span class="line"><span class="hljs-attr">  security:</span></span><br><span class="line"><span class="hljs-attr">    user:</span></span><br><span class="line"><span class="hljs-attr">      name:</span> <span class="hljs-string">yuexin</span></span><br><span class="line"><span class="hljs-attr">      password:</span> <span class="hljs-string">XXX</span></span><br><span class="line"><span class="hljs-attr">server:</span></span><br><span class="line"><span class="hljs-attr">  port:</span> <span class="hljs-number">8888</span></span><br><span class="line"><span class="hljs-attr">management:</span></span><br><span class="line"><span class="hljs-attr">  endpoints:</span></span><br><span class="line"><span class="hljs-attr">    enabled-by-default:</span> <span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-attr">    web:</span></span><br><span class="line"><span class="hljs-attr">      base-path:</span> <span class="hljs-string">/admin</span></span><br><span class="line"><span class="hljs-attr">  endpoint:</span></span><br><span class="line"><span class="hljs-attr">    health:</span></span><br><span class="line"><span class="hljs-attr">      show-details:</span> <span class="hljs-string">always</span></span><br></pre></td></tr></table></figure>
+<p>参考:</p>
+<ul>
+<li><a href="https://cloud.spring.io/spring-cloud-static/spring-cloud-config/2.1.0.RELEASE/single/spring-cloud-config.html" target="_blank" rel="noopener">官方文档-基于版本2.1.0.RELEASE</a></li>
+<li><a href="https://blog.csdn.net/yaomingyang/article/details/83714756" target="_blank" rel="noopener">Spring cloud config Actuator健康监测</a></li>
+</ul>
+
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/06/Spring-Cloud-Config-Server/#more">Read More</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -295,20 +343,34 @@
             
         </h1>
         <div class="content">
-            <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
+            <a id="more"></a>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
 <li>在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中</li>
 <li>使用Helm工具以chart升级的方式完成不同版本应用的发布升级</li>
 </ul>
+<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><ul>
+<li>在使用Helm之前，已经完成了Jenkins的部署，并且已经正常运行脚本与Kubernetes平台进行</li>
+<li>通过<code>kubectl</code>命令执行配置文件完成应用的版本更新</li>
+</ul>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><ul>
+<li><p>helm chart制作，此步骤略</p>
+</li>
+<li><p>包含helm工具的jenkins容器镜像制作</p>
+<p>  制作完成的镜像文件 <code>harbor.3incloud.com/library/jenkins-jnlp:latest</code></p>
+<p>  <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556181538711.jpg" alt="-w1118"></p>
+</li>
+<li><p>初始化应用安装</p>
+<p>  <code>helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/XXXX &amp;&amp; helm repo update</code></p>
+<p>  这里主要就是在slave中初始化helm，并且添加私有的chart仓库</p>
+</li>
+<li><p>Jenkins完成应用持续部署</p>
+<p>  <code>helm upgrade --reuse-values --set-string image.tag=&#39;${build_tag}&#39; deploy-name --version 0.1.0 myharbor/chart-name</code></p>
+<p>  通过重新设定chart的image.tag完成容器的版本升级，<code>--reuse-values</code> 表示在原本参数的基础上进行更新</p>
+</li>
+</ul>
+<h2 id="完整的Pipeline脚本"><a href="#完整的Pipeline脚本" class="headerlink" title="完整的Pipeline脚本"></a>完整的Pipeline脚本</h2><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">node('worker') &#123;</span><br><span class="line">    stage('Clone') &#123;</span><br><span class="line">        echo "1.Clone Stage"</span><br><span class="line">        git credentialsId: 'gitlab-auth', url: 'https://gitlab.3incloud.com/xxx/xxx-server.git'</span><br><span class="line">        script &#123;</span><br><span class="line">            build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Test') &#123;</span><br><span class="line">        echo "2.Test Stage"</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Build') &#123;</span><br><span class="line">        echo "3.Build Docker Image Stage"</span><br><span class="line">        sh "docker build -t harbor.3incloud.com/xxx/xxx-server:$&#123;build_tag&#125; ."</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Push') &#123;</span><br><span class="line">        echo "4.Push Docker Image Stage"</span><br><span class="line">        withDockerRegistry(credentialsId: 'harbor-ci', url: 'https://harbor.3incloud.com') &#123;</span><br><span class="line">            sh "docker push harbor.3incloud.com/xxx/xxx-server:$&#123;build_tag&#125;"</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stage('Deploy') &#123;</span><br><span class="line">        echo "5. Deploy Stage"</span><br><span class="line">        sh "helm init --client-only &amp;&amp; helm repo add  --username jenkins --password password myharbor https://harbor.3incloud.com/chartrepo/xxx &amp;&amp; helm repo update"</span><br><span class="line">        sh "helm upgrade --reuse-values --set-string image.tag='$&#123;build_tag&#125;' avic-server --version 0.1.0 myharbor/xxx-server"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/04/25/Jenkins集成Helm进行应用持续发布/#more">Read More</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>

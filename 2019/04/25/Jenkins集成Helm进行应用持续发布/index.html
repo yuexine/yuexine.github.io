@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级">
+    <meta name="description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级  前提 在使用Helm之前，已经完成了Jenkins的部署，并且已经正常运行脚本与Kubernetes平台进行 通过kubectl命令执行配置文件完成应用的版本更新  实现步骤 helm chart制作，此步骤略  包含helm工具的jenkin">
 <meta name="keywords" content="jenkins,helm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jenkins集成Helm进行应用持续发布">
 <meta property="og:url" content="http://yuexine.github.io/2019/04/25/Jenkins集成Helm进行应用持续发布/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级">
+<meta property="og:description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级  前提 在使用Helm之前，已经完成了Jenkins的部署，并且已经正常运行脚本与Kubernetes平台进行 通过kubectl命令执行配置文件完成应用的版本更新  实现步骤 helm chart制作，此步骤略  包含helm工具的jenkin">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/jenkins-helm.png">
-<meta property="og:updated_time" content="2019-05-06T06:19:25.195Z">
+<meta property="og:updated_time" content="2019-05-20T02:36:09.279Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jenkins集成Helm进行应用持续发布">
-<meta name="twitter:description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级">
+<meta name="twitter:description" content="目标 在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中 使用Helm工具以chart升级的方式完成不同版本应用的发布升级  前提 在使用Helm之前，已经完成了Jenkins的部署，并且已经正常运行脚本与Kubernetes平台进行 通过kubectl命令执行配置文件完成应用的版本更新  实现步骤 helm chart制作，此步骤略  包含helm工具的jenkin">
 <meta name="twitter:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/jenkins-helm.png">
 
 
@@ -187,11 +187,11 @@
             
         </h1>
         <div class="content">
-            <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
+            <a id="more"></a>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
 <li>在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中</li>
 <li>使用Helm工具以chart升级的方式完成不同版本应用的发布升级</li>
 </ul>
-<a id="more"></a>
 <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><ul>
 <li>在使用Helm之前，已经完成了Jenkins的部署，并且已经正常运行脚本与Kubernetes平台进行</li>
 <li>通过<code>kubectl</code>命令执行配置文件完成应用的版本更新</li>

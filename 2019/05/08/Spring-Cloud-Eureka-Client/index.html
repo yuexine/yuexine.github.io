@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="使用Eureka Client在pom中包含jar 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&amp;lt;/depe">
+    <meta name="description" content="使用Eureka Client在pom中包含jar 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&amp;lt;/dep">
 <meta name="keywords" content="spring,springcloud">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Cloud Eureka Client">
 <meta property="og:url" content="http://yuexine.github.io/2019/05/08/Spring-Cloud-Eureka-Client/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="使用Eureka Client在pom中包含jar 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&amp;lt;/depe">
+<meta property="og:description" content="使用Eureka Client在pom中包含jar 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&amp;lt;/dep">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg">
-<meta property="og:updated_time" content="2019-05-09T02:21:33.819Z">
+<meta property="og:updated_time" content="2019-05-20T02:35:52.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Cloud Eureka Client">
-<meta name="twitter:description" content="使用Eureka Client在pom中包含jar 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&amp;lt;/depe">
+<meta name="twitter:description" content="使用Eureka Client在pom中包含jar 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&amp;lt;/dep">
 <meta name="twitter:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg">
 
 
@@ -169,7 +169,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 377 words)
+                    3 minutes read (About 378 words)
                 </span>
                 
                 
@@ -187,9 +187,10 @@
             
         </h1>
         <div class="content">
-            <h2 id="使用Eureka-Client"><a href="#使用Eureka-Client" class="headerlink" title="使用Eureka Client"></a>使用Eureka Client</h2><p>在pom中包含jar</p>
+            <a id="more"></a>
+<h2 id="使用Eureka-Client"><a href="#使用Eureka-Client" class="headerlink" title="使用Eureka Client"></a>使用Eureka Client</h2><p>在pom中包含jar</p>
 <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
+<!-- more -->
 <h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>指定注册中心的位置</p>
 <figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">eureka:</span></span><br><span class="line"><span class="hljs-attr">  client:</span></span><br><span class="line"><span class="hljs-attr">    serviceUrl:</span></span><br><span class="line"><span class="hljs-attr">      defaultZone:</span> <span class="hljs-attr">http://localhost:8761/eureka/</span></span><br></pre></td></tr></table></figure>
 <h2 id="注册认证"><a href="#注册认证" class="headerlink" title="注册认证"></a>注册认证</h2><p>HTTP Basic认证已经自动添加到eureka客户端中, 更复杂的需求，参考文档实现</p>

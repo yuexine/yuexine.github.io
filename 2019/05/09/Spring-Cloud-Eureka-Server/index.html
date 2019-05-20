@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="运行Eureka Server将Eureka Server集成到应用中，只需要在pom中加入 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-server&amp;lt;/ar">
+    <meta name="description" content="运行Eureka Server将Eureka Server集成到应用中，只需要在pom中加入 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-server&amp;lt;/a">
 <meta name="keywords" content="spring,springcloud">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Cloud Eureka Server">
 <meta property="og:url" content="http://yuexine.github.io/2019/05/09/Spring-Cloud-Eureka-Server/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="运行Eureka Server将Eureka Server集成到应用中，只需要在pom中加入 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-server&amp;lt;/ar">
+<meta property="og:description" content="运行Eureka Server将Eureka Server集成到应用中，只需要在pom中加入 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-server&amp;lt;/a">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg">
-<meta property="og:updated_time" content="2019-05-09T02:21:40.146Z">
+<meta property="og:updated_time" content="2019-05-20T02:35:43.785Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Cloud Eureka Server">
-<meta name="twitter:description" content="运行Eureka Server将Eureka Server集成到应用中，只需要在pom中加入 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-server&amp;lt;/ar">
+<meta name="twitter:description" content="运行Eureka Server将Eureka Server集成到应用中，只需要在pom中加入 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-server&amp;lt;/a">
 <meta name="twitter:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg">
 
 
@@ -187,9 +187,9 @@
             
         </h1>
         <div class="content">
-            <h2 id="运行Eureka-Server"><a href="#运行Eureka-Server" class="headerlink" title="运行Eureka Server"></a>运行Eureka Server</h2><p>将Eureka Server集成到应用中，只需要在pom中加入</p>
+            <a id="more"></a>
+<h2 id="运行Eureka-Server"><a href="#运行Eureka-Server" class="headerlink" title="运行Eureka Server"></a>运行Eureka Server</h2><p>将Eureka Server集成到应用中，只需要在pom中加入</p>
 <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 <p>接着在启动类上加入<code>@EnableEurekaServer</code></p>
 <p>最后配置application.yml</p>
 <figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">server:</span></span><br><span class="line"><span class="hljs-attr">  port:</span> <span class="hljs-number">8761</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-attr">eureka:</span></span><br><span class="line"><span class="hljs-attr">  instance:</span></span><br><span class="line"><span class="hljs-attr">    hostname:</span> <span class="hljs-string">localhost</span></span><br><span class="line"><span class="hljs-attr">  client:</span></span><br><span class="line"><span class="hljs-attr">    registerWithEureka:</span> <span class="hljs-literal">false</span></span><br><span class="line"><span class="hljs-attr">    fetchRegistry:</span> <span class="hljs-literal">false</span></span><br><span class="line"><span class="hljs-attr">    serviceUrl:</span></span><br><span class="line"><span class="hljs-attr">      defaultZone:</span> <span class="hljs-attr">http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span></span><br></pre></td></tr></table></figure>

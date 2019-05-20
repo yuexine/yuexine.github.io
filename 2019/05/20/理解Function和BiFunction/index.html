@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="Function">
+    <meta name="description" content="Function Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解Function和BiFunction">
 <meta property="og:url" content="http://yuexine.github.io/2019/05/20/理解Function和BiFunction/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="Function">
+<meta property="og:description" content="Function Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/java8.jpg">
-<meta property="og:updated_time" content="2019-05-20T02:40:33.830Z">
+<meta property="og:updated_time" content="2019-05-20T02:46:09.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解Function和BiFunction">
-<meta name="twitter:description" content="Function">
+<meta name="twitter:description" content="Function Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值">
 <meta name="twitter:image" content="http://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/java8.jpg">
 
 
@@ -187,16 +187,19 @@
             
         </h1>
         <div class="content">
-            <h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><a id="more"></a>
-<ol>
-<li><p>Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值</p>
- <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@FunctionalInterface</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Function</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">R</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     * Applies this function to the given argument.</span></span><br><span class="line"><span class="hljs-comment">     *</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> t the function argument</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the function result</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-function">R <span class="hljs-title">apply</span><span class="hljs-params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 这里需要注意的是定义的范型，这个接口中声明了2个类型，其中T为方法参数类型，R为方法返回类型</p>
-<p> 同时该接口包含了2个default方法，用来对函数进行组合</p>
- <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--这个方法用来组合一个函数，被组合的函数先执行，--&gt;</span><br><span class="line"><span class="hljs-keyword">default</span> &lt;V&gt; <span class="hljs-function">Function&lt;V, R&gt; <span class="hljs-title">compose</span><span class="hljs-params">(Function&lt;? <span class="hljs-keyword">super</span> V, ? extends T&gt; before)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(before);</span><br><span class="line">    <span class="hljs-keyword">return</span> (V v) -&gt; apply(before.apply(v));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;!--同样这也用来组合一个函数，区别在于被组合的函数后执行--&gt;</span><br><span class="line"><span class="hljs-keyword">default</span> &lt;V&gt; <span class="hljs-function">Function&lt;T, V&gt; <span class="hljs-title">andThen</span><span class="hljs-params">(Function&lt;? <span class="hljs-keyword">super</span> R, ? extends V&gt; after)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(after);</span><br><span class="line">    <span class="hljs-keyword">return</span> (T t) -&gt; after.apply(apply(t));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用</p>
-</li>
+            <h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><ol>
+<li>Function作为一个函数式接口，主要方法apply接受一个参数，返回一个值</li>
+</ol>
+<a id="more"></a>
+<pre><code><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@FunctionalInterface</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Function</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">R</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     * Applies this function to the given argument.</span></span><br><span class="line"><span class="hljs-comment">     *</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> t the function argument</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the function result</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-function">R <span class="hljs-title">apply</span><span class="hljs-params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+这里需要注意的是定义的范型，这个接口中声明了2个类型，其中T为方法参数类型，R为方法返回类型
+
+同时该接口包含了2个default方法，用来对函数进行组合
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--这个方法用来组合一个函数，被组合的函数先执行，--&gt;</span><br><span class="line"><span class="hljs-keyword">default</span> &lt;V&gt; <span class="hljs-function">Function&lt;V, R&gt; <span class="hljs-title">compose</span><span class="hljs-params">(Function&lt;? <span class="hljs-keyword">super</span> V, ? extends T&gt; before)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(before);</span><br><span class="line">    <span class="hljs-keyword">return</span> (V v) -&gt; apply(before.apply(v));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;!--同样这也用来组合一个函数，区别在于被组合的函数后执行--&gt;</span><br><span class="line"><span class="hljs-keyword">default</span> &lt;V&gt; <span class="hljs-function">Function&lt;T, V&gt; <span class="hljs-title">andThen</span><span class="hljs-params">(Function&lt;? <span class="hljs-keyword">super</span> R, ? extends V&gt; after)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(after);</span><br><span class="line">    <span class="hljs-keyword">return</span> (T t) -&gt; after.apply(apply(t));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><ol start="2">
+<li>使用</li>
 </ol>
 <p>上面的例子中声明了2个函数f1和f2，分别使用不同的组合方法。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    Function&lt;Integer, Integer&gt; f1 = x -&gt; &#123;<span class="hljs-keyword">return</span> x * x;&#125;;</span><br><span class="line">    Function&lt;Integer, Integer&gt; f2 = x -&gt; &#123;<span class="hljs-keyword">return</span> x + x;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//（3+3）*（3+3）= 36</span></span><br><span class="line">    System.out.println(f1.compose(f2).apply(<span class="hljs-number">3</span>));</span><br><span class="line">    <span class="hljs-comment">//（3*3）+（3*3）=18</span></span><br><span class="line">    System.out.println(f1.andThen(f2).apply(<span class="hljs-number">3</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

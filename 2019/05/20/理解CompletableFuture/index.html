@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>理解CompletableFuture - Yuexin-Space</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="CompletableFuture是java8新增的一个接口，它提供了对异步程序执行的另一种方式。">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解CompletableFuture">
+<meta property="og:url" content="http://yuexine.github.io/2019/05/20/理解CompletableFuture/index.html">
+<meta property="og:site_name" content="Yuexin-Space">
+<meta property="og:description" content="CompletableFuture是java8新增的一个接口，它提供了对异步程序执行的另一种方式。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/java2.jpg">
+<meta property="og:updated_time" content="2019-05-20T07:50:43.672Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="理解CompletableFuture">
+<meta name="twitter:description" content="CompletableFuture是java8新增的一个接口，它提供了对异步程序执行的另一种方式。">
+<meta name="twitter:image" content="http://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/java2.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="理解CompletableFuture" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/yuexine">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="http://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/java2.jpg" alt="理解CompletableFuture">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-20T07:48:18.000Z">2019-05-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 1055 words)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                理解CompletableFuture
+            
+        </h1>
+        <div class="content">
+            <p><code>CompletableFuture</code>是java8新增的一个接口，它提供了对异步程序执行的另一种方式。</p>
+<a id="more"></a>
+<h2 id="理解Future"><a href="#理解Future" class="headerlink" title="理解Future"></a>理解Future</h2><p>在结构上看<code>CompletableFuture</code>实现了Future和CompletionStage这两个接口，先来看看Future接口提供的功能</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Future</span>&lt;<span class="hljs-title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">cancel</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> mayInterruptIfRunning)</span></span>;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isCancelled</span><span class="hljs-params">()</span></span>;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isDone</span><span class="hljs-params">()</span></span>;</span><br><span class="line">    <span class="hljs-function">V <span class="hljs-title">get</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException, ExecutionException</span>;</span><br><span class="line">    <span class="hljs-function">V <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">long</span> timeout, TimeUnit unit)</span></span></span><br><span class="line"><span class="hljs-function">        <span class="hljs-keyword">throws</span> InterruptedException, ExecutionException, TimeoutException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Future是一个将来对象，用来接收异步操作执行后的结果，提供了三个方法用来获取当前异步线程执行的状态。而调用<code>get()</code>方法会阻塞异步线程，直到执行完成获取结果。</p>
+<p>但在实际异步编程的时候，使用起来并不是那么特别好用。</p>
+<p>一个简单的例子：</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test5</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ExecutionException, InterruptedException </span>&#123;</span><br><span class="line">    ExecutorService executorService = Executors.newFixedThreadPool(<span class="hljs-number">3</span>);</span><br><span class="line">    Future&lt;String&gt; f = executorService.submit(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">        <span class="hljs-keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="hljs-number">3000L</span>);</span><br><span class="line">        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"async finished"</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">try</span> &#123;</span><br><span class="line">        Thread.sleep(<span class="hljs-number">5000L</span>);</span><br><span class="line">    &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    String r = f.get();</span><br><span class="line">    System.out.println(r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="理解CompletionStage"><a href="#理解CompletionStage" class="headerlink" title="理解CompletionStage"></a>理解CompletionStage</h2><p>上面提到了<code>CompletableFuture</code>实现的另外一个接口是<code>CompletionStage</code>,从字面上看这是一个完成阶段，在这个接口中声明了许多的方法</p>
+<p>虽然这个接口的方法很多，但是很有规律，总的来说，分为对异步结果分别进行响应()，结果转换(Function, BiFunction)，结果消费(Consumer,  BiConsumer)，以及异常的处理等。</p>
+<h3 id="对异步结果进行转换"><a href="#对异步结果进行转换" class="headerlink" title="对异步结果进行转换"></a>对异步结果进行转换</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> &lt;U&gt; <span class="hljs-function">CompletionStage&lt;U&gt; <span class="hljs-title">thenApply</span><span class="hljs-params">(Function&lt;? <span class="hljs-keyword">super</span> T,? extends U&gt; fn)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    String result = CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"Hello"</span>).thenApplyAsync(s-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">        <span class="hljs-keyword">return</span> s+<span class="hljs-string">"world"</span>;</span><br><span class="line">    &#125;).join();</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对异步结果进行消费"><a href="#对异步结果进行消费" class="headerlink" title="对异步结果进行消费"></a>对异步结果进行消费</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> CompletionStage&lt;Void&gt; <span class="hljs-title">thenAccept</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-keyword">super</span> T&gt; action)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"Hello"</span>).thenAccept(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对异步结果不关心，执行下一个操作"><a href="#对异步结果不关心，执行下一个操作" class="headerlink" title="对异步结果不关心，执行下一个操作"></a>对异步结果不关心，执行下一个操作</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> CompletionStage&lt;Void&gt; <span class="hljs-title">thenRun</span><span class="hljs-params">(Runnable action)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"Hello"</span>).thenRun(()-&gt; System.out.println(<span class="hljs-string">"World"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="将CompletionStage函数作为参数"><a href="#将CompletionStage函数作为参数" class="headerlink" title="将CompletionStage函数作为参数"></a>将CompletionStage函数作为参数</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> &lt;U&gt; CompletionStage&lt;U&gt; thenCompose</span><br><span class="line">        (Function&lt;? <span class="hljs-keyword">super</span> T, ? extends CompletionStage&lt;U&gt;&gt; fn);</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    String combine = CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"Hello"</span>).thenComposeAsync((x)-&gt; CompletableFuture.supplyAsync(()-&gt; x + <span class="hljs-string">"World"</span>)).join();</span><br><span class="line">    System.out.println(combine);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="组合其它的CompletionStage，使用BiFunction计算转换"><a href="#组合其它的CompletionStage，使用BiFunction计算转换" class="headerlink" title="组合其它的CompletionStage，使用BiFunction计算转换"></a>组合其它的CompletionStage，使用BiFunction计算转换</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> &lt;U,V&gt; CompletionStage&lt;V&gt; thenCombine</span><br><span class="line">        (CompletionStage&lt;? extends U&gt; other,</span><br><span class="line">         BiFunction&lt;? <span class="hljs-keyword">super</span> T,? <span class="hljs-keyword">super</span> U,? extends V&gt; fn);</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    String combine = CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"Hello"</span>).thenCombine(CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"World"</span>), (x, y)-&gt; x+y).join();</span><br><span class="line">    System.out.println(combine);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="组合其它的CompletionStage，使用BiConsumer消费"><a href="#组合其它的CompletionStage，使用BiConsumer消费" class="headerlink" title="组合其它的CompletionStage，使用BiConsumer消费"></a>组合其它的CompletionStage，使用BiConsumer消费</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> &lt;U&gt; CompletionStage&lt;Void&gt; thenAcceptBoth</span><br><span class="line">        (CompletionStage&lt;? extends U&gt; other,</span><br><span class="line">         BiConsumer&lt;? <span class="hljs-keyword">super</span> T, ? <span class="hljs-keyword">super</span> U&gt; action);</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"Hello"</span>).thenAcceptBoth(CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"World"</span>), (x, y)-&gt; &#123;</span><br><span class="line">        System.out.println(x+y);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="组合其它的CompletionStage，都完成后执行新的任务"><a href="#组合其它的CompletionStage，都完成后执行新的任务" class="headerlink" title="组合其它的CompletionStage，都完成后执行新的任务"></a>组合其它的CompletionStage，都完成后执行新的任务</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> CompletionStage&lt;Void&gt; <span class="hljs-title">runAfterBoth</span><span class="hljs-params">(CompletionStage&lt;?&gt; other,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">                                              Runnable action)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"Hello"</span>).runAfterBoth(CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"World"</span>), ()-&gt; &#123;</span><br><span class="line">        System.out.println(<span class="hljs-string">"ok"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="组合其它的CompletionStage，用计算快的CompletionStage结果进行后续计算转换"><a href="#组合其它的CompletionStage，用计算快的CompletionStage结果进行后续计算转换" class="headerlink" title="组合其它的CompletionStage，用计算快的CompletionStage结果进行后续计算转换"></a>组合其它的CompletionStage，用计算快的CompletionStage结果进行后续计算转换</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> &lt;U&gt; CompletionStage&lt;U&gt; applyToEither</span><br><span class="line">        (CompletionStage&lt;? extends T&gt; other,</span><br><span class="line">         Function&lt;? <span class="hljs-keyword">super</span> T, U&gt; fn);</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    String e = CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"Hello"</span>).applyToEither(CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"World"</span>), (x)-&gt; x).join();</span><br><span class="line">    System.out.println(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="组合其它的CompletionStage，用计算快的CompletionStage结果进行消费"><a href="#组合其它的CompletionStage，用计算快的CompletionStage结果进行消费" class="headerlink" title="组合其它的CompletionStage，用计算快的CompletionStage结果进行消费"></a>组合其它的CompletionStage，用计算快的CompletionStage结果进行消费</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> CompletionStage&lt;Void&gt; acceptEither</span><br><span class="line">        (CompletionStage&lt;? extends T&gt; other,</span><br><span class="line">         Consumer&lt;? <span class="hljs-keyword">super</span> T&gt; action);</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"Hello"</span>).acceptEither(CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"World"</span>), System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="组合其它的CompletionStage，其中一个完成后，继续后续任务"><a href="#组合其它的CompletionStage，其中一个完成后，继续后续任务" class="headerlink" title="组合其它的CompletionStage，其中一个完成后，继续后续任务"></a>组合其它的CompletionStage，其中一个完成后，继续后续任务</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> CompletionStage&lt;Void&gt; <span class="hljs-title">runAfterEither</span><span class="hljs-params">(CompletionStage&lt;?&gt; other,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">                                                Runnable action)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"Hello"</span>).runAfterEither(CompletableFuture.supplyAsync(()-&gt; <span class="hljs-string">"World"</span>), ()-&gt; System.out.println(<span class="hljs-string">"Hi"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数完成异常-使用exceptionally进行熔断"><a href="#函数完成异常-使用exceptionally进行熔断" class="headerlink" title="函数完成异常, 使用exceptionally进行熔断"></a>函数完成异常, 使用exceptionally进行熔断</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> CompletionStage&lt;T&gt; exceptionally</span><br><span class="line">        (Function&lt;Throwable, ? extends T&gt; fn);</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    String r = CompletableFuture.supplyAsync(()-&gt; &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"Error Test"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;</span><br><span class="line">    &#125;).exceptionally(e -&gt; &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"World"</span>;</span><br><span class="line">    &#125;).join();</span><br><span class="line">    System.out.println(r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="当运行完成时，对正常和异常的结果进行消费"><a href="#当运行完成时，对正常和异常的结果进行消费" class="headerlink" title="当运行完成时，对正常和异常的结果进行消费"></a>当运行完成时，对正常和异常的结果进行消费</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> CompletionStage&lt;T&gt; whenComplete</span><br><span class="line">        (BiConsumer&lt;? <span class="hljs-keyword">super</span> T, ? <span class="hljs-keyword">super</span> Throwable&gt; action);</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    CompletableFuture.supplyAsync(()-&gt; &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"Error Test"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;</span><br><span class="line">    &#125;).whenComplete((x, e)-&gt; &#123;</span><br><span class="line">        System.out.println(x);</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对正常和异常的运行结果进行转换"><a href="#对正常和异常的运行结果进行转换" class="headerlink" title="对正常和异常的运行结果进行转换"></a>对正常和异常的运行结果进行转换</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> &lt;U&gt; CompletionStage&lt;U&gt; handle</span><br><span class="line">        (BiFunction&lt;? <span class="hljs-keyword">super</span> T, Throwable, ? extends U&gt; fn);</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    CompletableFuture.supplyAsync(()-&gt; &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"Error Test"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;</span><br><span class="line">    &#125;).handle((x, e)-&gt; &#123;</span><br><span class="line">        System.out.println(x);</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">""</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="理解CompletableFuture"><a href="#理解CompletableFuture" class="headerlink" title="理解CompletableFuture"></a>理解CompletableFuture</h2><p>在看完Future和CompletionStage接口之后，我们继续看CompletableFuture里面定义的一些公共方法</p>
+<h3 id="构造CompletableFuture"><a href="#构造CompletableFuture" class="headerlink" title="构造CompletableFuture"></a>构造CompletableFuture</h3><ol>
+<li>空构造方法构造一个非完成状态的CompletableFuture</li>
+<li>通过一个给定的对象创建一个完成状态的CompletableFuture</li>
+<li>通过接受一个Supplier接口函数创建</li>
+</ol>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/java/">java</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/wechat_pay.jpg" alt="Wechat"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/20/理解Function和BiFunction/">
+                <span class="level-item">理解Function和BiFunction</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '07bd1be05349a17a8209',
+        clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
+        id: 'd216e329bb7351857072b5c7e791d080',
+        repo: 'yuexine.github.io',
+        owner: 'yuexine',
+        admin: "yuexine"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/16471324.jpeg" alt="吴月新">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        吴月新
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        不入流的开发者
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shanghai, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        10
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        7
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        7
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/yuexine" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/yuexine">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://twitter.com/yuexin_wu">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#理解Future">
+        <span class="has-mr-6">1</span>
+        <span>理解Future</span>
+        </a></li><li>
+        <a class="is-flex" href="#理解CompletionStage">
+        <span class="has-mr-6">2</span>
+        <span>理解CompletionStage</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#对异步结果进行转换">
+        <span class="has-mr-6">2.1</span>
+        <span>对异步结果进行转换</span>
+        </a></li><li>
+        <a class="is-flex" href="#对异步结果进行消费">
+        <span class="has-mr-6">2.2</span>
+        <span>对异步结果进行消费</span>
+        </a></li><li>
+        <a class="is-flex" href="#对异步结果不关心，执行下一个操作">
+        <span class="has-mr-6">2.3</span>
+        <span>对异步结果不关心，执行下一个操作</span>
+        </a></li><li>
+        <a class="is-flex" href="#将CompletionStage函数作为参数">
+        <span class="has-mr-6">2.4</span>
+        <span>将CompletionStage函数作为参数</span>
+        </a></li><li>
+        <a class="is-flex" href="#组合其它的CompletionStage，使用BiFunction计算转换">
+        <span class="has-mr-6">2.5</span>
+        <span>组合其它的CompletionStage，使用BiFunction计算转换</span>
+        </a></li><li>
+        <a class="is-flex" href="#组合其它的CompletionStage，使用BiConsumer消费">
+        <span class="has-mr-6">2.6</span>
+        <span>组合其它的CompletionStage，使用BiConsumer消费</span>
+        </a></li><li>
+        <a class="is-flex" href="#组合其它的CompletionStage，都完成后执行新的任务">
+        <span class="has-mr-6">2.7</span>
+        <span>组合其它的CompletionStage，都完成后执行新的任务</span>
+        </a></li><li>
+        <a class="is-flex" href="#组合其它的CompletionStage，用计算快的CompletionStage结果进行后续计算转换">
+        <span class="has-mr-6">2.8</span>
+        <span>组合其它的CompletionStage，用计算快的CompletionStage结果进行后续计算转换</span>
+        </a></li><li>
+        <a class="is-flex" href="#组合其它的CompletionStage，用计算快的CompletionStage结果进行消费">
+        <span class="has-mr-6">2.9</span>
+        <span>组合其它的CompletionStage，用计算快的CompletionStage结果进行消费</span>
+        </a></li><li>
+        <a class="is-flex" href="#组合其它的CompletionStage，其中一个完成后，继续后续任务">
+        <span class="has-mr-6">2.10</span>
+        <span>组合其它的CompletionStage，其中一个完成后，继续后续任务</span>
+        </a></li><li>
+        <a class="is-flex" href="#函数完成异常-使用exceptionally进行熔断">
+        <span class="has-mr-6">2.11</span>
+        <span>函数完成异常, 使用exceptionally进行熔断</span>
+        </a></li><li>
+        <a class="is-flex" href="#当运行完成时，对正常和异常的结果进行消费">
+        <span class="has-mr-6">2.12</span>
+        <span>当运行完成时，对正常和异常的结果进行消费</span>
+        </a></li><li>
+        <a class="is-flex" href="#对正常和异常的运行结果进行转换">
+        <span class="has-mr-6">2.13</span>
+        <span>对正常和异常的运行结果进行转换</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#理解CompletableFuture">
+        <span class="has-mr-6">3</span>
+        <span>理解CompletableFuture</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#构造CompletableFuture">
+        <span class="has-mr-6">3.1</span>
+        <span>构造CompletableFuture</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://turlingxian.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Turlingxian</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">turlingxian.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/DevOps/">
+            <span class="level-start">
+                <span class="level-item">DevOps</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/DevOps/Jenkins/">
+            <span class="level-start">
+                <span class="level-item">Jenkins</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Spring/">
+            <span class="level-start">
+                <span class="level-item">Spring</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Spring/SpringCloud/">
+            <span class="level-start">
+                <span class="level-item">SpringCloud</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/gRPC/">
+            <span class="level-start">
+                <span class="level-item">gRPC</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/grpc/" style="font-size: 10px;">grpc</a> <a href="/tags/helm/" style="font-size: 10px;">helm</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springcloud/" style="font-size: 20px;">springcloud</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/05/20/理解CompletableFuture/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="http://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/java2.jpg" alt="理解CompletableFuture">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-20T07:48:18.000Z">2019-05-20</time></div>
+                    <a href="/2019/05/20/理解CompletableFuture/" class="has-link-black-ter is-size-6">理解CompletableFuture</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/20/理解Function和BiFunction/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="http://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/java8.jpg" alt="理解Function和BiFunction">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-20T02:24:59.000Z">2019-05-20</time></div>
+                    <a href="/2019/05/20/理解Function和BiFunction/" class="has-link-black-ter is-size-6">理解Function和BiFunction</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/17/gRPC-入门学习/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/landing-2.svg" alt="gRPC 入门学习">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-17T03:34:05.000Z">2019-05-17</time></div>
+                    <a href="/2019/05/17/gRPC-入门学习/" class="has-link-black-ter is-size-6">gRPC 入门学习</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/gRPC/">gRPC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/09/Spring-Cloud-OpenFeign/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg" alt="Spring Cloud OpenFeign">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-09T09:42:54.000Z">2019-05-09</time></div>
+                    <a href="/2019/05/09/Spring-Cloud-OpenFeign/" class="has-link-black-ter is-size-6">Spring Cloud OpenFeign</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a> / <a class="has-link-grey -link" href="/categories/Spring/SpringCloud/">SpringCloud</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/09/Spring-Cloud-Eureka-Server/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg" alt="Spring Cloud Eureka Server">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-09T02:03:55.000Z">2019-05-09</time></div>
+                    <a href="/2019/05/09/Spring-Cloud-Eureka-Server/" class="has-link-black-ter is-size-6">Spring Cloud Eureka Server</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a> / <a class="has-link-grey -link" href="/categories/Spring/SpringCloud/">SpringCloud</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/grpc/">
+                        <span class="tag">grpc</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/helm/">
+                        <span class="tag">helm</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/java/">
+                        <span class="tag">java</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jenkins/">
+                        <span class="tag">jenkins</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/network/">
+                        <span class="tag">network</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/spring/">
+                        <span class="tag">spring</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/springcloud/">
+                        <span class="tag">springcloud</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/05/20/理解CompletableFuture/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="http://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/java2.jpg" alt="理解CompletableFuture">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-20T07:48:18.000Z">2019-05-20</time></div>
+                    <a href="/2019/05/20/理解CompletableFuture/" class="has-link-black-ter is-size-6">理解CompletableFuture</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/20/理解Function和BiFunction/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="http://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/java8.jpg" alt="理解Function和BiFunction">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-20T02:24:59.000Z">2019-05-20</time></div>
+                    <a href="/2019/05/20/理解Function和BiFunction/" class="has-link-black-ter is-size-6">理解Function和BiFunction</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/17/gRPC-入门学习/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/landing-2.svg" alt="gRPC 入门学习">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-17T03:34:05.000Z">2019-05-17</time></div>
+                    <a href="/2019/05/17/gRPC-入门学习/" class="has-link-black-ter is-size-6">gRPC 入门学习</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/gRPC/">gRPC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/09/Spring-Cloud-OpenFeign/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg" alt="Spring Cloud OpenFeign">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-09T09:42:54.000Z">2019-05-09</time></div>
+                    <a href="/2019/05/09/Spring-Cloud-OpenFeign/" class="has-link-black-ter is-size-6">Spring Cloud OpenFeign</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a> / <a class="has-link-grey -link" href="/categories/Spring/SpringCloud/">SpringCloud</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/09/Spring-Cloud-Eureka-Server/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg" alt="Spring Cloud Eureka Server">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-09T02:03:55.000Z">2019-05-09</time></div>
+                    <a href="/2019/05/09/Spring-Cloud-Eureka-Server/" class="has-link-black-ter is-size-6">Spring Cloud Eureka Server</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a> / <a class="has-link-grey -link" href="/categories/Spring/SpringCloud/">SpringCloud</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/grpc/">
+                        <span class="tag">grpc</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/helm/">
+                        <span class="tag">helm</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/java/">
+                        <span class="tag">java</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jenkins/">
+                        <span class="tag">jenkins</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/network/">
+                        <span class="tag">network</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/spring/">
+                        <span class="tag">spring</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/springcloud/">
+                        <span class="tag">springcloud</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="理解CompletableFuture" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 wuyuexin&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                Visited by <span id="busuanzi_value_site_uv">0</span> users
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

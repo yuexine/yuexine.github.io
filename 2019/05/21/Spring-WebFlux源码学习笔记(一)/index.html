@@ -2,20 +2,25 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Tag: grpc - Yuexin-Space</title>
+<title>Spring WebFlux源码学习笔记(一) - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Yuexin-Space">
-<meta property="og:url" content="http://yuexine.github.io/tags/grpc/index.html">
+    <meta name="description" content="在开始学习WebFlux之前，需要对Java的函数式编程有一定的了解，熟悉相关函数式接口的用法，包括Function，BiFunction等">
+<meta name="keywords" content="spring,springframework">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring WebFlux源码学习笔记(一)">
+<meta property="og:url" content="http://yuexine.github.io/2019/05/21/Spring-WebFlux源码学习笔记(一)/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
+<meta property="og:description" content="在开始学习WebFlux之前，需要对Java的函数式编程有一定的了解，熟悉相关函数式接口的用法，包括Function，BiFunction等">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
+<meta property="og:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/webflux.jpg">
+<meta property="og:updated_time" content="2019-05-21T15:28:45.527Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuexin-Space">
-<meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
+<meta name="twitter:title" content="Spring WebFlux源码学习笔记(一)">
+<meta name="twitter:description" content="在开始学习WebFlux之前，需要对Java的函数式编程有一定的了解，熟悉相关函数式接口的用法，包括Function，BiFunction等">
+<meta name="twitter:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/webflux.jpg">
 
 
 
@@ -93,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Spring WebFlux源码学习笔记(一)" height="28">
             
             </a>
         </div>
@@ -125,6 +130,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -139,74 +148,175 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">grpc</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/2019/05/17/gRPC-入门学习/" class="image is-7by1">
-            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/landing-2.svg" alt="gRPC 入门学习">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/webflux.jpg" alt="Spring WebFlux源码学习笔记(一)">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-17T03:34:05.000Z">2019-05-17</time>
+                <time class="level-item has-text-grey" datetime="2019-05-21T15:26:21.000Z">2019-05-21</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/gRPC/">gRPC</a>
+                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Spring/SpringFramework/">SpringFramework</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1041 words)
+                    6 minutes read (About 851 words)
                 </span>
                 
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/05/17/gRPC-入门学习/">gRPC 入门学习</a>
+                Spring WebFlux源码学习笔记(一)
             
         </h1>
         <div class="content">
-            <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>gRPC是Google公司开源的一个远程服务调用框架，基于HTTP2协议。</p>
+            <p>在开始学习WebFlux之前，需要对Java的函数式编程有一定的了解，熟悉相关函数式接口的用法，包括Function，BiFunction等</p>
+<a id="more"></a>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>学习开始，我们需要找一个切入点，了解一次Http请求发生后，代码响应的过程，这里我们从<code>reactor.netty.http.server</code>的<code>HttpServerHandle</code>开始看起</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onStateChange</span><span class="hljs-params">(Connection connection, State newState)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span> (newState == HttpServerState.REQUEST_RECEIVED) &#123;    <span class="hljs-comment">//1</span></span><br><span class="line">		<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">			<span class="hljs-keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">				log.debug(format(connection.channel(), <span class="hljs-string">"Handler is being applied: &#123;&#125;"</span>), handler);</span><br><span class="line">			&#125;</span><br><span class="line">			HttpServerOperations ops = (HttpServerOperations) connection; <span class="hljs-comment">//2</span></span><br><span class="line">			Mono.fromDirect(handler.apply(ops, ops))</span><br><span class="line">			    .subscribe(ops.disposeSubscriber());  <span class="hljs-comment">//3</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">			log.error(format(connection.channel(), <span class="hljs-string">""</span>), t);</span><br><span class="line">			connection.channel()</span><br><span class="line">			          .close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>接受一个<code>State</code>为<code>REQUEST_RECEIVED</code>状态的连接</li>
+<li><p>获取在前面的过程中已经将连接信息封装到了<code>HttpServerOperations</code>对象中，这个对象实现了HttpServerRequest, HttpServerResponse</p>
+ <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HttpServerOperations</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpOperations</span>&lt;<span class="hljs-title">HttpServerRequest</span>, <span class="hljs-title">HttpServerResponse</span>&gt;</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">implements</span> <span class="hljs-title">HttpServerRequest</span>, <span class="hljs-title">HttpServerResponse</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="3">
+<li><p>创建了一个Mono对象(Reactor中的用来发出一个元素)，并且订阅(触发)了这个Publisher。</p>
+<p> 备注: Mono.fromDirect() 用来转换一个Publisher到Mono免去了一些基础的验证。</p>
+</li>
+</ol>
+<h2 id="处理适配器-ReactorHttpHandlerAdapter"><a href="#处理适配器-ReactorHttpHandlerAdapter" class="headerlink" title="处理适配器:ReactorHttpHandlerAdapter"></a>处理适配器:ReactorHttpHandlerAdapter</h2><p>从开始的过程第3步中使用了<code>ReactorHttpHandlerAdapter</code>对HttpServerRequest, HttpServerResponse进行了处理</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReactorHttpHandlerAdapter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">BiFunction</span>&lt;<span class="hljs-title">HttpServerRequest</span>, <span class="hljs-title">HttpServerResponse</span>, <span class="hljs-title">Mono</span>&lt;<span class="hljs-title">Void</span>&gt;&gt;</span></span><br></pre></td></tr></table></figure>
+<p>ReactorHttpHandlerAdapter实现了BiFunction，函数方法接收2个参数，分别是HttpServerRequest, HttpServerResponse，返回Mono<void>，看类名可以看出这是一个适配器对象，实际的Handler为</void></p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Mono&lt;Void&gt; <span class="hljs-title">apply</span><span class="hljs-params">(HttpServerRequest reactorRequest, HttpServerResponse reactorResponse)</span> </span>&#123;</span><br><span class="line">	NettyDataBufferFactory bufferFactory = <span class="hljs-keyword">new</span> NettyDataBufferFactory(reactorResponse.alloc());</span><br><span class="line">	<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">		ReactorServerHttpRequest request = <span class="hljs-keyword">new</span> ReactorServerHttpRequest(reactorRequest, bufferFactory); <span class="hljs-comment">//1</span></span><br><span class="line">		ServerHttpResponse response = <span class="hljs-keyword">new</span> ReactorServerHttpResponse(reactorResponse, bufferFactory); <span class="hljs-comment">//2</span></span><br><span class="line"></span><br><span class="line">		<span class="hljs-keyword">if</span> (request.getMethod() == HttpMethod.HEAD) &#123;</span><br><span class="line">			response = <span class="hljs-keyword">new</span> HttpHeadResponseDecorator(response);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.httpHandler.handle(request, response) <span class="hljs-comment">//3</span></span><br><span class="line">				.doOnError(ex -&gt; logger.trace(request.getLogPrefix() + <span class="hljs-string">"Failed to complete: "</span> + ex.getMessage())) <span class="hljs-comment">//4</span></span><br><span class="line">				.doOnSuccess(aVoid -&gt; logger.trace(request.getLogPrefix() + <span class="hljs-string">"Handling completed"</span>)); <span class="hljs-comment">//5</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">catch</span> (URISyntaxException ex) &#123;</span><br><span class="line">		<span class="hljs-keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">			logger.debug(<span class="hljs-string">"Failed to get request URI: "</span> + ex.getMessage());</span><br><span class="line">		&#125;</span><br><span class="line">		reactorResponse.status(HttpResponseStatus.BAD_REQUEST);</span><br><span class="line">		<span class="hljs-keyword">return</span> Mono.empty();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>包装HttpServerRequest到ReactorServerHttpRequest</li>
+<li>包装HttpServerResponse到ReactorServerHttpResponse</li>
+<li>调用ReactiveWebServerApplicationContext的内部类ServerManager完成handle。</li>
+<li>出错时打印错误日志</li>
+<li>成功是打印成功日志</li>
+</ol>
+<p>注：</p>
+<ol>
+<li>doOnError()和doOnSuccess()不会对序列造成改变</li>
+</ol>
+<h2 id="继续任务委派"><a href="#继续任务委派" class="headerlink" title="继续任务委派"></a>继续任务委派</h2><p>在ServerManager里面包含了HttpHandler对象，实际的实现对象为HttpWebHandlerAdapter</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Override</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Mono&lt;Void&gt; <span class="hljs-title">handle</span><span class="hljs-params">(ServerHttpRequest request, ServerHttpResponse response)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.forwardedHeaderTransformer != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">		request = <span class="hljs-keyword">this</span>.forwardedHeaderTransformer.apply(request);</span><br><span class="line">	&#125;</span><br><span class="line">	ServerWebExchange exchange = createExchange(request, response); <span class="hljs-comment">//1</span></span><br><span class="line"></span><br><span class="line">	LogFormatUtils.traceDebug(logger, traceOn -&gt;</span><br><span class="line">			exchange.getLogPrefix() + formatRequest(exchange.getRequest()) +</span><br><span class="line">					(traceOn ? <span class="hljs-string">", headers="</span> + formatHeaders(exchange.getRequest().getHeaders()) : <span class="hljs-string">""</span>));</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">return</span> getDelegate().handle(exchange) <span class="hljs-comment">//2</span></span><br><span class="line">			.doOnSuccess(aVoid -&gt; logResponse(exchange)) <span class="hljs-comment">//2</span></span><br><span class="line">			.onErrorResume(ex -&gt; handleUnresolvedError(exchange, ex)) <span class="hljs-comment">//3</span></span><br><span class="line">			.then(Mono.defer(response::setComplete)); <span class="hljs-comment">//4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>将request和response组合成了一个对象ServerWebExchange</li>
+<li>调用被委派对象处理这个组合后的对象</li>
+<li>执行成功后打印response日志</li>
+<li>捕获handle过程中的异常，处理后返回一个Mono对象</li>
+<li><p>用 Mono 来表示序列已经结束</p>
+ <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Override</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Mono&lt;Void&gt; <span class="hljs-title">setComplete</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">return</span> !isCommitted() ? doCommit(<span class="hljs-keyword">null</span>) : Mono.empty(); <span class="hljs-comment">//6</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> Mono&lt;Void&gt; <span class="hljs-title">doCommit</span><span class="hljs-params">(@Nullable Supplier&lt;? extends Mono&lt;Void&gt;&gt; writeAction)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.state.compareAndSet(State.NEW, State.COMMITTING)) &#123;</span><br><span class="line">		<span class="hljs-keyword">return</span> Mono.empty();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">this</span>.commitActions.add(() -&gt;</span><br><span class="line">			Mono.fromRunnable(() -&gt; &#123;</span><br><span class="line">				applyStatusCode();</span><br><span class="line">				applyHeaders();</span><br><span class="line">				applyCookies();</span><br><span class="line">				<span class="hljs-keyword">this</span>.state.set(State.COMMITTED);</span><br><span class="line">			&#125;)); <span class="hljs-comment">//7</span></span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">if</span> (writeAction != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">		<span class="hljs-keyword">this</span>.commitActions.add(writeAction);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	List&lt;? extends Mono&lt;Void&gt;&gt; actions = <span class="hljs-keyword">this</span>.commitActions.stream()</span><br><span class="line">			.map(Supplier::get).collect(Collectors.toList()); <span class="hljs-comment">//8</span></span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">return</span> Flux.concat(actions).then(); <span class="hljs-comment">//9</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><ol start="6">
+<li>设置处理完成，提交了一个空的writeAction</li>
+<li>添加响应状态码，响应头，cookie等</li>
+<li>转换为一个类型Mono<void>的数组</void></li>
+<li>将3步骤产生的数组用打包成一个Mono<void>返回</void></li>
+</ol>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>从过程上看，当收到一个Http请求后，首先交给HttpHandlerAdapter类去处理，经过对数据的一些组合和处理，然后将请求丢给HttpWebHandlerAdapter去处理，从设计上看，WebHandler只是HttpHandler的一个子集，HttpWebHandlerAdapter本身是一个适配器对象，它会将任务继续委派给<code>FilteringWebHandler</code></p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/17/gRPC-入门学习/#more">Read More</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/spring/">spring</a>, <a class="has-link-grey -link" href="/tags/springframework/">springframework</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/wechat_pay.jpg" alt="Wechat"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/20/理解CompletableFuture/">
+                <span class="level-item">理解CompletableFuture</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '07bd1be05349a17a8209',
+        clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
+        id: 'b5948640f1b788223fe169919c7c7d39',
+        repo: 'yuexine.github.io',
+        owner: 'yuexine',
+        admin: "yuexine"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -301,6 +411,33 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#开始">
+        <span class="has-mr-6">1</span>
+        <span>开始</span>
+        </a></li><li>
+        <a class="is-flex" href="#处理适配器-ReactorHttpHandlerAdapter">
+        <span class="has-mr-6">2</span>
+        <span>处理适配器:ReactorHttpHandlerAdapter</span>
+        </a></li><li>
+        <a class="is-flex" href="#继续任务委派">
+        <span class="has-mr-6">3</span>
+        <span>继续任务委派</span>
+        </a></li><li>
+        <a class="is-flex" href="#小结">
+        <span class="has-mr-6">4</span>
+        <span>小结</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -865,7 +1002,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Spring WebFlux源码学习笔记(一)" height="28">
                 
                 </a>
                 <p class="is-size-7">

@@ -2,25 +2,25 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>gRPC 入门学习 - Yuexin-Space</title>
+<title>构建基于kubernetes的DevOps平台(一) - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="功能gRPC是Google公司开源的一个远程服务调用框架，基于HTTP2协议。">
-<meta name="keywords" content="grpc">
+    <meta name="description" content="在开始学习k8s前，需要部署一套k8s系统，部署k8s主要有2种方式(我知道的，可能更多)，一种是通过二进制部署，另外一种是通过kubeadm进行部署，这里我们使用kubeadm进行部署。">
+<meta name="keywords" content="devops,kubernetes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gRPC 入门学习">
-<meta property="og:url" content="http://yuexine.github.io/2019/05/17/gRPC-入门学习/index.html">
+<meta property="og:title" content="构建基于kubernetes的DevOps平台(一)">
+<meta property="og:url" content="http://yuexine.github.io/2019/05/27/构建基于kubernetes的DevOps平台(一)/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="功能gRPC是Google公司开源的一个远程服务调用框架，基于HTTP2协议。">
+<meta property="og:description" content="在开始学习k8s前，需要部署一套k8s系统，部署k8s主要有2种方式(我知道的，可能更多)，一种是通过二进制部署，另外一种是通过kubeadm进行部署，这里我们使用kubeadm进行部署。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/landing-2.svg">
-<meta property="og:updated_time" content="2019-05-20T02:39:11.287Z">
+<meta property="og:image" content="https://ps5g9twn0.bkt.clouddn.com//2019/05/28/devops.png">
+<meta property="og:updated_time" content="2019-05-28T00:44:36.576Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gRPC 入门学习">
-<meta name="twitter:description" content="功能gRPC是Google公司开源的一个远程服务调用框架，基于HTTP2协议。">
-<meta name="twitter:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/landing-2.svg">
+<meta name="twitter:title" content="构建基于kubernetes的DevOps平台(一)">
+<meta name="twitter:description" content="在开始学习k8s前，需要部署一套k8s系统，部署k8s主要有2种方式(我知道的，可能更多)，一种是通过二进制部署，另外一种是通过kubeadm进行部署，这里我们使用kubeadm进行部署。">
+<meta name="twitter:image" content="https://ps5g9twn0.bkt.clouddn.com//2019/05/28/devops.png">
 
 
 
@@ -98,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="gRPC 入门学习" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="构建基于kubernetes的DevOps平台(一)" height="28">
             
             </a>
         </div>
@@ -151,7 +151,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/landing-2.svg" alt="gRPC 入门学习">
+            <img class="thumbnail" src="https://ps5g9twn0.bkt.clouddn.com//2019/05/28/devops.png" alt="构建基于kubernetes的DevOps平台(一)">
         </span>
     </div>
     
@@ -159,17 +159,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-17T03:34:05.000Z">2019-05-17</time>
+                <time class="level-item has-text-grey" datetime="2019-05-27T09:45:05.000Z">2019-05-27</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/gRPC/">gRPC</a>
+                <a class="has-link-grey -link" href="/categories/Kubernetes/">Kubernetes</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1041 words)
+                    11 minutes read (About 1646 words)
                 </span>
                 
                 
@@ -183,66 +183,123 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                gRPC 入门学习
+                构建基于kubernetes的DevOps平台(一)
             
         </h1>
         <div class="content">
-            <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>gRPC是Google公司开源的一个远程服务调用框架，基于HTTP2协议。</p>
+            <p>在开始学习k8s前，需要部署一套k8s系统，部署k8s主要有2种方式(我知道的，可能更多)，一种是通过二进制部署，另外一种是通过kubeadm进行部署，这里我们使用kubeadm进行部署。</p>
 <a id="more"></a>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
-<li>通过接口定义语言(IDL)定义了客户端与服务端数据交换的格式，该文件的扩展名为<code>.proto</code>, 通过将文件编译到对应的开发语言来完成系统的集成。</li>
-<li>gRPC使用高效的序列化工具<code>Protocol buffer</code></li>
-</ul>
-<h2 id="在SpringBoot中使用gRPC完成服务间调用"><a href="#在SpringBoot中使用gRPC完成服务间调用" class="headerlink" title="在SpringBoot中使用gRPC完成服务间调用"></a>在SpringBoot中使用gRPC完成服务间调用</h2><p><a href="https://github.com/yuexine/grpc-demo" target="_blank" rel="noopener">完整的代码地址</a></p>
-<h3 id="方法及参数对象声明"><a href="#方法及参数对象声明" class="headerlink" title="方法及参数对象声明"></a>方法及参数对象声明</h3><p>首先我们需要声明服务调用的接口方法与参数，推荐使用<code>proto3</code>，通过在pom中使用<code>protobuf-maven-plugin</code>插件，可以在编译的时候将<code>.proto</code>文件生成java class文件。</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="hljs-string">"proto3"</span>;</span><br><span class="line"></span><br><span class="line">option java_multiple_files = <span class="hljs-keyword">true</span>;</span><br><span class="line"><span class="hljs-keyword">package</span> com.vcors.demo.grpcproto;</span><br><span class="line"></span><br><span class="line">message Person &#123;</span><br><span class="line">    string first_name = <span class="hljs-number">1</span>;</span><br><span class="line">    string last_name = <span class="hljs-number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message Greeting &#123;</span><br><span class="line">    string message = <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">service HelloWorldService &#123;</span><br><span class="line">    <span class="hljs-function">rpc <span class="hljs-title">sayHello</span> <span class="hljs-params">(Person)</span> <span class="hljs-title">returns</span> <span class="hljs-params">(Greeting)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="服务端开发"><a href="#服务端开发" class="headerlink" title="服务端开发"></a>服务端开发</h3><h4 id="理解-proto代码生成"><a href="#理解-proto代码生成" class="headerlink" title="理解.proto代码生成"></a>理解<code>.proto</code>代码生成</h4><p><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/grpc-1.png" alt="GRpc代码生成"></p>
-<ol>
-<li>对于<code>.proto</code>文件中定义的对象，会生成对应的JavaClass，这是可以通过<code>Protocal Buffers</code>序列化的对象模型</li>
-<li>对于<code>.proto</code>文件中定义的方法，会生成XXXGrpc</li>
-<li><p>XXXGrpc</p>
-<ol>
-<li><p>接口方法声明</p>
- <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorldServiceImplBase</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">io</span>.<span class="hljs-title">grpc</span>.<span class="hljs-title">BindableService</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p> 这个抽象内部类主要用来集成在服务端，作为方法实现的父级接口</p>
+<h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><p>这里我想通过kubeadm部署一个多master的k8s集群，这也更加符合生产环境的需要。更多的k8s的基础知识不想多做赘述。</p>
+<h3 id="服务器及IP"><a href="#服务器及IP" class="headerlink" title="服务器及IP"></a>服务器及IP</h3><table>
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Role</th>
+<th>Ip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>k8s-m1</td>
+<td>master1</td>
+<td>172.16.26.81</td>
+</tr>
+<tr>
+<td>k8s-m2</td>
+<td>master2</td>
+<td>172.16.26.82</td>
+</tr>
+<tr>
+<td>k8s-m3</td>
+<td>master3</td>
+<td>172.16.26.83</td>
+</tr>
+<tr>
+<td>k8s-n1</td>
+<td>node1</td>
+<td>172.16.26.121</td>
+</tr>
+<tr>
+<td>k8s-n2</td>
+<td>node2</td>
+<td>172.16.26.122</td>
+</tr>
+<tr>
+<td>k8s-n3</td>
+<td>node3</td>
+<td>172.16.26.123</td>
+</tr>
+</tbody>
+</table>
+<p>浮动IP(VIP): 172.16.26.80</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h3><p>安装的初始操作系统为centos7.5桌面版，里面已经包含了一部分的系统自带软件，如wget等, 系统配置需要在所有节点执行</p>
+<h4 id="关闭SELinux、防火墙"><a href="#关闭SELinux、防火墙" class="headerlink" title="关闭SELinux、防火墙"></a>关闭SELinux、防火墙</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl disable firewalld</span><br><span class="line">setenforce 0</span><br><span class="line">sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config</span><br></pre></td></tr></table></figure>
+<h4 id="关闭系统的Swap"><a href="#关闭系统的Swap" class="headerlink" title="关闭系统的Swap"></a>关闭系统的Swap</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">swapoff -a</span><br><span class="line">yes | cp /etc/fstab /etc/fstab_bak</span><br><span class="line">cat /etc/fstab_bak |grep -v swap &gt; /etc/fstab</span><br></pre></td></tr></table></figure>
+<h4 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">modprobe br_netfilter</span><br><span class="line"></span><br><span class="line">echo """</span><br><span class="line">vm.swappiness = 0</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">""" &gt; /etc/sysctl.conf</span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+<h4 id="内核升级"><a href="#内核升级" class="headerlink" title="内核升级"></a>内核升级</h4><ol>
+<li><p>安装内核依赖包</p>
+ <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ ! -f /usr/bin/perl ] &amp;&amp; yum install perl -y</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>方法存根</p>
-<p> 种类分为</p>
-<ul>
-<li><code>XXXBlockingStub</code> blocking-style stub that supports unary and streaming output calls on the service</li>
-<li><code>XXXFutureStub</code> ListenableFuture-style stub that supports unary calls on the service</li>
-<li><p><code>XXXStub</code> async stub that supports all call types for the service</p>
-<p>方法存根用来集成到客户端，方法客户端调用在服务端实现的方法。</p>
-</li>
-</ul>
+<li><p>升级内核需要使用 elrepo 的yum 源,首先我们导入 elrepo 的 key并安装 elrepo 源</p>
+ <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br><span class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<ol start="3">
+<li><p>查看可用的内核</p>
+ <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum --disablerepo="*" --enablerepo="elrepo-kernel" list available --showduplicates</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最新内核安装</p>
+ <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    yum --disablerepo="*" --enablerepo="elrepo-kernel" list available --showduplicates | grep -Po '^kernel-ml.x86_64\s+\K\S+(?=.el7)'</span><br><span class="line">yum --disablerepo="*" --enablerepo=elrepo-kernel install -y kernel-ml&#123;,-devel&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改内核默认的启动顺序</p>
 </li>
 </ol>
-<h4 id="集成依赖"><a href="#集成依赖" class="headerlink" title="集成依赖"></a>集成依赖</h4><p>在服务端中集成proto模块声明的模型和接口方法</p>
-<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.vcors.demo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>grpc-proto<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="方法实现"><a href="#方法实现" class="headerlink" title="方法实现"></a>方法实现</h4><p>通过继承<code>HelloWorldServiceGrpc.HelloWorldServiceImplBase</code>来重写<code>.proto</code>接口中声明的方法，也就是具体业务需要实现的逻辑代码都在这</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@GRpcService</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorldServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HelloWorldServiceGrpc</span>.<span class="hljs-title">HelloWorldServiceImplBase</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Logger LOGGER =</span><br><span class="line">            LoggerFactory.getLogger(HelloWorldServiceImpl.class);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sayHello</span><span class="hljs-params">(Person request, StreamObserver&lt;Greeting&gt; responseObserver)</span> </span>&#123;</span><br><span class="line">        LOGGER.info(<span class="hljs-string">"server received &#123;&#125;"</span>, request);</span><br><span class="line"></span><br><span class="line">        String message = <span class="hljs-string">"Hello "</span> + request.getFirstName() + <span class="hljs-string">" "</span></span><br><span class="line">                + request.getLastName() + <span class="hljs-string">"!"</span>;</span><br><span class="line">        Greeting greeting =</span><br><span class="line">                Greeting.newBuilder().setMessage(message).build();</span><br><span class="line">        LOGGER.info(<span class="hljs-string">"server responded &#123;&#125;"</span>, greeting);</span><br><span class="line"></span><br><span class="line">        responseObserver.onNext(greeting);</span><br><span class="line">        responseObserver.onCompleted();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="客户端调用服务端"><a href="#客户端调用服务端" class="headerlink" title="客户端调用服务端"></a>客户端调用服务端</h3><h4 id="创建存根接口"><a href="#创建存根接口" class="headerlink" title="创建存根接口"></a>创建存根接口</h4><p>首先在客户端中也同样要在pom中集成<code>proto</code>声明模块</p>
-<p>创建存根方法对象</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ManagedChannel managedChannel = ManagedChannelBuilder</span><br><span class="line">                .forAddress(<span class="hljs-string">"localhost"</span>, <span class="hljs-number">6565</span>).usePlaintext().build();</span><br><span class="line">        helloWorldServiceBlockingStub =</span><br><span class="line">                HelloWorldServiceGrpc.newBlockingStub(managedChannel);</span><br></pre></td></tr></table></figure>
-<h4 id="执行方法调用"><a href="#执行方法调用" class="headerlink" title="执行方法调用"></a>执行方法调用</h4><p>像调用本地方法一样，实现不同应用接口的调用</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Greeting greeting =</span><br><span class="line">                helloWorldServiceBlockingStub.sayHello(person);</span><br></pre></td></tr></table></figure>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>同时启动服务端与客户端应用，调用客户端接口来收到服务端的正确响应</p>
-<h3 id="理解gRPC-spring-boot-starter"><a href="#理解gRPC-spring-boot-starter" class="headerlink" title="理解gRPC-spring-boot-starter"></a>理解<code>gRPC-spring-boot-starter</code></h3><p>gRPC-spring-boot-starter 是对<code>GRpcServer</code>的一个封装，可以使我们在spring-boot项目中更简单的使用GRpc，核心功能就是启动了GRpcServer，并将通过<code>@GRpcServer</code>注解的Service注册到Server中</p>
-<h4 id="理解GRpcAutoConfiguration"><a href="#理解GRpcAutoConfiguration" class="headerlink" title="理解GRpcAutoConfiguration"></a>理解<code>GRpcAutoConfiguration</code></h4><p>在<code>grpc-spring-boot-starter/META-INF/spring.factories</code>配置了<code>GRpcAutoConfiguration</code>, springboot启动时会自动加载该配置文件</p>
-<p>该文件主要初始化了以下几个Bean实例</p>
-<ul>
-<li>GRpcServerRunner</li>
-<li>HealthStatusManager</li>
-<li>GRpcServerBuilderConfigurer</li>
-</ul>
-<h4 id="理解GRpcServerRunner"><a href="#理解GRpcServerRunner" class="headerlink" title="理解GRpcServerRunner"></a>理解<code>GRpcServerRunner</code></h4><p>启动一个<code>GRpc Server</code>, 集成到SpringBoot中后，项目无需再集成其他的web server</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">(String... args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    log.info(<span class="hljs-string">"Starting gRPC Server ..."</span>);</span><br><span class="line">    Collection&lt;ServerInterceptor&gt; globalInterceptors = (Collection)<span class="hljs-keyword">this</span>.getBeanNamesByTypeWithAnnotation(GRpcGlobalInterceptor.class, ServerInterceptor.class).map((name) -&gt; &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> (ServerInterceptor)<span class="hljs-keyword">this</span>.applicationContext.getBeanFactory().getBean(name, ServerInterceptor.class);</span><br><span class="line">    &#125;).collect(Collectors.toList());</span><br><span class="line">    <span class="hljs-keyword">this</span>.serverBuilder.addService(<span class="hljs-keyword">this</span>.healthStatusManager.getHealthService());</span><br><span class="line">    <span class="hljs-keyword">this</span>.getBeanNamesByTypeWithAnnotation(GRpcService.class, BindableService.class).forEach((name) -&gt; &#123;</span><br><span class="line">        BindableService srv = (BindableService)<span class="hljs-keyword">this</span>.applicationContext.getBeanFactory().getBean(name, BindableService.class);</span><br><span class="line">        ServerServiceDefinition serviceDefinition = srv.bindService();</span><br><span class="line">        GRpcService gRpcServiceAnn = (GRpcService)<span class="hljs-keyword">this</span>.applicationContext.findAnnotationOnBean(name, GRpcService.class);</span><br><span class="line">        serviceDefinition = <span class="hljs-keyword">this</span>.bindInterceptors(serviceDefinition, gRpcServiceAnn, globalInterceptors);</span><br><span class="line">        <span class="hljs-keyword">this</span>.serverBuilder.addService(serviceDefinition);</span><br><span class="line">        String serviceName = serviceDefinition.getServiceDescriptor().getName();</span><br><span class="line">        <span class="hljs-keyword">this</span>.healthStatusManager.setStatus(serviceName, ServingStatus.SERVING);</span><br><span class="line">        log.info(<span class="hljs-string">"'&#123;&#125;' service has been registered."</span>, srv.getClass().getName());</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.gRpcServerProperties.isEnableReflection()) &#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.serverBuilder.addService(ProtoReflectionService.newInstance());</span><br><span class="line">        log.info(<span class="hljs-string">"'&#123;&#125;' service has been registered."</span>, ProtoReflectionService.class.getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">this</span>.configurer.configure(<span class="hljs-keyword">this</span>.serverBuilder);</span><br><span class="line">    <span class="hljs-keyword">this</span>.server = <span class="hljs-keyword">this</span>.serverBuilder.build().start();</span><br><span class="line">    <span class="hljs-keyword">this</span>.applicationContext.publishEvent(<span class="hljs-keyword">new</span> GRpcServerInitializedEvent(<span class="hljs-keyword">this</span>.server));</span><br><span class="line">    log.info(<span class="hljs-string">"gRPC Server started, listening on port &#123;&#125;."</span>, <span class="hljs-keyword">this</span>.server.getPort());</span><br><span class="line">    <span class="hljs-keyword">this</span>.startDaemonAwaitThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="理解-GRpcService"><a href="#理解-GRpcService" class="headerlink" title="理解@GRpcService"></a>理解<code>@GRpcService</code></h4><p>通过该注解声明的方法会被声明为Spring Bean，本质上它是一个<code>@Service</code>注解，另外就是在启动GRpcServer时会注册该Bean。</p>
-<h3 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h3><ul>
-<li>接口调用的认证处理</li>
-<li>结合Kubernetes平台实现服务发现与负载均衡</li>
+<pre><code><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub2-set-default 0 &amp;&amp; grub2-mkconfig -o /etc/grub2.cfg</span><br></pre></td></tr></table></figure>
+</code></pre><ol start="6">
+<li><p>重启后查看当前内核</p>
+ <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br><span class="line">grubby --default-kernel</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="IPVS"><a href="#IPVS" class="headerlink" title="IPVS"></a>IPVS</h4><p>安装IPVS</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install ipvsadm ipset sysstat conntrack libseccomp -y</span><br></pre></td></tr></table></figure>
+<p>设置加载的内核模块</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ipvs_modules="ip_vs ip_vs_lc ip_vs_wlc ip_vs_rr ip_vs_wrr   ip_vs_lblc ip_vs_lblcr ip_vs_dh ip_vs_sh ip_vs_fo   ip_vs_nq ip_vs_sed ip_vs_ftp nf_conntrack"</span><br><span class="line">for kernel_module in \$&#123;ipvs_modules&#125;; do</span><br><span class="line">    /sbin/modinfo -F filename \$&#123;kernel_module&#125; &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">    if [ $? -eq 0 ]; then</span><br><span class="line">        /sbin/modprobe \$&#123;kernel_module&#125;</span><br><span class="line">    fi</span><br><span class="line">done</span><br><span class="line">EOF</span><br><span class="line">chmod 755 /etc/sysconfig/modules/ipvs.modules &amp;&amp; bash /etc/sysconfig/modules/ipvs.modules &amp;&amp; lsmod | grep ip_vs</span><br></pre></td></tr></table></figure>
+<h4 id="k8s参数设置"><a href="#k8s参数设置" class="headerlink" title="k8s参数设置"></a>k8s参数设置</h4><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/sysctl.d/k8s.conf</span><br><span class="line">net.ipv4.tcp_keepalive_time = 600</span><br><span class="line">net.ipv4.tcp_keepalive_intvl = 30</span><br><span class="line">net.ipv4.tcp_keepalive_probes = 10</span><br><span class="line">net.ipv6.conf.all.disable_ipv6 = 1</span><br><span class="line">net.ipv6.conf.default.disable_ipv6 = 1</span><br><span class="line">net.ipv6.conf.lo.disable_ipv6 = 1</span><br><span class="line">net.ipv4.neigh.default.gc_stale_time = 120</span><br><span class="line">net.ipv4.conf.all.rp_filter = 0</span><br><span class="line">net.ipv4.conf.default.rp_filter = 0</span><br><span class="line">net.ipv4.conf.default.arp_announce = 2</span><br><span class="line">net.ipv4.conf.lo.arp_announce = 2</span><br><span class="line">net.ipv4.conf.all.arp_announce = 2</span><br><span class="line">net.ipv4.ip_forward = 1</span><br><span class="line">net.ipv4.tcp_max_tw_buckets = 5000</span><br><span class="line">net.ipv4.tcp_syncookies = 1</span><br><span class="line">net.ipv4.tcp_max_syn_backlog = 1024</span><br><span class="line">net.ipv4.tcp_synack_retries = 2</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">net.netfilter.nf_conntrack_max = 2310720</span><br><span class="line">fs.inotify.max_user_watches=89100</span><br><span class="line">fs.may_detach_mounts = 1</span><br><span class="line">fs.file-max = 52706963</span><br><span class="line">fs.nr_open = 52706963</span><br><span class="line">net.bridge.bridge-nf-call-arptables = 1</span><br><span class="line">vm.swappiness = 0</span><br><span class="line">vm.overcommit_memory=1</span><br><span class="line">vm.panic_on_oom=0</span><br><span class="line">EOF</span><br><span class="line">sysctl --system</span><br></pre></td></tr></table></figure>
+<h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><h4 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> 安装docker, 我用的是18.06.3-ce</span></span><br><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">yum-config-manager \</span><br><span class="line"> --add-repo \</span><br><span class="line"> https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">yum makecache fast</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment"># 列出Docker版本</span></span></span><br><span class="line">yum list docker-ce --showduplicates | sort -r</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment"># 安装指定版本</span></span></span><br><span class="line">sudo yum install docker-ce-&lt;VERSION_STRING&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="Kubernetes相关组件安装"><a href="#Kubernetes相关组件安装" class="headerlink" title="Kubernetes相关组件安装"></a>Kubernetes相关组件安装</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">repo_gpgcheck=0</span><br><span class="line">gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg</span><br><span class="line">        http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br><span class="line">yum install -y kubelet kubeadm kubectl ebtables</span><br></pre></td></tr></table></figure>
+<h4 id="Keepalived-Haproxy安装"><a href="#Keepalived-Haproxy安装" class="headerlink" title="Keepalived Haproxy安装"></a>Keepalived Haproxy安装</h4><p>(node节点不需要安装)</p>
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y socat keepalived haproxy</span><br></pre></td></tr></table></figure>
+<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><h6 id="变量设置"><a href="#变量设置" class="headerlink" title="变量设置"></a>变量设置</h6><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cd ~/</span><br><span class="line"># 创建集群信息文件</span><br><span class="line">echo &quot;&quot;&quot;</span><br><span class="line">CP0_IP=172.16.26.81</span><br><span class="line">CP1_IP=172.16.26.82</span><br><span class="line">CP2_IP=172.16.26.83</span><br><span class="line">VIP=172.16.26.80</span><br><span class="line">NET_IF=eth0</span><br><span class="line">CIDR=10.244.0.0/16</span><br><span class="line">&quot;&quot;&quot; &gt; ./cluster-info</span><br><span class="line"></span><br><span class="line"># 配置haproxy和keepeelived</span><br><span class="line">bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/hnbcao/kubeadm-ha-master/v1.14.0/keepalived-haproxy.sh)&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="服务开机启动"><a href="#服务开机启动" class="headerlink" title="服务开机启动"></a>服务开机启动</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> 启动docker</span></span><br><span class="line">sed -i "13i ExecStartPost=/usr/sbin/iptables -P FORWARD ACCEPT" /usr/lib/systemd/system/docker.service</span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl enable docker</span><br><span class="line">systemctl start docker</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> 设置kubelet开机启动</span></span><br><span class="line">systemctl enable kubelet</span><br><span class="line"></span><br><span class="line">systemctl enable keepalived</span><br><span class="line">systemctl enable haproxy</span><br></pre></td></tr></table></figure>
+<h2 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h2><h3 id="master节点初始化"><a href="#master节点初始化" class="headerlink" title="master节点初始化"></a>master节点初始化</h3><p>在开始前配置master1到其它节点的免密登陆，简单-略过</p>
+<ol>
+<li><p>初始化master1</p>
+ <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">echo """</span><br><span class="line">apiVersion: kubeadm.k8s.io/v1beta1</span><br><span class="line">kind: ClusterConfiguration</span><br><span class="line">kubernetesVersion: v1.13.0</span><br><span class="line">controlPlaneEndpoint: "$&#123;VIP&#125;:8443"</span><br><span class="line">maxPods: 100</span><br><span class="line">networkPlugin: cni</span><br><span class="line">imageRepository: registry.aliyuncs.com/google_containers</span><br><span class="line">apiServer:</span><br><span class="line">  certSANs:</span><br><span class="line">  - $&#123;CP0_IP&#125;</span><br><span class="line">  - $&#123;CP1_IP&#125;</span><br><span class="line">  - $&#123;CP2_IP&#125;</span><br><span class="line">  - $&#123;VIP&#125;</span><br><span class="line">networking:</span><br><span class="line"><span class="hljs-meta">  #</span><span class="hljs-bash"> This CIDR is a Calico default. Substitute or remove <span class="hljs-keyword">for</span> your CNI provider.</span></span><br><span class="line">  podSubnet: $&#123;CIDR&#125;</span><br><span class="line"><span class="hljs-meta">---#</span><span class="hljs-bash"></span></span><br><span class="line">apiVersion: kubeproxy.config.k8s.io/v1alpha1</span><br><span class="line">kind: KubeProxyConfiguration</span><br><span class="line">mode: ipvs</span><br><span class="line">""" &gt; /etc/kubernetes/kubeadm-config.yaml</span><br><span class="line">kubeadm init --config /etc/kubernetes/kubeadm-config.yaml</span><br><span class="line">mkdir -p $HOME/.kube</span><br><span class="line">cp -f /etc/kubernetes/admin.conf $&#123;HOME&#125;/.kube/config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>拷贝相关证书到master2、master3</p>
+ <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">for index in 1 2; do</span><br><span class="line">  ip=$&#123;IPS[$&#123;index&#125;]&#125;</span><br><span class="line">  ssh $ip "mkdir -p /etc/kubernetes/pki/etcd; mkdir -p ~/.kube/"</span><br><span class="line">  scp /etc/kubernetes/pki/ca.crt $ip:/etc/kubernetes/pki/ca.crt</span><br><span class="line">  scp /etc/kubernetes/pki/ca.key $ip:/etc/kubernetes/pki/ca.key</span><br><span class="line">  scp /etc/kubernetes/pki/sa.key $ip:/etc/kubernetes/pki/sa.key</span><br><span class="line">  scp /etc/kubernetes/pki/sa.pub $ip:/etc/kubernetes/pki/sa.pub</span><br><span class="line">  scp /etc/kubernetes/pki/front-proxy-ca.crt $ip:/etc/kubernetes/pki/front-proxy-ca.crt</span><br><span class="line">  scp /etc/kubernetes/pki/front-proxy-ca.key $ip:/etc/kubernetes/pki/front-proxy-ca.key</span><br><span class="line">  scp /etc/kubernetes/pki/etcd/ca.crt $ip:/etc/kubernetes/pki/etcd/ca.crt</span><br><span class="line">  scp /etc/kubernetes/pki/etcd/ca.key $ip:/etc/kubernetes/pki/etcd/ca.key</span><br><span class="line">  scp /etc/kubernetes/admin.conf $ip:/etc/kubernetes/admin.conf</span><br><span class="line">  scp /etc/kubernetes/admin.conf $ip:~/.kube/config</span><br><span class="line"></span><br><span class="line">  ssh $&#123;ip&#125; "$&#123;JOIN_CMD&#125; --experimental-control-plane"</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>master2、master3加入节点</p>
+ <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    JOIN_CMD=`kubeadm token create --print-join-command`</span><br><span class="line">ssh $&#123;ip&#125; "$&#123;JOIN_CMD&#125; --experimental-control-plane"</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="node节点加入"><a href="#node节点加入" class="headerlink" title="node节点加入"></a>node节点加入</h3><p>获取节点加入命令</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm token create --print-join-command</span><br></pre></td></tr></table></figure>
+<p>分别在node上执行获得的命令</p>
+<h3 id="集群网络安装"><a href="#集群网络安装" class="headerlink" title="集群网络安装"></a>集群网络安装</h3><p><a href="https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins" target="_blank" rel="noopener">网络插件选择</a></p>
+<p><a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/" target="_blank" rel="noopener">网络插件安装</a></p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ol>
+<li><p>docker mtu 的配置 <br> 配置/etc/docker/daemon.json</p>
+ <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    &#123;</span><br><span class="line">        &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],</span><br><span class="line">        &quot;registry-mirrors&quot;: [&quot;https://axejqb6p.mirror.aliyuncs.com&quot;],</span><br><span class="line">        &quot;mtu&quot;: 1450,</span><br><span class="line">        &quot;storage-driver&quot;: &quot;overlay2&quot;,</span><br><span class="line">        &quot;storage-opts&quot;: [</span><br><span class="line">    &quot;overlay2.override_kernel_check=true&quot;</span><br><span class="line">  ],</span><br><span class="line">        &quot;log-driver&quot;: &quot;json-file&quot;,</span><br><span class="line">        &quot;log-opts&quot;: &#123;</span><br><span class="line">            &quot;max-size&quot;: &quot;100m&quot;,</span><br><span class="line">            &quot;max-file&quot;: &quot;3&quot;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">    ``` </span><br><span class="line">2. vip的转移</span><br><span class="line"></span><br><span class="line">我当前使用的配置</span><br><span class="line"></span><br><span class="line">/etc/haproxy/haproxy.cfg</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>global<br>    log         127.0.0.1 local2<br>    chroot      /var/lib/haproxy<br>    pidfile     /var/run/haproxy.pid<br>    maxconn     4000<br>    user        haproxy<br>    group       haproxy<br>    daemon<br>    stats socket /var/lib/haproxy/stats<br>defaults<br>    mode                    tcp<br>    log                     global<br>    option                  tcplog<br>    option                  dontlognull<br>    option                  redispatch<br>    retries                 3<br>    timeout queue           1m<br>    timeout connect         10s<br>    timeout client          1m<br>    timeout server          1m<br>    timeout check           10s<br>    maxconn                 3000<br>listen stats<br>    mode   http<br>    bind :10086<br>    stats   enable<br>    stats   uri     /admin?stats<br>    stats   auth    admin:admin<br>    stats   admin   if TRUE<br>frontend  k8s_https *:8443<br>    mode      tcp<br>    maxconn      2000<br>    default_backend     https_sri<br>backend https_sri<br>    balance      roundrobin<br>    server master1-api 172.16.26.81:6443  check inter 10000 fall 2 rise 2 weight 1<br>    server master2-api 172.16.26.82:6443  check inter 10000 fall 2 rise 2 weight 1<br>    server master3-api 172.16.26.83:6443  check inter 10000 fall 2 rise 2 weight 1<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/etc/keepalived/check_haproxy.sh</span><br></pre></td></tr></table></figure></p>
+<p> #!/bin/bash<br>VIRTUAL_IP=172.16.26.80<br>errorExit() {<br>    echo “<em>** $</em>“ 1&gt;&amp;2<br>    exit 1<br>}<br>if ip addr | grep -q $VIRTUAL_IP ; then<br>    curl -s –max-time 2 –insecure https://${VIRTUAL_IP}:8443/ -o /dev/null || errorExit “Error GET https://${VIRTUAL_IP}:8443/“<br>fi<br> <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">/etc/keepalived/keepalived.conf</span><br></pre></td></tr></table></figure></p>
+<p> vrrp_script haproxy-check {<br>    script “/bin/bash /etc/keepalived/check_haproxy.sh”<br>    interval 3<br>    weight -2<br>    fall 10<br>    rise 2<br>}<br>vrrp_instance haproxy-vip {<br>    state BACKUP<br>    priority 101<br>    interface eth0<br>    virtual_router_id 47<br>    advert_int 3<br>    unicast_peer {<br>        172.16.26.81<br>        172.16.26.82<br>        172.16.26.83<br>    }<br>    virtual_ipaddress {<br>        172.16.26.80<br>    }<br>    track_script {<br>        haproxy-check<br>    }<br>}<br> <code>`</code></p>
+<p> <img src="ps5g9twn0.bkt.clouddn.com//2019/05/27/15589501755806.jpg" alt="-w732"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://kubernetes.io/docs/setup/independent/high-availability/" target="_blank" rel="noopener">官方文档</a></li>
+<li><a href="https://www.kubernetes.org.cn/5273.html" target="_blank" rel="noopener">社区教程</a></li>
 </ul>
 
         </div>
@@ -251,7 +308,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/grpc/">grpc</a>
+                    <a class="has-link-grey -link" href="/tags/devops/">devops</a>, <a class="has-link-grey -link" href="/tags/kubernetes/">kubernetes</a>
                 </div>
             </div>
         </div>
@@ -291,17 +348,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/05/20/理解Function和BiFunction/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">理解Function和BiFunction</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/09/Spring-Cloud-OpenFeign/">
-                <span class="level-item">Spring Cloud OpenFeign</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/24/Vim资料整理/">
+                <span class="level-item">Vim资料整理</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -322,7 +372,7 @@
     var gitalk = new Gitalk({
         clientID: '07bd1be05349a17a8209',
         clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
-        id: 'eb64cb1fe5ebac01a34a8a91efe4bc15',
+        id: 'e9a988c7415ec386b5329b607b83262c',
         repo: 'yuexine.github.io',
         owner: 'yuexine',
         admin: "yuexine"
@@ -433,74 +483,90 @@
                 Catalogue
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#功能">
+        <a class="is-flex" href="#硬件准备">
         <span class="has-mr-6">1</span>
-        <span>功能</span>
-        </a></li><li>
-        <a class="is-flex" href="#特点">
+        <span>硬件准备</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#服务器及IP">
+        <span class="has-mr-6">1.1</span>
+        <span>服务器及IP</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#环境准备">
         <span class="has-mr-6">2</span>
-        <span>特点</span>
+        <span>环境准备</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#系统配置">
+        <span class="has-mr-6">2.1</span>
+        <span>系统配置</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#关闭SELinux、防火墙">
+        <span class="has-mr-6">2.1.1</span>
+        <span>关闭SELinux、防火墙</span>
         </a></li><li>
-        <a class="is-flex" href="#在SpringBoot中使用gRPC完成服务间调用">
+        <a class="is-flex" href="#关闭系统的Swap">
+        <span class="has-mr-6">2.1.2</span>
+        <span>关闭系统的Swap</span>
+        </a></li><li>
+        <a class="is-flex" href="#网络配置">
+        <span class="has-mr-6">2.1.3</span>
+        <span>网络配置</span>
+        </a></li><li>
+        <a class="is-flex" href="#内核升级">
+        <span class="has-mr-6">2.1.4</span>
+        <span>内核升级</span>
+        </a></li><li>
+        <a class="is-flex" href="#IPVS">
+        <span class="has-mr-6">2.1.5</span>
+        <span>IPVS</span>
+        </a></li><li>
+        <a class="is-flex" href="#k8s参数设置">
+        <span class="has-mr-6">2.1.6</span>
+        <span>k8s参数设置</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#软件安装">
+        <span class="has-mr-6">2.2</span>
+        <span>软件安装</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Docker安装">
+        <span class="has-mr-6">2.2.1</span>
+        <span>Docker安装</span>
+        </a></li><li>
+        <a class="is-flex" href="#Kubernetes相关组件安装">
+        <span class="has-mr-6">2.2.2</span>
+        <span>Kubernetes相关组件安装</span>
+        </a></li><li>
+        <a class="is-flex" href="#Keepalived-Haproxy安装">
+        <span class="has-mr-6">2.2.3</span>
+        <span>Keepalived Haproxy安装</span>
+        </a></li><li>
+        <a class="is-flex" href="#服务开机启动">
+        <span class="has-mr-6">2.2.4</span>
+        <span>服务开机启动</span>
+        </a></li></ul></li></ul></li><li>
+        <a class="is-flex" href="#开始部署">
         <span class="has-mr-6">3</span>
-        <span>在SpringBoot中使用gRPC完成服务间调用</span>
+        <span>开始部署</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#方法及参数对象声明">
+        <a class="is-flex" href="#master节点初始化">
         <span class="has-mr-6">3.1</span>
-        <span>方法及参数对象声明</span>
+        <span>master节点初始化</span>
         </a></li><li>
-        <a class="is-flex" href="#服务端开发">
+        <a class="is-flex" href="#node节点加入">
         <span class="has-mr-6">3.2</span>
-        <span>服务端开发</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#理解-proto代码生成">
-        <span class="has-mr-6">3.2.1</span>
-        <span>理解.proto代码生成</span>
+        <span>node节点加入</span>
         </a></li><li>
-        <a class="is-flex" href="#集成依赖">
-        <span class="has-mr-6">3.2.2</span>
-        <span>集成依赖</span>
-        </a></li><li>
-        <a class="is-flex" href="#方法实现">
-        <span class="has-mr-6">3.2.3</span>
-        <span>方法实现</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#客户端调用服务端">
+        <a class="is-flex" href="#集群网络安装">
         <span class="has-mr-6">3.3</span>
-        <span>客户端调用服务端</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#创建存根接口">
-        <span class="has-mr-6">3.3.1</span>
-        <span>创建存根接口</span>
-        </a></li><li>
-        <a class="is-flex" href="#执行方法调用">
-        <span class="has-mr-6">3.3.2</span>
-        <span>执行方法调用</span>
+        <span>集群网络安装</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#测试">
-        <span class="has-mr-6">3.4</span>
-        <span>测试</span>
+        <a class="is-flex" href="#遇到的问题">
+        <span class="has-mr-6">4</span>
+        <span>遇到的问题</span>
         </a></li><li>
-        <a class="is-flex" href="#理解gRPC-spring-boot-starter">
-        <span class="has-mr-6">3.5</span>
-        <span>理解gRPC-spring-boot-starter</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#理解GRpcAutoConfiguration">
-        <span class="has-mr-6">3.5.1</span>
-        <span>理解GRpcAutoConfiguration</span>
-        </a></li><li>
-        <a class="is-flex" href="#理解GRpcServerRunner">
-        <span class="has-mr-6">3.5.2</span>
-        <span>理解GRpcServerRunner</span>
-        </a></li><li>
-        <a class="is-flex" href="#理解-GRpcService">
-        <span class="has-mr-6">3.5.3</span>
-        <span>理解@GRpcService</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#Next">
-        <span class="has-mr-6">3.6</span>
-        <span>Next</span>
-        </a></li></ul></li></ul>
+        <a class="is-flex" href="#参考">
+        <span class="has-mr-6">5</span>
+        <span>参考</span>
+        </a></li></ul>
         </div>
     </div>
 </div>
@@ -1133,7 +1199,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="gRPC 入门学习" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="构建基于kubernetes的DevOps平台(一)" height="28">
                 
                 </a>
                 <p class="is-size-7">

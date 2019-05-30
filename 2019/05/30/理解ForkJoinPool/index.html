@@ -2,25 +2,25 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Spring Cloud Eureka Server - Yuexin-Space</title>
+<title>理解ForkJoinPool - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="运行Eureka Server">
-<meta name="keywords" content="spring,springcloud">
+    <meta name="description" content="前言ForkJoinPool是Java Executor框架的一个实现，它是对于ThreadPoolExecutor的补充，主要使用场景是处理比较大的异步计算任务。">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring Cloud Eureka Server">
-<meta property="og:url" content="http://yuexine.github.io/2019/05/09/Spring-Cloud-Eureka-Server/index.html">
+<meta property="og:title" content="理解ForkJoinPool">
+<meta property="og:url" content="http://yuexine.github.io/2019/05/30/理解ForkJoinPool/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="运行Eureka Server">
+<meta property="og:description" content="前言ForkJoinPool是Java Executor框架的一个实现，它是对于ThreadPoolExecutor的补充，主要使用场景是处理比较大的异步计算任务。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg">
-<meta property="og:updated_time" content="2019-05-20T02:39:56.485Z">
+<meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/30/15592077895194.jpg">
+<meta property="og:updated_time" content="2019-05-30T09:17:19.809Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring Cloud Eureka Server">
-<meta name="twitter:description" content="运行Eureka Server">
-<meta name="twitter:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg">
+<meta name="twitter:title" content="理解ForkJoinPool">
+<meta name="twitter:description" content="前言ForkJoinPool是Java Executor框架的一个实现，它是对于ThreadPoolExecutor的补充，主要使用场景是处理比较大的异步计算任务。">
+<meta name="twitter:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/30/15592077895194.jpg">
 
 
 
@@ -98,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Spring Cloud Eureka Server" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="理解ForkJoinPool" height="28">
             
             </a>
         </div>
@@ -151,7 +151,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg" alt="Spring Cloud Eureka Server">
+            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/30/15592077895194.jpg" alt="理解ForkJoinPool">
         </span>
     </div>
     
@@ -159,17 +159,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-09T02:03:55.000Z">2019-05-09</time>
+                <time class="level-item has-text-grey" datetime="2019-05-30T09:05:51.000Z">2019-05-30</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Spring/SpringCloud/">SpringCloud</a>
+                <a class="has-link-grey -link" href="/categories/Java/">Java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Java/Concurrent/">Concurrent</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 328 words)
+                    2 minutes read (About 336 words)
                 </span>
                 
                 
@@ -183,34 +183,28 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Spring Cloud Eureka Server
+                理解ForkJoinPool
             
         </h1>
         <div class="content">
-            <h2 id="运行Eureka-Server"><a href="#运行Eureka-Server" class="headerlink" title="运行Eureka Server"></a>运行Eureka Server</h2><a id="more"></a>
-<p>将Eureka Server集成到应用中，只需要在pom中加入</p>
-<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>接着在启动类上加入<code>@EnableEurekaServer</code></p>
-<p>最后配置application.yml</p>
-<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">server:</span></span><br><span class="line"><span class="hljs-attr">  port:</span> <span class="hljs-number">8761</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-attr">eureka:</span></span><br><span class="line"><span class="hljs-attr">  instance:</span></span><br><span class="line"><span class="hljs-attr">    hostname:</span> <span class="hljs-string">localhost</span></span><br><span class="line"><span class="hljs-attr">  client:</span></span><br><span class="line"><span class="hljs-attr">    registerWithEureka:</span> <span class="hljs-literal">false</span></span><br><span class="line"><span class="hljs-attr">    fetchRegistry:</span> <span class="hljs-literal">false</span></span><br><span class="line"><span class="hljs-attr">    serviceUrl:</span></span><br><span class="line"><span class="hljs-attr">      defaultZone:</span> <span class="hljs-attr">http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span></span><br></pre></td></tr></table></figure>
-<h2 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h2><p>在生产环境下，往往会部署多个eureka实例，使它们相互注册，实现的方式是通过修改配置实现</p>
-<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">---</span></span><br><span class="line"><span class="hljs-attr">spring:</span></span><br><span class="line"><span class="hljs-attr">  profiles:</span> <span class="hljs-string">peer1</span></span><br><span class="line"><span class="hljs-attr">eureka:</span></span><br><span class="line"><span class="hljs-attr">  instance:</span></span><br><span class="line"><span class="hljs-attr">    hostname:</span> <span class="hljs-string">peer1</span></span><br><span class="line"><span class="hljs-attr">  client:</span></span><br><span class="line"><span class="hljs-attr">    serviceUrl:</span></span><br><span class="line"><span class="hljs-attr">      defaultZone:</span> <span class="hljs-attr">http://peer2/eureka/</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">---</span></span><br><span class="line"><span class="hljs-attr">spring:</span></span><br><span class="line"><span class="hljs-attr">  profiles:</span> <span class="hljs-string">peer2</span></span><br><span class="line"><span class="hljs-attr">eureka:</span></span><br><span class="line"><span class="hljs-attr">  instance:</span></span><br><span class="line"><span class="hljs-attr">    hostname:</span> <span class="hljs-string">peer2</span></span><br><span class="line"><span class="hljs-attr">  client:</span></span><br><span class="line"><span class="hljs-attr">    serviceUrl:</span></span><br><span class="line"><span class="hljs-attr">      defaultZone:</span> <span class="hljs-attr">http://peer1/eureka/</span></span><br></pre></td></tr></table></figure>
-<p>这样客户端在使用的时候，在指定注册中心时，指定多个，用逗号隔开</p>
-<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">eureka:</span></span><br><span class="line"><span class="hljs-attr">  client:</span></span><br><span class="line"><span class="hljs-attr">    serviceUrl:</span></span><br><span class="line"><span class="hljs-attr">      defaultZone:</span> <span class="hljs-attr">http://peer1/eureka/,http://peer2/eureka</span></span><br></pre></td></tr></table></figure>
-<h2 id="安全的-Eureka-Server"><a href="#安全的-Eureka-Server" class="headerlink" title="安全的 Eureka Server"></a>安全的 Eureka Server</h2><p>通过加入<code>spring-boot-starter-security</code>，使服务的注册与发现操作开启认证。</p>
-<p>禁用CSRF</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@EnableWebSecurity</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WebSecurityConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebSecurityConfigurerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        http.csrf().ignoringAntMatchers(<span class="hljs-string">"/eureka/**"</span>);</span><br><span class="line">        <span class="hljs-keyword">super</span>.configure(http);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在配置中加入</p>
-<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">spring:</span></span><br><span class="line"><span class="hljs-attr">  security:</span></span><br><span class="line"><span class="hljs-attr">    user:</span></span><br><span class="line"><span class="hljs-attr">      name:</span> <span class="hljs-string">admin</span></span><br><span class="line"><span class="hljs-attr">      password:</span> <span class="hljs-string">pwd</span></span><br></pre></td></tr></table></figure>
-<p>修改defaultZone，指定name&amp;password，这里需要注意的是，所有的配置defaultZone的地方都需要配置name&amp;password，包括Eureka Server本身</p>
-<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">eureka:</span></span><br><span class="line"><span class="hljs-attr">  instance:</span></span><br><span class="line"><span class="hljs-attr">    hostname:</span> <span class="hljs-string">localhost</span></span><br><span class="line"><span class="hljs-attr">    prefer-ip-address:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># 这里使用ip而不是默认的hostname</span></span><br><span class="line"><span class="hljs-attr">  client:</span></span><br><span class="line"><span class="hljs-attr">    registerWithEureka:</span> <span class="hljs-literal">false</span></span><br><span class="line"><span class="hljs-attr">    fetchRegistry:</span> <span class="hljs-literal">false</span></span><br><span class="line"><span class="hljs-attr">    serviceUrl:</span></span><br><span class="line"><span class="hljs-attr">      defaultZone:</span> <span class="hljs-attr">http://admin:pwd@$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span></span><br></pre></td></tr></table></figure>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>ForkJoinPool是Java Executor框架的一个实现，它是对于ThreadPoolExecutor的补充，主要使用场景是处理比较大的异步计算任务。<br><a id="more"></a></p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/30/15592060091004.jpg" alt="-w678"></p>
+<h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p>为什么适合大的异步任务呢？相对于普通的线程池，维护了一个任务队列，一旦有任务到达，空闲的线程就会从任务队列中弹出一个任务进行处理，如果这个任务执行的时间比较长，那么就不能充分使用线程池里面的其它空闲线程。<br>ForkJoinPool的亮点在于对于一个耗时较长的任务，拆成若干个子任务，并将这些任务提交到多个任务队列中（ForkJoinPool线程池中的每个线程都维护了一个队列），最后将结果合并返回。<br>当然这个任务的拆分并不是由框架完成，需要我们自己的代码中实现。</p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/30/15592067675046.jpg" alt="-w688"></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
+<li>fork()是提交子任务，join()返回计算结果。这里会阻塞</li>
+<li>ForkJoinPool不适用于本身执行耗时短的任务</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>下面这篇博客对ForkJoinPool的介绍比较详细</p>
+<p><a href="https://blog.hufeifei.cn/2018/09/15/Java/ForkJoinPool/" target="_blank" rel="noopener">1. ForkJoinPool入门篇</a></p>
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/spring/">spring</a>, <a class="has-link-grey -link" href="/tags/springcloud/">springcloud</a>
+                    <a class="has-link-grey -link" href="/tags/java/">java</a>
                 </div>
             </div>
         </div>
@@ -250,17 +244,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/05/09/Spring-Cloud-OpenFeign/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Spring Cloud OpenFeign</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/08/TCP与UDP/">
-                <span class="level-item">TCP与UDP</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/27/构建基于kubernetes的DevOps平台(一)/">
+                <span class="level-item">构建基于kubernetes的DevOps平台(一)</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -281,7 +268,7 @@
     var gitalk = new Gitalk({
         clientID: '07bd1be05349a17a8209',
         clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
-        id: '65f73bd7e5e6ec28abf798099376dfdd',
+        id: '1eee0c5928709b7d414ae917fe5cd031',
         repo: 'yuexine.github.io',
         owner: 'yuexine',
         admin: "yuexine"
@@ -392,17 +379,21 @@
                 Catalogue
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#运行Eureka-Server">
+        <a class="is-flex" href="#前言">
         <span class="has-mr-6">1</span>
-        <span>运行Eureka Server</span>
+        <span>前言</span>
         </a></li><li>
-        <a class="is-flex" href="#高可用">
+        <a class="is-flex" href="#理解">
         <span class="has-mr-6">2</span>
-        <span>高可用</span>
+        <span>理解</span>
         </a></li><li>
-        <a class="is-flex" href="#安全的-Eureka-Server">
+        <a class="is-flex" href="#注意">
         <span class="has-mr-6">3</span>
-        <span>安全的 Eureka Server</span>
+        <span>注意</span>
+        </a></li><li>
+        <a class="is-flex" href="#参考">
+        <span class="has-mr-6">4</span>
+        <span>参考</span>
         </a></li></ul>
         </div>
     </div>
@@ -1052,7 +1043,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Spring Cloud Eureka Server" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="理解ForkJoinPool" height="28">
                 
                 </a>
                 <p class="is-size-7">

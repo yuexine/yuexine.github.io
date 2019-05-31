@@ -16,7 +16,7 @@
 <meta property="og:description" content="问题描述在A.example.com网站中通过超链接链接到B.example.com(B系统是一个开源系统提供的web管理界面)实现的方式是通过Htmla标签做跳转，实际测试的过程中，点击超链接，出现下述页面。从页面上看提示重定向的次数过多。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/31/15592079056114.jpg">
-<meta property="og:updated_time" content="2019-05-31T06:42:37.788Z">
+<meta property="og:updated_time" content="2019-05-31T06:44:41.499Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一次问题解决的过程(一)">
 <meta name="twitter:description" content="问题描述在A.example.com网站中通过超链接链接到B.example.com(B系统是一个开源系统提供的web管理界面)实现的方式是通过Htmla标签做跳转，实际测试的过程中，点击超链接，出现下述页面。从页面上看提示重定向的次数过多。">
@@ -169,7 +169,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 311 words)
+                    2 minutes read (About 312 words)
                 </span>
                 
                 
@@ -191,8 +191,8 @@
 <p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/31/15592838354727.jpg" alt="重定向次数过多"></p>
 <h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>继续解决问题，观察Nginx和浏览器控制台的日志，发现请求产生了死循环。正常通过url地址访问B网站正常。通过A网站跳转到B网站就不行。</p>
 <p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/31/15592838590082.jpg" alt="-w1248"></p>
-<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><p>分析Http请求，除了跳转的请求包含了referer字段外，其它信息完全一样，难道问题出在这？</p>
-<h2 id="猜测"><a href="#猜测" class="headerlink" title="猜测"></a>猜测</h2><p>难道B网站做了referer涞源限制，B网站也不是内部开发</p>
+<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><p>分析Http请求，除了跳转的请求包含了referer字段外，其它信息完全一样，草难道问题出在这？</p>
+<h2 id="猜测"><a href="#猜测" class="headerlink" title="猜测"></a>猜测</h2><p>难道B网站做了referer来源限制，B网站也不是内部开发</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>在代理层，强制修改访问B网站的referer为B.example.com, 默认为A.example.com.</p>
 <h2 id="修改代理配置"><a href="#修改代理配置" class="headerlink" title="修改代理配置"></a>修改代理配置</h2><p><a href="https://serverfault.com/questions/757732/nginx-change-referer-for-proxy" target="_blank" rel="noopener">设置代理请求头Referer</a></p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxy_set_header Referer &quot;http://proxied-domain-here.com&quot;;</span><br></pre></td></tr></table></figure>

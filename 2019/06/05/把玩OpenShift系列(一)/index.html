@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="OpenShift 是什么？我才懒得告诉你。本节主要包含的内容是在OpenStack虚拟机上搭建OpenShift社区版okd(v3.11) 安装计划由于是从0开始学习OpenShift的使用，所以部署的集群不包含高可用部分，部署的目的是体验一下OpenShift的功能。 系统与环境需要硬件需求这没什么好说的，配置尽量高就对了，别跟我提最低的配置，我不想听。我是不会在电脑上跑虚拟机的。 软件要求操">
+    <meta name="description" content="OpenShift 是什么？我才懒得告诉你。  本节主要包含的内容是在OpenStack虚拟机上搭建OpenShift社区版okd(v3.11) 安装计划由于是从0开始学习OpenShift的使用，所以部署的集群不包含高可用部分，部署的目的是体验一下OpenShift的功能。 系统与环境需要硬件需求这没什么好说的，配置尽量高就对了，别跟我提最低的配置，我不想听。我是不会在电脑上跑虚拟机的。 软件要">
 <meta name="keywords" content="devops,openshift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="把玩OpenShift系列(一)">
 <meta property="og:url" content="http://yuexine.github.io/2019/06/05/把玩OpenShift系列(一)/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="OpenShift 是什么？我才懒得告诉你。本节主要包含的内容是在OpenStack虚拟机上搭建OpenShift社区版okd(v3.11) 安装计划由于是从0开始学习OpenShift的使用，所以部署的集群不包含高可用部分，部署的目的是体验一下OpenShift的功能。 系统与环境需要硬件需求这没什么好说的，配置尽量高就对了，别跟我提最低的配置，我不想听。我是不会在电脑上跑虚拟机的。 软件要求操">
+<meta property="og:description" content="OpenShift 是什么？我才懒得告诉你。  本节主要包含的内容是在OpenStack虚拟机上搭建OpenShift社区版okd(v3.11) 安装计划由于是从0开始学习OpenShift的使用，所以部署的集群不包含高可用部分，部署的目的是体验一下OpenShift的功能。 系统与环境需要硬件需求这没什么好说的，配置尽量高就对了，别跟我提最低的配置，我不想听。我是不会在电脑上跑虚拟机的。 软件要">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597274064051.jpg">
-<meta property="og:updated_time" content="2019-06-05T09:39:35.889Z">
+<meta property="og:updated_time" content="2019-06-05T09:40:39.410Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="把玩OpenShift系列(一)">
-<meta name="twitter:description" content="OpenShift 是什么？我才懒得告诉你。本节主要包含的内容是在OpenStack虚拟机上搭建OpenShift社区版okd(v3.11) 安装计划由于是从0开始学习OpenShift的使用，所以部署的集群不包含高可用部分，部署的目的是体验一下OpenShift的功能。 系统与环境需要硬件需求这没什么好说的，配置尽量高就对了，别跟我提最低的配置，我不想听。我是不会在电脑上跑虚拟机的。 软件要求操">
+<meta name="twitter:description" content="OpenShift 是什么？我才懒得告诉你。  本节主要包含的内容是在OpenStack虚拟机上搭建OpenShift社区版okd(v3.11) 安装计划由于是从0开始学习OpenShift的使用，所以部署的集群不包含高可用部分，部署的目的是体验一下OpenShift的功能。 系统与环境需要硬件需求这没什么好说的，配置尽量高就对了，别跟我提最低的配置，我不想听。我是不会在电脑上跑虚拟机的。 软件要">
 <meta name="twitter:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597274064051.jpg">
 
 
@@ -187,7 +187,9 @@
             
         </h1>
         <div class="content">
-            <p>OpenShift 是什么？我才懒得告诉你。<br><!-- mores --><br>本节主要包含的内容是在OpenStack虚拟机上搭建OpenShift社区版<a href="https://www.okd.io/" target="_blank" rel="noopener">okd</a>(v3.11)</p>
+            <p>OpenShift 是什么？我才懒得告诉你。</p>
+<!-- mores -->
+<p>本节主要包含的内容是在OpenStack虚拟机上搭建OpenShift社区版<a href="https://www.okd.io/" target="_blank" rel="noopener">okd</a>(v3.11)</p>
 <h2 id="安装计划"><a href="#安装计划" class="headerlink" title="安装计划"></a>安装计划</h2><p>由于是从0开始学习OpenShift的使用，所以部署的集群不包含高可用部分，部署的目的是体验一下OpenShift的功能。</p>
 <h2 id="系统与环境需要"><a href="#系统与环境需要" class="headerlink" title="系统与环境需要"></a>系统与环境需要</h2><h3 id="硬件需求"><a href="#硬件需求" class="headerlink" title="硬件需求"></a>硬件需求</h3><p>这没什么好说的，配置尽量高就对了，别跟我提最低的配置，我不想听。我是不会在电脑上跑虚拟机的。</p>
 <h3 id="软件要求"><a href="#软件要求" class="headerlink" title="软件要求"></a>软件要求</h3><p>操作系统我使用的是centos7.5，貌似OpenShift非社区版只能购买Redhat的商业操作系统才支持，滋滋。</p>

@@ -152,6 +152,122 @@
     <div class="card">
     
     <div class="card-image">
+        <a href="/2019/06/05/把玩OpenShift系列(一)/" class="image is-7by1">
+            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597274064051.jpg" alt="把玩OpenShift系列(一)">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-05T09:29:03.000Z">2019-06-05</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/CloudComputing/">CloudComputing</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/CloudComputing/OpenShift/">OpenShift</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 970 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/06/05/把玩OpenShift系列(一)/">把玩OpenShift系列(一)</a>
+            
+        </h1>
+        <div class="content">
+            <p>OpenShift 是什么？我才懒得告诉你。</p>
+<p>本节主要包含的内容是在OpenStack虚拟机上搭建OpenShift社区版<a href="https://www.okd.io/" target="_blank" rel="noopener">okd</a>(v3.11)</p>
+<h2 id="安装计划"><a href="#安装计划" class="headerlink" title="安装计划"></a>安装计划</h2><p>由于是从0开始学习OpenShift的使用，所以部署的集群不包含高可用部分，部署的目的是体验一下OpenShift的功能。</p>
+<h2 id="系统与环境需要"><a href="#系统与环境需要" class="headerlink" title="系统与环境需要"></a>系统与环境需要</h2><h3 id="硬件需求"><a href="#硬件需求" class="headerlink" title="硬件需求"></a>硬件需求</h3><p>这没什么好说的，配置尽量高就对了，别跟我提最低的配置，我不想听。我是不会在电脑上跑虚拟机的。</p>
+<h3 id="软件要求"><a href="#软件要求" class="headerlink" title="软件要求"></a>软件要求</h3><p>操作系统我使用的是centos7.5，貌似OpenShift非社区版只能购买Redhat的商业操作系统才支持，滋滋。</p>
+<p>需要注意官方文档上提到了这个集群需要一个DNS服务器，我折腾了半天，不会搭DNS服务器，这一块我就暂时放弃了，后面再研究这个，然后用的方案是修改hosts配合dnsmasq来实现。</p>
+<p><strong>使用的服务器及IP</strong></p>
+<table>
+<thead>
+<tr>
+<th>主机名</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>master.example.com</td>
+<td>172.16.26.13</td>
+</tr>
+<tr>
+<td>node1.example.com</td>
+<td>172.16.26.10</td>
+</tr>
+<tr>
+<td>infra-node1.example.com</td>
+<td>172.16.26.17</td>
+</tr>
+</tbody>
+</table>
+<h4 id="配置Hosts"><a href="#配置Hosts" class="headerlink" title="配置Hosts"></a>配置Hosts</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">172.16.26.13    master.example.com</span><br><span class="line">172.16.26.10    node1.example.com</span><br><span class="line">172.16.26.17    infra-node1.example.com</span><br></pre></td></tr></table></figure>
+<p>需要注意的是除了在目标机器上配置Hosts，跳板机上也需要配置，并且配置跳板机(本地电脑)到服务器的免密登录</p>
+<h4 id="升级系统内核"><a href="#升级系统内核" class="headerlink" title="升级系统内核"></a>升级系统内核</h4><p>过程略, 升级内核到最新，这一点官方文档中并没有提到，但是为了担心后面莫名的问题，特意升级到了5.1</p>
+<h4 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h4><p>文档指定了这个版本</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-1.13.1</span><br></pre></td></tr></table></figure>
+<h2 id="Inventory-File"><a href="#Inventory-File" class="headerlink" title="Inventory File"></a>Inventory File</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>这个文件是指<a href="https://www.ansible.com/" target="_blank" rel="noopener">Ansible</a>的配置文件。</p>
+<p>怎么使用Ansible过程略过，在部署前需要对Ansible做入门学习最好。</p>
+<p><a href="https://docs.okd.io/3.11/install/configuring_inventory_file.html" target="_blank" rel="noopener">官方的配置说明</a></p>
+<p>内容有点太多，暂时没有看的欲望。</p>
+<p>官方给了一个配置<a href="https://docs.okd.io/3.11/install/example_inventories.html" target="_blank" rel="noopener">范例</a> ，按照这个配置稍微做一点修改就可以了。</p>
+<p>最终我的配置</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span> Create an OSEv3 group that contains the masters, nodes, and etcd groups</span><br><span class="line">[OSEv3:children]</span><br><span class="line">masters</span><br><span class="line">nodes</span><br><span class="line">etcd</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> Set variables common for all OSEv3 hosts</span><br><span class="line">[OSEv3:vars]</span><br><span class="line"><span class="hljs-meta">#</span> SSH user, this user should allow ssh based auth without requiring a password</span><br><span class="line">ansible_ssh_user=root</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> If ansible_ssh_user is not root, ansible_become must be set to true</span><br><span class="line"><span class="hljs-meta">#</span>ansible_become=true</span><br><span class="line"></span><br><span class="line">openshift_deployment_type=origin</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> uncomment the following to enable htpasswd authentication; defaults to AllowAllPasswordIdentityProvider</span><br><span class="line">openshift_master_identity_providers=[&#123;'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'&#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> host group for masters</span><br><span class="line">[masters]</span><br><span class="line">master.example.com</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> host group for etcd</span><br><span class="line">[etcd]</span><br><span class="line">master.example.com</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> host group for nodes, includes region info</span><br><span class="line">[nodes]</span><br><span class="line">master.example.com openshift_node_group_name='node-config-master'</span><br><span class="line">node1.example.com openshift_node_group_name='node-config-compute'</span><br><span class="line">infra-node1.example.com openshift_node_group_name='node-config-infra'</span><br></pre></td></tr></table></figure>
+<p>下载ansible的部署脚本</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/openshift_install</span><br><span class="line">git clone https://github.com/openshift/openshift-ansible</span><br><span class="line">cd openshift-ansible</span><br><span class="line">git checkout release-3.11</span><br></pre></td></tr></table></figure>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装过程分为2步, 第一步是预检查，第二步是部署，整个过程时间耗时不短，静静等待完成，过程还是很顺利的</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/openshift_install</span><br><span class="line">ansible-playbook [-i /path/to/inventory] playbooks/prerequisites.yml</span><br><span class="line">  </span><br><span class="line">ansible-playbook [-i /path/to/inventory] playbooks/deploy_cluster.yml</span><br></pre></td></tr></table></figure>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><ol>
+<li><p>验证节点的状态</p>
+<p> <img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597265995110.jpg" alt="-w511"></p>
+</li>
+<li><p>访问</p>
+<p> <a href="https://master.openshift.com:8443/console" target="_blank" rel="noopener">https://master.openshift.com:8443/console</a></p>
+<p> 吐槽一下，页面做的真丑</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>整个部署过程还是比较简单和顺利的，问题是部署完成好像存在一些问题。</p>
+<h2 id="疑惑"><a href="#疑惑" class="headerlink" title="疑惑"></a>疑惑</h2><ol>
+<li><p>获取集群信息显示不健康</p>
+<p> <img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597267857674.jpg" alt="-w932"></p>
+<p> 几个意思？后面有时间再来看这个问题，感觉问题可能出在证书上面。</p>
+</li>
+<li><p>集群服务ping不通</p>
+<p> <img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597270401372.jpg" alt="-w684"></p>
+<p> 为什么会有这个疑惑呢？因为对比了k8s集群，svc是可以ping通的</p>
+</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://docs.okd.io/index.html" target="_blank" rel="noopener">1. 官方文档</a>: 红帽软件的文档写的真的好</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
         <a href="/2019/05/27/构建基于kubernetes的DevOps平台(一)/" class="image is-7by1">
             <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/28/devops.png" alt="构建基于kubernetes的DevOps平台(一)">
         </a>
@@ -164,7 +280,7 @@
                 <time class="level-item has-text-grey" datetime="2019-05-27T09:45:05.000Z">2019-05-27</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Kubernetes/">Kubernetes</a>
+                <a class="has-link-grey -link" href="/categories/CloudComputing/">CloudComputing</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/CloudComputing/Kubernetes/">Kubernetes</a>
                 </div>
                 
                 
@@ -311,7 +427,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        18
                     </p>
                 </div>
             </div>
@@ -321,7 +437,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        13
+                        15
                     </p>
                 </div>
             </div>
@@ -331,7 +447,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        15
+                        16
                     </p>
                 </div>
             </div>
@@ -400,6 +516,30 @@
             </h3>
             <ul class="menu-list">
             <li>
+        <a class="level is-marginless" href="/categories/CloudComputing/">
+            <span class="level-start">
+                <span class="level-item">CloudComputing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/CloudComputing/Kubernetes/">
+            <span class="level-start">
+                <span class="level-item">Kubernetes</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/CloudComputing/OpenShift/">
+            <span class="level-start">
+                <span class="level-item">OpenShift</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Java/">
             <span class="level-start">
                 <span class="level-item">Java</span>
@@ -427,14 +567,6 @@
         <a class="level is-marginless" href="/categories/Jenkins/">
             <span class="level-start">
                 <span class="level-item">Jenkins</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Kubernetes/">
-            <span class="level-start">
-                <span class="level-item">Kubernetes</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -515,7 +647,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/devops/" style="font-size: 12.5px;">devops</a> <a href="/tags/grpc/" style="font-size: 10px;">grpc</a> <a href="/tags/helm/" style="font-size: 10px;">helm</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springcloud/" style="font-size: 17.5px;">springcloud</a> <a href="/tags/springframework/" style="font-size: 12.5px;">springframework</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/work/" style="font-size: 10px;">work</a>
+        <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/grpc/" style="font-size: 10px;">grpc</a> <a href="/tags/helm/" style="font-size: 10px;">helm</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openshift/" style="font-size: 10px;">openshift</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springcloud/" style="font-size: 17.5px;">springcloud</a> <a href="/tags/springframework/" style="font-size: 12.5px;">springframework</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/work/" style="font-size: 10px;">work</a>
     </div>
 </div>
 
@@ -529,6 +661,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/06/05/把玩OpenShift系列(一)/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597274064051.jpg" alt="把玩OpenShift系列(一)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-05T09:29:03.000Z">2019-06-05</time></div>
+                    <a href="/2019/06/05/把玩OpenShift系列(一)/" class="has-link-black-ter is-size-6">把玩OpenShift系列(一)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CloudComputing/">CloudComputing</a> / <a class="has-link-grey -link" href="/categories/CloudComputing/OpenShift/">OpenShift</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -600,26 +751,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-27T09:45:05.000Z">2019-05-27</time></div>
                     <a href="/2019/05/27/构建基于kubernetes的DevOps平台(一)/" class="has-link-black-ter is-size-6">构建基于kubernetes的DevOps平台(一)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Kubernetes/">Kubernetes</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/05/24/Vim资料整理/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/vim_v3.png" alt="Vim资料整理">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-24T06:36:23.000Z">2019-05-24</time></div>
-                    <a href="/2019/05/24/Vim资料整理/" class="has-link-black-ter is-size-6">Vim资料整理</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                        <a class="has-link-grey -link" href="/categories/CloudComputing/">CloudComputing</a> / <a class="has-link-grey -link" href="/categories/CloudComputing/Kubernetes/">Kubernetes</a>
                     </p>
                 </div>
             </div>
@@ -643,7 +775,7 @@
                     <span class="level-item">June 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -686,7 +818,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/devops/">
                         <span class="tag">devops</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -742,6 +874,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/nginx/">
                         <span class="tag">nginx</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/openshift/">
+                        <span class="tag">openshift</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -813,6 +952,25 @@
         
         <article class="media">
             
+            <a href="/2019/06/05/把玩OpenShift系列(一)/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597274064051.jpg" alt="把玩OpenShift系列(一)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-05T09:29:03.000Z">2019-06-05</time></div>
+                    <a href="/2019/06/05/把玩OpenShift系列(一)/" class="has-link-black-ter is-size-6">把玩OpenShift系列(一)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CloudComputing/">CloudComputing</a> / <a class="has-link-grey -link" href="/categories/CloudComputing/OpenShift/">OpenShift</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/06/01/《亿级流量网站架构核心技术》读书笔记/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/01/15592080028213.jpg" alt="《亿级流量网站架构核心技术》读书笔记">
@@ -881,26 +1039,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-27T09:45:05.000Z">2019-05-27</time></div>
                     <a href="/2019/05/27/构建基于kubernetes的DevOps平台(一)/" class="has-link-black-ter is-size-6">构建基于kubernetes的DevOps平台(一)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Kubernetes/">Kubernetes</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/05/24/Vim资料整理/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/vim_v3.png" alt="Vim资料整理">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-24T06:36:23.000Z">2019-05-24</time></div>
-                    <a href="/2019/05/24/Vim资料整理/" class="has-link-black-ter is-size-6">Vim资料整理</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                        <a class="has-link-grey -link" href="/categories/CloudComputing/">CloudComputing</a> / <a class="has-link-grey -link" href="/categories/CloudComputing/Kubernetes/">Kubernetes</a>
                     </p>
                 </div>
             </div>
@@ -924,7 +1063,7 @@
                     <span class="level-item">June 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -967,7 +1106,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/devops/">
                         <span class="tag">devops</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1023,6 +1162,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/nginx/">
                         <span class="tag">nginx</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/openshift/">
+                        <span class="tag">openshift</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

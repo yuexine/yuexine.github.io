@@ -2,25 +2,20 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Spring Cloud Eureka Client - Yuexin-Space</title>
+<title>Category: OpenShift - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="使用Eureka Client">
-<meta name="keywords" content="spring,springcloud">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Spring Cloud Eureka Client">
-<meta property="og:url" content="http://yuexine.github.io/2019/05/08/Spring-Cloud-Eureka-Client/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Yuexin-Space">
+<meta property="og:url" content="http://yuexine.github.io/categories/CloudComputing/OpenShift/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="使用Eureka Client">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg">
-<meta property="og:updated_time" content="2019-05-20T02:39:49.481Z">
+<meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring Cloud Eureka Client">
-<meta name="twitter:description" content="使用Eureka Client">
-<meta name="twitter:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg">
+<meta name="twitter:title" content="Yuexin-Space">
+<meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
 
 
 
@@ -98,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Spring Cloud Eureka Client" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
             
             </a>
         </div>
@@ -130,10 +125,6 @@
                     
                 
                 
-                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -148,165 +139,135 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">Categories</a></li>
+            
+            <li><a href="/categories/CloudComputing/">CloudComputing</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">OpenShift</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
     
     <div class="card-image">
-        <span class="image is-7by1">
-            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/spring-cloud-logo.jpeg" alt="Spring Cloud Eureka Client">
-        </span>
+        <a href="/2019/06/05/把玩OpenShift系列(一)/" class="image is-7by1">
+            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597274064051.jpg" alt="把玩OpenShift系列(一)">
+        </a>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-08T02:01:55.000Z">2019-05-08</time>
+                <time class="level-item has-text-grey" datetime="2019-06-05T09:29:03.000Z">2019-06-05</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Spring/SpringCloud/">SpringCloud</a>
+                <a class="has-link-grey -link" href="/categories/CloudComputing/">CloudComputing</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/CloudComputing/OpenShift/">OpenShift</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 378 words)
+                    6 minutes read (About 970 words)
                 </span>
                 
-                
-                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
-                    <i class="far fa-eye"></i>
-                    <span id="busuanzi_value_page_pv">0</span> visits
-                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Spring Cloud Eureka Client
+                <a class="has-link-black-ter" href="/2019/06/05/把玩OpenShift系列(一)/">把玩OpenShift系列(一)</a>
             
         </h1>
         <div class="content">
-            <h2 id="使用Eureka-Client"><a href="#使用Eureka-Client" class="headerlink" title="使用Eureka Client"></a>使用Eureka Client</h2><a id="more"></a>
-<p>在pom中包含jar</p>
-<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<!-- more -->
-<h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>指定注册中心的位置</p>
-<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">eureka:</span></span><br><span class="line"><span class="hljs-attr">  client:</span></span><br><span class="line"><span class="hljs-attr">    serviceUrl:</span></span><br><span class="line"><span class="hljs-attr">      defaultZone:</span> <span class="hljs-attr">http://localhost:8761/eureka/</span></span><br></pre></td></tr></table></figure>
-<h2 id="注册认证"><a href="#注册认证" class="headerlink" title="注册认证"></a>注册认证</h2><p>HTTP Basic认证已经自动添加到eureka客户端中, 更复杂的需求，参考文档实现</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://user:password@localhost:8761/eureka</span><br></pre></td></tr></table></figure>
-<h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><p>在阅读源码的时候，我们根据它本身提供的功能去关注它实现的过程，以及代码是怎么被触发的</p>
-<ol>
-<li><p>入口</p>
-<p> 通过观察<code>spring-cloud-netflix-eureka-client</code>包中的<code>META-INF/spring.factories</code>可以看到里面配置了一组<code>EnableAutoConfiguration</code>, 我们重点关注<code>EurekaClientAutoConfiguration</code></p>
+            <p>OpenShift 是什么？我才懒得告诉你。</p>
+<p>本节主要包含的内容是在OpenStack虚拟机上搭建OpenShift社区版<a href="https://www.okd.io/" target="_blank" rel="noopener">okd</a>(v3.11)</p>
+<h2 id="安装计划"><a href="#安装计划" class="headerlink" title="安装计划"></a>安装计划</h2><p>由于是从0开始学习OpenShift的使用，所以部署的集群不包含高可用部分，部署的目的是体验一下OpenShift的功能。</p>
+<h2 id="系统与环境需要"><a href="#系统与环境需要" class="headerlink" title="系统与环境需要"></a>系统与环境需要</h2><h3 id="硬件需求"><a href="#硬件需求" class="headerlink" title="硬件需求"></a>硬件需求</h3><p>这没什么好说的，配置尽量高就对了，别跟我提最低的配置，我不想听。我是不会在电脑上跑虚拟机的。</p>
+<h3 id="软件要求"><a href="#软件要求" class="headerlink" title="软件要求"></a>软件要求</h3><p>操作系统我使用的是centos7.5，貌似OpenShift非社区版只能购买Redhat的商业操作系统才支持，滋滋。</p>
+<p>需要注意官方文档上提到了这个集群需要一个DNS服务器，我折腾了半天，不会搭DNS服务器，这一块我就暂时放弃了，后面再研究这个，然后用的方案是修改hosts配合dnsmasq来实现。</p>
+<p><strong>使用的服务器及IP</strong></p>
+<table>
+<thead>
+<tr>
+<th>主机名</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>master.example.com</td>
+<td>172.16.26.13</td>
+</tr>
+<tr>
+<td>node1.example.com</td>
+<td>172.16.26.10</td>
+</tr>
+<tr>
+<td>infra-node1.example.com</td>
+<td>172.16.26.17</td>
+</tr>
+</tbody>
+</table>
+<h4 id="配置Hosts"><a href="#配置Hosts" class="headerlink" title="配置Hosts"></a>配置Hosts</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">172.16.26.13    master.example.com</span><br><span class="line">172.16.26.10    node1.example.com</span><br><span class="line">172.16.26.17    infra-node1.example.com</span><br></pre></td></tr></table></figure>
+<p>需要注意的是除了在目标机器上配置Hosts，跳板机上也需要配置，并且配置跳板机(本地电脑)到服务器的免密登录</p>
+<h4 id="升级系统内核"><a href="#升级系统内核" class="headerlink" title="升级系统内核"></a>升级系统内核</h4><p>过程略, 升级内核到最新，这一点官方文档中并没有提到，但是为了担心后面莫名的问题，特意升级到了5.1</p>
+<h4 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h4><p>文档指定了这个版本</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-1.13.1</span><br></pre></td></tr></table></figure>
+<h2 id="Inventory-File"><a href="#Inventory-File" class="headerlink" title="Inventory File"></a>Inventory File</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>这个文件是指<a href="https://www.ansible.com/" target="_blank" rel="noopener">Ansible</a>的配置文件。</p>
+<p>怎么使用Ansible过程略过，在部署前需要对Ansible做入门学习最好。</p>
+<p><a href="https://docs.okd.io/3.11/install/configuring_inventory_file.html" target="_blank" rel="noopener">官方的配置说明</a></p>
+<p>内容有点太多，暂时没有看的欲望。</p>
+<p>官方给了一个配置<a href="https://docs.okd.io/3.11/install/example_inventories.html" target="_blank" rel="noopener">范例</a> ，按照这个配置稍微做一点修改就可以了。</p>
+<p>最终我的配置</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span> Create an OSEv3 group that contains the masters, nodes, and etcd groups</span><br><span class="line">[OSEv3:children]</span><br><span class="line">masters</span><br><span class="line">nodes</span><br><span class="line">etcd</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> Set variables common for all OSEv3 hosts</span><br><span class="line">[OSEv3:vars]</span><br><span class="line"><span class="hljs-meta">#</span> SSH user, this user should allow ssh based auth without requiring a password</span><br><span class="line">ansible_ssh_user=root</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> If ansible_ssh_user is not root, ansible_become must be set to true</span><br><span class="line"><span class="hljs-meta">#</span>ansible_become=true</span><br><span class="line"></span><br><span class="line">openshift_deployment_type=origin</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> uncomment the following to enable htpasswd authentication; defaults to AllowAllPasswordIdentityProvider</span><br><span class="line">openshift_master_identity_providers=[&#123;'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'&#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> host group for masters</span><br><span class="line">[masters]</span><br><span class="line">master.example.com</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> host group for etcd</span><br><span class="line">[etcd]</span><br><span class="line">master.example.com</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> host group for nodes, includes region info</span><br><span class="line">[nodes]</span><br><span class="line">master.example.com openshift_node_group_name='node-config-master'</span><br><span class="line">node1.example.com openshift_node_group_name='node-config-compute'</span><br><span class="line">infra-node1.example.com openshift_node_group_name='node-config-infra'</span><br></pre></td></tr></table></figure>
+<p>下载ansible的部署脚本</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/openshift_install</span><br><span class="line">git clone https://github.com/openshift/openshift-ansible</span><br><span class="line">cd openshift-ansible</span><br><span class="line">git checkout release-3.11</span><br></pre></td></tr></table></figure>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装过程分为2步, 第一步是预检查，第二步是部署，整个过程时间耗时不短，静静等待完成，过程还是很顺利的</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/openshift_install</span><br><span class="line">ansible-playbook [-i /path/to/inventory] playbooks/prerequisites.yml</span><br><span class="line">  </span><br><span class="line">ansible-playbook [-i /path/to/inventory] playbooks/deploy_cluster.yml</span><br></pre></td></tr></table></figure>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><ol>
+<li><p>验证节点的状态</p>
+<p> <img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597265995110.jpg" alt="-w511"></p>
 </li>
-<li><p>EurekaClientAutoConfiguration</p>
-<p> 在这个对象中，主要是根据条件创建了一组<code>spring bean</code>, 包括</p>
-<ul>
-<li><code>EurekaClientConfigBean</code></li>
-<li><code>ManagementMetadataProvider</code></li>
-<li><code>EurekaInstanceConfigBean</code></li>
-<li><code>DiscoveryClient</code></li>
-<li><code>EurekaServiceRegistry</code></li>
-<li><code>EurekaClient</code></li>
-</ul>
-</li>
-<li><p>EurekaClient</p>
-<p> 继续跟踪代码，观察EurekaClient的初始化过程</p>
- <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CloudEurekaClient</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DiscoveryClient</span> </span>&#123;</span><br><span class="line">   ...</span><br><span class="line">   	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CloudEurekaClient</span><span class="hljs-params">(ApplicationInfoManager applicationInfoManager,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">		EurekaClientConfig config, AbstractDiscoveryClientOptionalArgs&lt;?&gt; args,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">		ApplicationEventPublisher publisher)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">super</span>(applicationInfoManager, config, args);</span><br><span class="line">	<span class="hljs-keyword">this</span>.applicationInfoManager = applicationInfoManager;</span><br><span class="line">	<span class="hljs-keyword">this</span>.publisher = publisher;</span><br><span class="line">	<span class="hljs-keyword">this</span>.eurekaTransportField = ReflectionUtils.findField(DiscoveryClient.class,</span><br><span class="line">			<span class="hljs-string">"eurekaTransport"</span>);</span><br><span class="line">	ReflectionUtils.makeAccessible(<span class="hljs-keyword">this</span>.eurekaTransportField);</span><br><span class="line">   &#125;</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 这里会调用父级的构造方法去执行注册、心跳、缓存刷新等任务</p>
- <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">    DiscoveryClient(ApplicationInfoManager applicationInfoManager, EurekaClientConfig config, AbstractDiscoveryClientOptionalArgs args,</span><br><span class="line">                    Provider&lt;BackupRegistry&gt; backupRegistryProvider) &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="hljs-comment">// default size of 2 - 1 each for heartbeat and cacheRefresh</span></span><br><span class="line">            scheduler = Executors.newScheduledThreadPool(<span class="hljs-number">2</span>,</span><br><span class="line">                    <span class="hljs-keyword">new</span> ThreadFactoryBuilder()</span><br><span class="line">                            .setNameFormat(<span class="hljs-string">"DiscoveryClient-%d"</span>)</span><br><span class="line">                            .setDaemon(<span class="hljs-keyword">true</span>)</span><br><span class="line">                            .build());</span><br><span class="line"></span><br><span class="line">            heartbeatExecutor = <span class="hljs-keyword">new</span> ThreadPoolExecutor(</span><br><span class="line">                    <span class="hljs-number">1</span>, clientConfig.getHeartbeatExecutorThreadPoolSize(), <span class="hljs-number">0</span>, TimeUnit.SECONDS,</span><br><span class="line">                    <span class="hljs-keyword">new</span> SynchronousQueue&lt;Runnable&gt;(),</span><br><span class="line">                    <span class="hljs-keyword">new</span> ThreadFactoryBuilder()</span><br><span class="line">                            .setNameFormat(<span class="hljs-string">"DiscoveryClient-HeartbeatExecutor-%d"</span>)</span><br><span class="line">                            .setDaemon(<span class="hljs-keyword">true</span>)</span><br><span class="line">                            .build()</span><br><span class="line">            );  <span class="hljs-comment">// use direct handoff</span></span><br><span class="line"></span><br><span class="line">            cacheRefreshExecutor = <span class="hljs-keyword">new</span> ThreadPoolExecutor(</span><br><span class="line">                    <span class="hljs-number">1</span>, clientConfig.getCacheRefreshExecutorThreadPoolSize(), <span class="hljs-number">0</span>, TimeUnit.SECONDS,</span><br><span class="line">                    <span class="hljs-keyword">new</span> SynchronousQueue&lt;Runnable&gt;(),</span><br><span class="line">                    <span class="hljs-keyword">new</span> ThreadFactoryBuilder()</span><br><span class="line">                            .setNameFormat(<span class="hljs-string">"DiscoveryClient-CacheRefreshExecutor-%d"</span>)</span><br><span class="line">                            .setDaemon(<span class="hljs-keyword">true</span>)</span><br><span class="line">                            .build()</span><br><span class="line">            );  <span class="hljs-comment">// use direct handoff</span></span><br><span class="line">    ...                   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 到这里我们可以发现，<code>spring cloud eureka client</code>将这些任务都委托给了Netflix的Eureka组建去执行</p>
+<li><p>访问</p>
+<p> <a href="https://master.openshift.com:8443/console" target="_blank" rel="noopener">https://master.openshift.com:8443/console</a></p>
+<p> 吐槽一下，页面做的真丑</p>
 </li>
 </ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>整个部署过程还是比较简单和顺利的，问题是部署完成好像存在一些问题。</p>
+<h2 id="疑惑"><a href="#疑惑" class="headerlink" title="疑惑"></a>疑惑</h2><ol>
+<li><p>获取集群信息显示不健康</p>
+<p> <img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597267857674.jpg" alt="-w932"></p>
+<p> 几个意思？后面有时间再来看这个问题，感觉问题可能出在证书上面。</p>
+</li>
+<li><p>集群服务ping不通</p>
+<p> <img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597270401372.jpg" alt="-w684"></p>
+<p> 为什么会有这个疑惑呢？因为对比了k8s集群，svc是可以ping通的</p>
+</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://docs.okd.io/index.html" target="_blank" rel="noopener">1. 官方文档</a>: 红帽软件的文档写的真的好</p>
 
         </div>
         
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/spring/">spring</a>, <a class="has-link-grey -link" href="/tags/springcloud/">springcloud</a>
-                </div>
-            </div>
-        </div>
         
-        
-        
-        <div class="social-share"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
-<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>Wechat</span>
-    <div class="qrcode"><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/wechat_pay.jpg" alt="Wechat"></div>
-</a>
-
-                
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/05/08/TCP与UDP/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">TCP与UDP</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/06/Spring-Cloud-Config-Server/">
-                <span class="level-item">Spring Cloud Config Server</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
-        
-<div id="comment-container"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
-<script>
-    var gitalk = new Gitalk({
-        clientID: '07bd1be05349a17a8209',
-        clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
-        id: 'c3550dce3ab44b86bf359f38b13b4070',
-        repo: 'yuexine.github.io',
-        owner: 'yuexine',
-        admin: "yuexine"
-    })
-    gitalk.render('comment-container')
-</script>
-
-    </div>
-</div>
 </div>
                 
 
@@ -401,33 +362,6 @@
 </div>
     
         
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                Catalogue
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#使用Eureka-Client">
-        <span class="has-mr-6">1</span>
-        <span>使用Eureka Client</span>
-        </a></li><li>
-        <a class="is-flex" href="#注册">
-        <span class="has-mr-6">2</span>
-        <span>注册</span>
-        </a></li><li>
-        <a class="is-flex" href="#注册认证">
-        <span class="has-mr-6">3</span>
-        <span>注册认证</span>
-        </a></li><li>
-        <a class="is-flex" href="#源码分析">
-        <span class="has-mr-6">4</span>
-        <span>源码分析</span>
-        </a></li></ul>
-        </div>
-    </div>
-</div>
-
     
         
 
@@ -1182,7 +1116,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Spring Cloud Eureka Client" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
                 
                 </a>
                 <p class="is-size-7">

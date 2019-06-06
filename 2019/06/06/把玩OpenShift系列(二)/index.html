@@ -2,20 +2,25 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Category: gRPC - Yuexin-Space</title>
+<title>把玩OpenShift系列(二) - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Yuexin-Space">
-<meta property="og:url" content="http://yuexine.github.io/categories/gRPC/index.html">
+    <meta name="description" content="本节主要包含的内容是Registry。">
+<meta name="keywords" content="devops,openshift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把玩OpenShift系列(二)">
+<meta property="og:url" content="http://yuexine.github.io/2019/06/06/把玩OpenShift系列(二)/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
+<meta property="og:description" content="本节主要包含的内容是Registry。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
+<meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/06/15597826020303.jpg">
+<meta property="og:updated_time" content="2019-06-06T02:04:25.981Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuexin-Space">
-<meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
+<meta name="twitter:title" content="把玩OpenShift系列(二)">
+<meta name="twitter:description" content="本节主要包含的内容是Registry。">
+<meta name="twitter:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/06/15597826020303.jpg">
 
 
 
@@ -93,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="把玩OpenShift系列(二)" height="28">
             
             </a>
         </div>
@@ -125,6 +130,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -139,75 +148,179 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/categories">Categories</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">gRPC</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/2019/05/17/gRPC-入门学习/" class="image is-7by1">
-            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/landing-2.svg" alt="gRPC 入门学习">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/06/15597826020303.jpg" alt="把玩OpenShift系列(二)">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-17T03:34:05.000Z">2019-05-17</time>
+                <time class="level-item has-text-grey" datetime="2019-06-06T02:03:09.000Z">2019-06-06</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/gRPC/">gRPC</a>
+                <a class="has-link-grey -link" href="/categories/CloudComputing/">CloudComputing</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/CloudComputing/OpenShift/">OpenShift</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1041 words)
+                    6 minutes read (About 928 words)
                 </span>
                 
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/05/17/gRPC-入门学习/">gRPC 入门学习</a>
+                把玩OpenShift系列(二)
             
         </h1>
         <div class="content">
-            <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>gRPC是Google公司开源的一个远程服务调用框架，基于HTTP2协议。</p>
+            <p>本节主要包含的内容是Registry。</p>
+<a id="more"></a>
+<p>Registry: 也就是集成在OpenShift内的一个容器私有仓库，用来存放打包后制作的镜像。</p>
+<h2 id="部署Registry"><a href="#部署Registry" class="headerlink" title="部署Registry"></a>部署Registry</h2><p>在用Ansible搭建平台的时候，已经在infra节点上自动部署了Registry Pod，如果是通过其它的部署方式部署Okd，可能需要手动的部署这个。</p>
+<h2 id="访问Registry"><a href="#访问Registry" class="headerlink" title="访问Registry"></a>访问Registry</h2><p>通过oc命令或者kubectl命令可以看到Registry服务的ip</p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/06/15597833990051.jpg" alt="-w734"></p>
+<p>如何直接访问到这个Registry，文档上是这么描述的</p>
+<p>For any direct access, you must have a regular user for your preferred identity provider. A regular user can generate an access token required for logging in to the registry. System users, such as system:admin, cannot obtain access tokens and, therefore, cannot access the registry directly.</p>
+<p>我的平台是使用的 HTPASSWD authentication</p>
+<p>创建用户</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">htpasswd /etc/origin/openshift-htpasswd &lt;user_name&gt;</span><br></pre></td></tr></table></figure>
+<p>为这个用户绑定registry读写角色</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">oc policy add-role-to-user registry-viewer &lt;user_name&gt;</span><br><span class="line"></span><br><span class="line">oc policy add-role-to-user registry-editor &lt;user_name&gt;</span><br></pre></td></tr></table></figure>
+<p>使用创建的账户进行登录到Okd</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oc login</span><br></pre></td></tr></table></figure>
+<p>登录到Registry</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login -u openshift -p $(oc whoami -t) &lt;registry_ip&gt;:&lt;port&gt;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，一旦使用这个账号登录到Okd之后，后面所有的命令操作都是以该用户的身份操作，会出现很多命令无权限，再次获得系统管理员身份使用</p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oc login -u system:admin</span><br></pre></td></tr></table></figure>
+<p>如果docker login成功之后，可以测试一下镜像的push&amp;pull。</p>
+<p>在折腾Registry的过程中，并不是很顺利，遇到的问题后面再详细描述。</p>
+<h2 id="安全与暴露"><a href="#安全与暴露" class="headerlink" title="安全与暴露"></a>安全与暴露</h2><h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><p>原本我以为通过Ansible安装的Registry不支持Https的，所欲按照文档操作手动配置证书的过程中，发现这部分已经在平台搭建的时候安装好了，所以做了一些无用功</p>
+<p>当然可能也还有一点用，就是自带的Https看起来没有提供对Ip的直接登录，手动创建证书时，把ip也带上了，所以后面能通过ip:port直接登录到Registry。</p>
+<p>配置细节略过，看文档，非常详细。</p>
+<h3 id="暴露"><a href="#暴露" class="headerlink" title="暴露"></a>暴露</h3><p>其实就是添加了一个路由，比较简单，略过</p>
+<h2 id="扩展配置"><a href="#扩展配置" class="headerlink" title="扩展配置"></a>扩展配置</h2><p>这一部分有一个重点就是镜像文件的存储，默认是用的FileSystem，但在实际生产中，往往会使用其他的存储方案，这一部分后面再研究。</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="docker无法登录到registry"><a href="#docker无法登录到registry" class="headerlink" title="docker无法登录到registry"></a>docker无法登录到registry</h3><ol>
+<li><p>问题描述</p>
+<p> 无法通过 <code>docker login</code> 到 <code>registry</code>，提示 <code>TLS handshake timeout</code></p>
+</li>
+<li><p>问题分析</p>
+<p> 由于我使用的是OpenStack虚拟的云主机构建的这个平台，按照以前操作k8s和容器的经验，估计这个和mtu值有关，因为一般的Linux操作系统默认的MTU值是1500，而Openstack云主机mtu值是1450。</p>
+</li>
+<li><p>解决方法</p>
+<p> 网上各种搜，各种尝试，解决问题的过程很不爽，最终运气不错，<a href="https://docs.openshift.com/enterprise/3.2/admin_guide/sdn_troubleshooting.html#builds-on-a-virtual-network-are-failing" target="_blank" rel="noopener">在这里</a>找到了问题的解决方法。</p>
+<p> <strong>修改</strong> </p>
+ <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    # cat /etc/origin/node/node-config.yaml</span><br><span class="line">...</span><br><span class="line">networkConfig:</span><br><span class="line">   mtu: 1450</span><br><span class="line">   networkPluginName: company/openshift-ovs-subnet</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>修改mtu到1400
+
+**重启**
+
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart origin-node.service</span><br></pre></td></tr></table></figure>
+
+
+**重启之后**
+
+![-w1013](https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/06/15597863353851.jpg)
+</code></pre><p>观察Node节点tun0mtu并没有变化，这算不算一个bug，算了，这样至少问题解决了</p>
+<p>对于SDN网络这一块，还不太懂，后面再研究。</p>
+<p><a href="https://docs.okd.io/3.11/scaling_performance/network_optimization.html" target="_blank" rel="noopener">Optimizing Network Performance</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://docs.okd.io/3.11/install_config/index.html" target="_blank" rel="noopener">1. okd官方文档</a></p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/17/gRPC-入门学习/#more">Read More</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/devops/">devops</a>, <a class="has-link-grey -link" href="/tags/openshift/">openshift</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/wechat_pay.jpg" alt="Wechat"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/05/把玩OpenShift系列(一)/">
+                <span class="level-item">把玩OpenShift系列(一)</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '07bd1be05349a17a8209',
+        clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
+        id: '177650f055ed5714c6b18380735522f7',
+        repo: 'yuexine.github.io',
+        owner: 'yuexine',
+        admin: "yuexine"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -302,6 +415,53 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#部署Registry">
+        <span class="has-mr-6">1</span>
+        <span>部署Registry</span>
+        </a></li><li>
+        <a class="is-flex" href="#访问Registry">
+        <span class="has-mr-6">2</span>
+        <span>访问Registry</span>
+        </a></li><li>
+        <a class="is-flex" href="#安全与暴露">
+        <span class="has-mr-6">3</span>
+        <span>安全与暴露</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#安全">
+        <span class="has-mr-6">3.1</span>
+        <span>安全</span>
+        </a></li><li>
+        <a class="is-flex" href="#暴露">
+        <span class="has-mr-6">3.2</span>
+        <span>暴露</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#扩展配置">
+        <span class="has-mr-6">4</span>
+        <span>扩展配置</span>
+        </a></li><li>
+        <a class="is-flex" href="#遇到的问题">
+        <span class="has-mr-6">5</span>
+        <span>遇到的问题</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#docker无法登录到registry">
+        <span class="has-mr-6">5.1</span>
+        <span>docker无法登录到registry</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#参考">
+        <span class="has-mr-6">6</span>
+        <span>参考</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -1056,7 +1216,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="把玩OpenShift系列(二)" height="28">
                 
                 </a>
                 <p class="is-size-7">

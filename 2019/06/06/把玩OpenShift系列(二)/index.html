@@ -16,7 +16,7 @@
 <meta property="og:description" content="本节主要包含的内容是Registry。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/06/15597826020303.jpg">
-<meta property="og:updated_time" content="2019-06-06T05:32:54.178Z">
+<meta property="og:updated_time" content="2019-06-06T05:35:50.854Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="把玩OpenShift系列(二)">
 <meta name="twitter:description" content="本节主要包含的内容是Registry。">
@@ -169,7 +169,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1002 words)
+                    7 minutes read (About 1023 words)
                 </span>
                 
                 
@@ -236,6 +236,7 @@
 <p> 通过修改系统内文件的配置，发现修改不能生效，继续解决</p>
 <p> <a href="https://docs.okd.io/3.11/admin_guide/manage_nodes.html#modifying-nodes" target="_blank" rel="noopener">Modifying Nodes</a></p>
 <p> 原来这部分配置已经集成到ConfigMap中了，通过编辑ConfigMap，改完后重启所有节点，ok</p>
+ <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">oc get cm -n openshift-node</span><br><span class="line">//修改所有的</span><br><span class="line">oc edit cm node-config-compute -n openshift-node</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://docs.okd.io/3.11/install_config/index.html" target="_blank" rel="noopener">1. okd官方文档</a></p>

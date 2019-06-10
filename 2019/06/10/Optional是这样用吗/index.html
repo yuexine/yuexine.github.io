@@ -2,20 +2,25 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Tag: kubernetes - Yuexin-Space</title>
+<title>Optional是这样用吗? - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Yuexin-Space">
-<meta property="og:url" content="http://yuexine.github.io/tags/kubernetes/index.html">
+    <meta name="description" content="如果你写的Java代码中还包含了对Null的判断，咦，是不是有点low了。本节主要包含了对JDKjava.util.Optional的理解。">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optional是这样用吗?">
+<meta property="og:url" content="http://yuexine.github.io/2019/06/10/Optional是这样用吗/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
+<meta property="og:description" content="如果你写的Java代码中还包含了对Null的判断，咦，是不是有点low了。本节主要包含了对JDKjava.util.Optional的理解。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
+<meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/10/15601356628125.jpg">
+<meta property="og:updated_time" content="2019-06-10T03:03:22.174Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuexin-Space">
-<meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
+<meta name="twitter:title" content="Optional是这样用吗?">
+<meta name="twitter:description" content="如果你写的Java代码中还包含了对Null的判断，咦，是不是有点low了。本节主要包含了对JDKjava.util.Optional的理解。">
+<meta name="twitter:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/10/15601356628125.jpg">
 
 
 
@@ -93,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Optional是这样用吗?" height="28">
             
             </a>
         </div>
@@ -125,6 +130,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -139,74 +148,153 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">kubernetes</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/2019/05/27/构建基于kubernetes的DevOps平台(一)/" class="image is-7by1">
-            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/28/devops.png" alt="构建基于kubernetes的DevOps平台(一)">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/10/15601356628125.jpg" alt="Optional是这样用吗?">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-27T09:45:05.000Z">2019-05-27</time>
+                <time class="level-item has-text-grey" datetime="2019-06-10T03:01:35.000Z">2019-06-10</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/CloudComputing/">CloudComputing</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/CloudComputing/Kubernetes/">Kubernetes</a>
+                <a class="has-link-grey -link" href="/categories/Java/">Java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Java/Functional/">Functional</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    11 minutes read (About 1651 words)
+                    5 minutes read (About 675 words)
                 </span>
                 
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/05/27/构建基于kubernetes的DevOps平台(一)/">构建基于kubernetes的DevOps平台(一)</a>
+                Optional是这样用吗?
             
         </h1>
         <div class="content">
-            <p>在开始学习k8s前，需要部署一套k8s系统，部署k8s主要有2种方式(我知道的，可能更多)，一种是通过二进制部署，另外一种是通过kubeadm进行部署，这里我们使用kubeadm进行部署。</p>
+            <p>如果你写的Java代码中还包含了对<code>Null</code>的判断，咦，是不是有点low了。本节主要包含了对JDK<code>java.util.Optional</code>的理解。</p>
+<a id="more"></a>
+<p>使用Optional需要理解这几点精髓:</p>
+<h2 id="创建Optional对象"><a href="#创建Optional对象" class="headerlink" title="创建Optional对象"></a>创建Optional对象</h2><h3 id="创建一个空对象"><a href="#创建一个空对象" class="headerlink" title="创建一个空对象"></a>创建一个空对象</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Returns an empty &#123;<span class="hljs-doctag">@code</span> Optional&#125; instance.  No value is present for this</span></span><br><span class="line"><span class="hljs-comment"> * Optional.</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@apiNote</span> Though it may be tempting to do so, avoid testing if an object</span></span><br><span class="line"><span class="hljs-comment"> * is empty by comparing with &#123;<span class="hljs-doctag">@code</span> ==&#125; against instances returned by</span></span><br><span class="line"><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@code</span> Option.empty()&#125;. There is no guarantee that it is a singleton.</span></span><br><span class="line"><span class="hljs-comment"> * Instead, use &#123;<span class="hljs-doctag">@link</span> #isPresent()&#125;.</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &lt;T&gt; Type of the non-existent value</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> an empty &#123;<span class="hljs-doctag">@code</span> Optional&#125;</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; Optional&lt;T&gt; <span class="hljs-title">empty</span><span class="hljs-params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>这没什么好说的。</p>
+<h3 id="创建一个非空对象"><a href="#创建一个非空对象" class="headerlink" title="创建一个非空对象"></a>创建一个非空对象</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Returns an &#123;<span class="hljs-doctag">@code</span> Optional&#125; with the specified present non-null value.</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &lt;T&gt; the class of the value</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> value the value to be present, which must be non-null</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> an &#123;<span class="hljs-doctag">@code</span> Optional&#125; with the value present</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> NullPointerException if value is null</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-function">Optional&lt;T&gt; <span class="hljs-title">of</span><span class="hljs-params">(T value)</span></span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是参数value值不可以为空，否则会在运行期抛出<code>NullPointerException</code></p>
+<h3 id="创建一个可以为空的对象"><a href="#创建一个可以为空的对象" class="headerlink" title="创建一个可以为空的对象"></a>创建一个可以为空的对象</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Returns an &#123;<span class="hljs-doctag">@code</span> Optional&#125; describing the specified value, if non-null,</span></span><br><span class="line"><span class="hljs-comment"> * otherwise returns an empty &#123;<span class="hljs-doctag">@code</span> Optional&#125;.</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &lt;T&gt; the class of the value</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> value the possibly-null value to describe</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> an &#123;<span class="hljs-doctag">@code</span> Optional&#125; with a present value if the specified value</span></span><br><span class="line"><span class="hljs-comment"> * is non-null, otherwise an empty &#123;<span class="hljs-doctag">@code</span> Optional&#125;</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-function">Optional&lt;T&gt; <span class="hljs-title">ofNullable</span><span class="hljs-params">(T value)</span></span></span><br></pre></td></tr></table></figure>
+<p>这个就比较好用了，管你是空还是非空，都到碗里来。</p>
+<h2 id="对象转换-业务处理"><a href="#对象转换-业务处理" class="headerlink" title="对象转换(业务处理)"></a>对象转换(业务处理)</h2><p>熟悉Java8相关<code>Function</code>的很容易理解</p>
+<h3 id="对Optional数据进行消费"><a href="#对Optional数据进行消费" class="headerlink" title="对Optional数据进行消费"></a>对Optional数据进行消费</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ifPresent</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-keyword">super</span> T&gt; consumer)</span></span></span><br></pre></td></tr></table></figure>
+<p>参数为一个Consumer函数，你懂的</p>
+<h3 id="对Optional数据进行转换"><a href="#对Optional数据进行转换" class="headerlink" title="对Optional数据进行转换"></a>对Optional数据进行转换</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span>&lt;U&gt; Optional&lt;U&gt; <span class="hljs-title">map</span><span class="hljs-params">(Function&lt;? <span class="hljs-keyword">super</span> T, ? extends U&gt; mapper)</span></span></span><br><span class="line"><span class="hljs-function"></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span>&lt;U&gt; Optional&lt;U&gt; <span class="hljs-title">flatMap</span><span class="hljs-params">(Function&lt;? <span class="hljs-keyword">super</span> T, Optional&lt;U&gt;&gt; mapper)</span></span></span><br></pre></td></tr></table></figure>
+<p>参数是一个Function函数，两者的区别在于转换结果对象不一样。</p>
+<h3 id="对Optional数据进行过滤"><a href="#对Optional数据进行过滤" class="headerlink" title="对Optional数据进行过滤"></a>对Optional数据进行过滤</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Optional&lt;T&gt; <span class="hljs-title">filter</span><span class="hljs-params">(Predicate&lt;? <span class="hljs-keyword">super</span> T&gt; predicate)</span></span></span><br></pre></td></tr></table></figure>
+<p>参数是一个Predicate函数</p>
+<h2 id="获取值"><a href="#获取值" class="headerlink" title="获取值"></a>获取值</h2><h3 id="补偿输出"><a href="#补偿输出" class="headerlink" title="补偿输出"></a>补偿输出</h3><p>意思是如果当前Optional的值不为空则直接返回该值，如果该值为空，则返回另外一个值。Optional类提供了2个函数</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public T orElse(T other);</span><br><span class="line"></span><br><span class="line">public T orElseGet(Supplier&lt;? extends T&gt; other)</span><br></pre></td></tr></table></figure>
+<p>区别在于，orElse()接收一个参数作为返回，而orElseGet则是接收一个Supplier生产函数。</p>
+<h3 id="抛出异常"><a href="#抛出异常" class="headerlink" title="抛出异常"></a>抛出异常</h3><p>很多时候，我们对于Null业务的处理是抛出一个自定义异常。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> &lt;X extends Throwable&gt; <span class="hljs-function">T <span class="hljs-title">orElseThrow</span><span class="hljs-params">(Supplier&lt;? extends X&gt; exceptionSupplier)</span> <span class="hljs-keyword">throws</span> X</span>;</span><br></pre></td></tr></table></figure>
+<p>参数是一个生产函数</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>不使用Optional的写法</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    String name = getNameById(<span class="hljs-number">0</span>);</span><br><span class="line">    <span class="hljs-keyword">if</span> (name!=<span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">        name = name.toUpperCase();</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用Optional后，Null只在你心里</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    Optional&lt;String&gt; v = Optional.ofNullable(getNameById(<span class="hljs-number">0</span>));</span><br><span class="line">    String name = v.map(String::toUpperCase)</span><br><span class="line">            .orElseThrow(NullPointerException::<span class="hljs-keyword">new</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Optional简单，用法上也就上面提到的3类，对Function的理解是关键。</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/27/构建基于kubernetes的DevOps平台(一)/#more">Read More</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/java/">java</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/wechat_pay.jpg" alt="Wechat"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/06/把玩OpenShift系列(二)/">
+                <span class="level-item">把玩OpenShift系列(二)</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '07bd1be05349a17a8209',
+        clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
+        id: '6041619a43b33c271877ca53ee4b455e',
+        repo: 'yuexine.github.io',
+        owner: 'yuexine',
+        admin: "yuexine"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -301,6 +389,69 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#创建Optional对象">
+        <span class="has-mr-6">1</span>
+        <span>创建Optional对象</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#创建一个空对象">
+        <span class="has-mr-6">1.1</span>
+        <span>创建一个空对象</span>
+        </a></li><li>
+        <a class="is-flex" href="#创建一个非空对象">
+        <span class="has-mr-6">1.2</span>
+        <span>创建一个非空对象</span>
+        </a></li><li>
+        <a class="is-flex" href="#创建一个可以为空的对象">
+        <span class="has-mr-6">1.3</span>
+        <span>创建一个可以为空的对象</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#对象转换-业务处理">
+        <span class="has-mr-6">2</span>
+        <span>对象转换(业务处理)</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#对Optional数据进行消费">
+        <span class="has-mr-6">2.1</span>
+        <span>对Optional数据进行消费</span>
+        </a></li><li>
+        <a class="is-flex" href="#对Optional数据进行转换">
+        <span class="has-mr-6">2.2</span>
+        <span>对Optional数据进行转换</span>
+        </a></li><li>
+        <a class="is-flex" href="#对Optional数据进行过滤">
+        <span class="has-mr-6">2.3</span>
+        <span>对Optional数据进行过滤</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#获取值">
+        <span class="has-mr-6">3</span>
+        <span>获取值</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#补偿输出">
+        <span class="has-mr-6">3.1</span>
+        <span>补偿输出</span>
+        </a></li><li>
+        <a class="is-flex" href="#抛出异常">
+        <span class="has-mr-6">3.2</span>
+        <span>抛出异常</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Example">
+        <span class="has-mr-6">4</span>
+        <span>Example</span>
+        </a></li><li>
+        <a class="is-flex" href="#总结">
+        <span class="has-mr-6">5</span>
+        <span>总结</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -1055,7 +1206,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Optional是这样用吗?" height="28">
                 
                 </a>
                 <p class="is-size-7">

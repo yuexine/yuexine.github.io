@@ -228,7 +228,7 @@
 <p>内容有点太多，暂时没有看的欲望。</p>
 <p>官方给了一个配置<a href="https://docs.okd.io/3.11/install/example_inventories.html" target="_blank" rel="noopener">范例</a> ，按照这个配置稍微做一点修改就可以了。</p>
 <p>最终我的配置</p>
-<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span> Create an OSEv3 group that contains the masters, nodes, and etcd groups</span><br><span class="line">[OSEv3:children]</span><br><span class="line">masters</span><br><span class="line">nodes</span><br><span class="line">etcd</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> Set variables common for all OSEv3 hosts</span><br><span class="line">[OSEv3:vars]</span><br><span class="line"><span class="hljs-meta">#</span> SSH user, this user should allow ssh based auth without requiring a password</span><br><span class="line">ansible_ssh_user=root</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> If ansible_ssh_user is not root, ansible_become must be set to true</span><br><span class="line"><span class="hljs-meta">#</span>ansible_become=true</span><br><span class="line"></span><br><span class="line">openshift_deployment_type=origin</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> uncomment the following to enable htpasswd authentication; defaults to AllowAllPasswordIdentityProvider</span><br><span class="line">openshift_master_identity_providers=[&#123;'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'&#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> host group for masters</span><br><span class="line">[masters]</span><br><span class="line">master.example.com</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> host group for etcd</span><br><span class="line">[etcd]</span><br><span class="line">master.example.com</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span> host group for nodes, includes region info</span><br><span class="line">[nodes]</span><br><span class="line">master.example.com openshift_node_group_name='node-config-master'</span><br><span class="line">node1.example.com openshift_node_group_name='node-config-compute'</span><br><span class="line">infra-node1.example.com openshift_node_group_name='node-config-infra'</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> Create an OSEv3 group that contains the masters, nodes, and etcd groups</span></span><br><span class="line">[OSEv3:children]</span><br><span class="line">masters</span><br><span class="line">nodes</span><br><span class="line">etcd</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> Set variables common <span class="hljs-keyword">for</span> all OSEv3 hosts</span></span><br><span class="line">[OSEv3:vars]</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> SSH user, this user should allow ssh based auth without requiring a password</span></span><br><span class="line">ansible_ssh_user=root</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> If ansible_ssh_user is not root, ansible_become must be <span class="hljs-built_in">set</span> to <span class="hljs-literal">true</span></span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">ansible_become=<span class="hljs-literal">true</span></span></span><br><span class="line"></span><br><span class="line">openshift_deployment_type=origin</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> uncomment the following to <span class="hljs-built_in">enable</span> htpasswd authentication; defaults to AllowAllPasswordIdentityProvider</span></span><br><span class="line">openshift_master_identity_providers=[&#123;'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'&#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> host group <span class="hljs-keyword">for</span> masters</span></span><br><span class="line">[masters]</span><br><span class="line">master.example.com</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> host group <span class="hljs-keyword">for</span> etcd</span></span><br><span class="line">[etcd]</span><br><span class="line">master.example.com</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> host group <span class="hljs-keyword">for</span> nodes, includes region info</span></span><br><span class="line">[nodes]</span><br><span class="line">master.example.com openshift_node_group_name='node-config-master'</span><br><span class="line">node1.example.com openshift_node_group_name='node-config-compute'</span><br><span class="line">infra-node1.example.com openshift_node_group_name='node-config-infra'</span><br></pre></td></tr></table></figure>
 <p>下载ansible的部署脚本</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/openshift_install</span><br><span class="line">git clone https://github.com/openshift/openshift-ansible</span><br><span class="line">cd openshift-ansible</span><br><span class="line">git checkout release-3.11</span><br></pre></td></tr></table></figure>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装过程分为2步, 第一步是预检查，第二步是部署，整个过程时间耗时不短，静静等待完成，过程还是很顺利的</p>
@@ -385,7 +385,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        23
                     </p>
                 </div>
             </div>
@@ -570,7 +570,7 @@
                 <span class="level-item">Java</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Java/Concurrent/">
@@ -594,7 +594,7 @@
                 <span class="level-item">Test</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Jenkins/">
@@ -680,7 +680,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/grpc/" style="font-size: 10px;">grpc</a> <a href="/tags/guava/" style="font-size: 10px;">guava</a> <a href="/tags/helm/" style="font-size: 10px;">helm</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/junit5/" style="font-size: 10px;">junit5</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openshift/" style="font-size: 12.5px;">openshift</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springcloud/" style="font-size: 15px;">springcloud</a> <a href="/tags/springframework/" style="font-size: 12.5px;">springframework</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/work/" style="font-size: 10px;">work</a>
+        <a href="/tags/devops/" style="font-size: 16.67px;">devops</a> <a href="/tags/grpc/" style="font-size: 10px;">grpc</a> <a href="/tags/guava/" style="font-size: 10px;">guava</a> <a href="/tags/helm/" style="font-size: 10px;">helm</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/junit5/" style="font-size: 13.33px;">junit5</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openshift/" style="font-size: 13.33px;">openshift</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springcloud/" style="font-size: 16.67px;">springcloud</a> <a href="/tags/springframework/" style="font-size: 13.33px;">springframework</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/work/" style="font-size: 10px;">work</a>
     </div>
 </div>
 
@@ -694,6 +694,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/06/11/JUnit5入门学习(二)/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602400028421.jpg" alt="JUnit5入门学习(二)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-11T11:27:34.000Z">2019-06-11</time></div>
+                    <a href="/2019/06/11/JUnit5入门学习(二)/" class="has-link-black-ter is-size-6">JUnit5入门学习(二)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/Test/">Test</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -771,25 +790,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/06/05/把玩OpenShift系列(一)/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597274064051.jpg" alt="把玩OpenShift系列(一)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-05T09:29:03.000Z">2019-06-05</time></div>
-                    <a href="/2019/06/05/把玩OpenShift系列(一)/" class="has-link-black-ter is-size-6">把玩OpenShift系列(一)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CloudComputing/">CloudComputing</a> / <a class="has-link-grey -link" href="/categories/CloudComputing/OpenShift/">OpenShift</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -808,7 +808,7 @@
                     <span class="level-item">June 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -879,7 +879,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/java/">
                         <span class="tag">java</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -893,7 +893,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/junit5/">
                         <span class="tag">junit5</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -999,6 +999,25 @@
         
         <article class="media">
             
+            <a href="/2019/06/11/JUnit5入门学习(二)/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602400028421.jpg" alt="JUnit5入门学习(二)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-11T11:27:34.000Z">2019-06-11</time></div>
+                    <a href="/2019/06/11/JUnit5入门学习(二)/" class="has-link-black-ter is-size-6">JUnit5入门学习(二)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/Test/">Test</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/06/11/JUnit5入门学习(一)/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602386352413.jpg" alt="JUnit5入门学习(一)">
@@ -1073,25 +1092,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/06/05/把玩OpenShift系列(一)/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/05/15597274064051.jpg" alt="把玩OpenShift系列(一)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-05T09:29:03.000Z">2019-06-05</time></div>
-                    <a href="/2019/06/05/把玩OpenShift系列(一)/" class="has-link-black-ter is-size-6">把玩OpenShift系列(一)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CloudComputing/">CloudComputing</a> / <a class="has-link-grey -link" href="/categories/CloudComputing/OpenShift/">OpenShift</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1110,7 +1110,7 @@
                     <span class="level-item">June 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -1181,7 +1181,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/java/">
                         <span class="tag">java</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1195,7 +1195,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/junit5/">
                         <span class="tag">junit5</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 

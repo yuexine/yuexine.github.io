@@ -2,20 +2,25 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Yuexin-Space</title>
+<title>JUnit5入门学习(二) - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Yuexin-Space">
-<meta property="og:url" content="http://yuexine.github.io/page/5/index.html">
+    <meta name="description" content="前面已经在Maven构建的项目中运行了第一个Junit5测试用例，本篇主要记录学习测试用例的写法。">
+<meta name="keywords" content="java,junit5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JUnit5入门学习(二)">
+<meta property="og:url" content="http://yuexine.github.io/2019/06/11/JUnit5入门学习(二)/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
+<meta property="og:description" content="前面已经在Maven构建的项目中运行了第一个Junit5测试用例，本篇主要记录学习测试用例的写法。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
+<meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602400028421.jpg">
+<meta property="og:updated_time" content="2019-06-11T11:29:16.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuexin-Space">
-<meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
+<meta name="twitter:title" content="JUnit5入门学习(二)">
+<meta name="twitter:description" content="前面已经在Maven构建的项目中运行了第一个Junit5测试用例，本篇主要记录学习测试用例的写法。">
+<meta name="twitter:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602400028421.jpg">
 
 
 
@@ -93,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="JUnit5入门学习(二)" height="28">
             
             </a>
         </div>
@@ -125,6 +130,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -138,201 +147,205 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-    <div class="card">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     
     <div class="card-image">
-        <a href="/2019/05/06/Spring-Cloud-Config-Server/" class="image is-7by1">
-            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/Spring-Cloud-Config-Server.png" alt="Spring Cloud Config Server">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602400028421.jpg" alt="JUnit5入门学习(二)">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-06T03:27:55.000Z">2019-05-06</time>
+                <time class="level-item has-text-grey" datetime="2019-06-11T11:27:34.000Z">2019-06-11</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Spring/SpringCloud/">SpringCloud</a>
+                <a class="has-link-grey -link" href="/categories/Java/">Java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Java/Test/">Test</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 666 words)
+                    10 minutes read (About 1557 words)
                 </span>
                 
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/05/06/Spring-Cloud-Config-Server/">Spring Cloud Config Server</a>
+                JUnit5入门学习(二)
             
         </h1>
         <div class="content">
-            <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
-<li>基于rest形式提供额外的配置（键值对或yaml文本）</li>
-<li>配置值的加解密（对称或非对称）</li>
-<li>与springboot集成简单</li>
+            <p>前面已经在Maven构建的项目中运行了第一个Junit5测试用例，本篇主要记录学习测试用例的写法。</p>
+<a id="more"></a>
+<h2 id="测试类和方法"><a href="#测试类和方法" class="headerlink" title="测试类和方法"></a>测试类和方法</h2><p>Test Class: 任何顶级类，静态的成员类，内部类必须包含至少一个测试方法，并且这个测试方法<strong>不能是抽象的</strong>且<strong>只能有一个构造器</strong></p>
+<p>Test Method: 任何实例的方法都可以直接注解或者被元注解包含<code>@Test</code> <code>@RepeatedTest</code> <code>@ParameterizedTest</code> <code>@TestFactory</code> <code>@TestTemplate</code> 后面会对这些一一说到。</p>
+<p>Lifecycle Method: 和测试方法一样，生命周期方法包含的注解有 <code>@BeforeAll</code> <code>@AfterAll</code> <code>@BeforeEach</code> <code>@AfterEach</code></p>
+<p>测试方法和生命周期方法不需要声明在测试类本身，也可以在父类或者接口上，测试方法和测试类<strong>不可以有返回值</strong>，并且<strong>不能是私有的方法</strong></p>
+<p>一个标准的测试类</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.junit.jupiter.api.Assertions.fail;</span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.junit.jupiter.api.Assumptions.assumeTrue;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.AfterAll;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.AfterEach;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.BeforeAll;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.BeforeEach;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.Disabled;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StandardTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@BeforeAll</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initAll</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@BeforeEach</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">succeedingTest</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">failingTest</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        fail(<span class="hljs-string">"a failing test"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-meta">@Disabled</span>(<span class="hljs-string">"for demonstration purposes"</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">skippedTest</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// not executed</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">abortedTest</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        assumeTrue(<span class="hljs-string">"abc"</span>.contains(<span class="hljs-string">"Z"</span>));</span><br><span class="line">        fail(<span class="hljs-string">"test should have been aborted"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@AfterEach</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">tearDown</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@AfterAll</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">tearDownAll</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是:</p>
+<ol>
+<li><code>@BeforeAll</code>和<code>@AfterAll</code>修饰的是静态方法</li>
+<li><code>@BeforeAll</code>和<code>@BeforeEach</code>的最大的区别在于运行该测试类，前者只会执行一次，后者对于每个测试方法测试前都会执行一次。After*同理</li>
+<li>内部类方法不用<code>@BeforeAll</code>和<code>@AfterAll</code>修饰，原因是内部类不能包含静态方法</li>
+</ol>
+<h2 id="显示名生成器"><a href="#显示名生成器" class="headerlink" title="显示名生成器"></a>显示名生成器</h2><p>测试类或者测试方法通过<code>@DisplayName</code>修饰可以自定义report显示的名称，复杂的名称生成器通过<code>@DisplayNameGeneration</code>来实现</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@DisplayNameGeneration</span>(IndicativeSentences.class)</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">xxx</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndicativeSentences</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DisplayNameGenerator</span>.<span class="hljs-title">ReplaceUnderscores</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>和Junit4相比, 一些断言方法里支持了函数参数，这个函数是Supplier, 所有的断言方法都在类<code>org.junit.jupiter.api.Assertions</code>里面</p>
+<ol>
+<li>fail()</li>
+<li>assertTrue()</li>
+<li>assertFalse()</li>
+<li>assertNull()</li>
+<li>assertNotNull()</li>
+<li>assertEquals()</li>
+<li>assertNotEquals()</li>
+<li>assertArrayEquals()</li>
+<li>assertIterableEquals()</li>
+<li>assertLinesMatch()</li>
+<li>assertSame()</li>
+<li>assertNotSame()</li>
+<li>assertAll()</li>
+<li>assertThrows()</li>
+<li>assertDoesNotThrows()</li>
+<li>assertTimeout()</li>
+<li>assertTimeoutPreemptively()</li>
+</ol>
+<p>算上方法重载有点多。。没有逐个去测试了</p>
+<p>第三方断言库，后面再看</p>
+<ul>
+<li><a href="https://joel-costigliola.github.io/assertj/" target="_blank" rel="noopener">AssertJ</a></li>
+<li><a href="https://truth.dev/" target="_blank" rel="noopener">Truth</a></li>
+<li><a href="https://hamcrest.org/JavaHamcrest/" target="_blank" rel="noopener">Hamcrest</a></li>
 </ul>
+<h2 id="假定"><a href="#假定" class="headerlink" title="假定"></a>假定</h2><p>关于假定和断言的区别见参考，最大的区别在于假定失败不会影响到整个测试类其它测试方法的执行，而断言失败则会导致整个测试类失败。</p>
+<p>所有的Assumptions包含在<code>org.junit.jupiter.api.Assumptions</code>类中</p>
+<h2 id="禁用测试"><a href="#禁用测试" class="headerlink" title="禁用测试"></a>禁用测试</h2><p>对于某些测试类或者测试方法需要暂停执行测试可以通过<code>@Disabled(&quot;Disabled until bug #99 has been fixed&quot;)</code>修饰，可以作用在类(包含内部类)和方法(各种方法)上</p>
+<h2 id="测试运行条件"><a href="#测试运行条件" class="headerlink" title="测试运行条件"></a>测试运行条件</h2><p>简单来说就是为测试用例的执行添加前置条件，如果条件满足则执行，条件不满足则跳过不执行。</p>
+<h3 id="Operating-System-Conditions"><a href="#Operating-System-Conditions" class="headerlink" title="Operating System Conditions"></a>Operating System Conditions</h3><p>在类或者方法上添加<code>@EnabledOnOs(OS.MAC)</code>或<code>@DisabledOnOs</code></p>
+<h3 id="Java-Runtime-Environment-Conditions"><a href="#Java-Runtime-Environment-Conditions" class="headerlink" title="Java Runtime Environment Conditions"></a>Java Runtime Environment Conditions</h3><p>在类或者方法上添加<code>@EnabledOnJre({ JAVA_9, JAVA_10 })</code> 或 <code>@DisabledOnJre(JAVA_9)</code></p>
+<h3 id="System-Property-Conditions"><a href="#System-Property-Conditions" class="headerlink" title="System Property Conditions"></a>System Property Conditions</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-meta">@EnabledIfSystemProperty</span>(named = <span class="hljs-string">"os.arch"</span>, matches = <span class="hljs-string">".*64.*"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onlyOn64BitArchitectures</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-meta">@DisabledIfSystemProperty</span>(named = <span class="hljs-string">"ci-server"</span>, matches = <span class="hljs-string">"true"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">notOnCiServer</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Environment-Variable-Conditions"><a href="#Environment-Variable-Conditions" class="headerlink" title="Environment Variable Conditions"></a>Environment Variable Conditions</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-meta">@EnabledIfEnvironmentVariable</span>(named = <span class="hljs-string">"ENV"</span>, matches = <span class="hljs-string">"staging-server"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onlyOnStagingServer</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-meta">@DisabledIfEnvironmentVariable</span>(named = <span class="hljs-string">"ENV"</span>, matches = <span class="hljs-string">".*development.*"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">notOnDeveloperWorkstation</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Script-based-Conditions"><a href="#Script-based-Conditions" class="headerlink" title="Script-based Conditions"></a>Script-based Conditions</h3><p><a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-conditional-execution-scripts" target="_blank" rel="noopener">示例</a></p>
+<p>需要注意的是这个api还处于实验阶段</p>
+<h2 id="测试方法执行顺序"><a href="#测试方法执行顺序" class="headerlink" title="测试方法执行顺序"></a>测试方法执行顺序</h2><p>这里是用来控制测试类中多个测试方法的执行顺序</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.MethodOrderer.OrderAnnotation;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.Order;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.TestMethodOrder;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@TestMethodOrder</span>(OrderAnnotation.class) <span class="hljs-comment">//1</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OrderedTestsDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-meta">@Order</span>(<span class="hljs-number">1</span>) <span class="hljs-comment">//2</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">nullValues</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// perform assertions against null values</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-meta">@Order</span>(<span class="hljs-number">2</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">emptyValues</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// perform assertions against empty values</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-meta">@Order</span>(<span class="hljs-number">3</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">validValues</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// perform assertions against valid values</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>添加 <code>@TestMethodOrder</code>注解并制定排序方式，上面的例子用的是Order注解</li>
+<li>添加 <code>@Order(1)</code> 声明执行的顺序</li>
+</ol>
+<p>除了OrderAnnotation外还有Alphanumeric和Random</p>
+<h2 id="内部类测试"><a href="#内部类测试" class="headerlink" title="内部类测试"></a>内部类测试</h2><p><code>@Nested</code>注解作用在内部类上来表达内部类的测试</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.junit.jupiter.api.Assertions.assertEquals;</span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.junit.jupiter.api.Assertions.assertFalse;</span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.junit.jupiter.api.Assertions.assertThrows;</span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.junit.jupiter.api.Assertions.assertTrue;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> java.util.EmptyStackException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.BeforeEach;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.DisplayName;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.Nested;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@DisplayName</span>(<span class="hljs-string">"A stack"</span>)</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestingAStackDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Stack&lt;Object&gt; stack;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-meta">@DisplayName</span>(<span class="hljs-string">"is instantiated with new Stack()"</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">isInstantiatedWithNew</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Nested</span></span><br><span class="line">    <span class="hljs-meta">@DisplayName</span>(<span class="hljs-string">"when new"</span>)</span><br><span class="line">    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WhenNew</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-meta">@BeforeEach</span></span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">createNewStack</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">            stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-meta">@Test</span></span><br><span class="line">        <span class="hljs-meta">@DisplayName</span>(<span class="hljs-string">"is empty"</span>)</span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">            assertTrue(stack.isEmpty());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-meta">@Test</span></span><br><span class="line">        <span class="hljs-meta">@DisplayName</span>(<span class="hljs-string">"throws EmptyStackException when popped"</span>)</span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">throwsExceptionWhenPopped</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">            assertThrows(EmptyStackException.class, stack::pop);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-meta">@Test</span></span><br><span class="line">        <span class="hljs-meta">@DisplayName</span>(<span class="hljs-string">"throws EmptyStackException when peeked"</span>)</span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">throwsExceptionWhenPeeked</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">            assertThrows(EmptyStackException.class, stack::peek);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-meta">@Nested</span></span><br><span class="line">        <span class="hljs-meta">@DisplayName</span>(<span class="hljs-string">"after pushing an element"</span>)</span><br><span class="line">        <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AfterPushing</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            String anElement = <span class="hljs-string">"an element"</span>;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-meta">@BeforeEach</span></span><br><span class="line">            <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pushAnElement</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">                stack.push(anElement);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-meta">@Test</span></span><br><span class="line">            <span class="hljs-meta">@DisplayName</span>(<span class="hljs-string">"it is no longer empty"</span>)</span><br><span class="line">            <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">isNotEmpty</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">                assertFalse(stack.isEmpty());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-meta">@Test</span></span><br><span class="line">            <span class="hljs-meta">@DisplayName</span>(<span class="hljs-string">"returns the element when popped and is empty"</span>)</span><br><span class="line">            <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">returnElementWhenPopped</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">                assertEquals(anElement, stack.pop());</span><br><span class="line">                assertTrue(stack.isEmpty());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-meta">@Test</span></span><br><span class="line">            <span class="hljs-meta">@DisplayName</span>(<span class="hljs-string">"returns the element when peeked but remains not empty"</span>)</span><br><span class="line">            <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">returnElementWhenPeeked</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">                assertEquals(anElement, stack.peek());</span><br><span class="line">                assertFalse(stack.isEmpty());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，测试方法的声明周期<br>对于内部类测试方法，完整的执行顺序为 @BeforeAll-&gt; 外部 @BeforeEach-&gt; 内部类@BeforeEach-&gt;@Test-&gt;内部类 @AfterEach -&gt; 外部 @AfterEach-&gt; @AfterAll</p>
+<h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><p>意思就是测试类的构造方法或者测试方法可以运行过程中，自动被注入对象，目前，JUnit内置类3类对象的自动注入。</p>
+<ol>
+<li><p>TestInfo</p>
+ <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">TestInfoDemo(TestInfo testInfo) &#123;</span><br><span class="line">    assertEquals(<span class="hljs-string">"TestInfo Demo"</span>, testInfo.getDisplayName());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@BeforeEach</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">    String displayName = testInfo.getDisplayName();</span><br><span class="line">    assertTrue(displayName.equals(<span class="hljs-string">"TEST 1"</span>) || displayName.equals(<span class="hljs-string">"test2()"</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-meta">@DisplayName</span>(<span class="hljs-string">"TEST 1"</span>)</span><br><span class="line"><span class="hljs-meta">@Tag</span>(<span class="hljs-string">"my-tag"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">    assertEquals(<span class="hljs-string">"TEST 1"</span>, testInfo.getDisplayName());</span><br><span class="line">    assertTrue(testInfo.getTags().contains(<span class="hljs-string">"my-tag"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li>RepetitionInfo: 获取重复执行时，当前执行次数与总次数等信息</li>
+<li>TestReporter</li>
+</ol>
+<p>暂时没想到使用场景，另外可以自定义，更多的参考文档。</p>
+<h2 id="重复测试"><a href="#重复测试" class="headerlink" title="重复测试"></a>重复测试</h2><p>JUnit提供了对一个测试方法重复测试的能力，emmm，你不用写for循环来回执行</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@RepeatedTest</span>(value = <span class="hljs-number">10</span>, name = <span class="hljs-string">"&#123;displayName&#125; &#123;currentRepetition&#125; -&#123;totalRepetitions&#125;"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">repeatedTest</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是上述<code>@RepeatedTest</code>注解属性name里面有几个变量，可以自定义Report</p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602523041364.jpg" alt="执行效果"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.ibm.com/developerworks/cn/java/j-lo-junit44/index.html" target="_blank" rel="noopener">1. 假设机制（Assumption）的优点</a></p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/06/Spring-Cloud-Config-Server/#more">Read More</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/java/">java</a>, <a class="has-link-grey -link" href="/tags/junit5/">junit5</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/04/25/Jenkins集成Helm进行应用持续发布/" class="image is-7by1">
-            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/jenkins-helm.png" alt="Jenkins集成Helm进行应用持续发布">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-04-25T08:17:50.000Z">2019-04-25</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Jenkins/">Jenkins</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 413 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
             
-                <a class="has-link-black-ter" href="/2019/04/25/Jenkins集成Helm进行应用持续发布/">Jenkins集成Helm进行应用持续发布</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
-<li>在开发过程中，对开发的应用版本进行持续迭代并且发布到kubernetes集群中</li>
-<li>使用Helm工具以chart升级的方式完成不同版本应用的发布升级</li>
-</ul>
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/wechat_pay.jpg" alt="Wechat"></div>
+</a>
+
+                
         </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/04/25/Jenkins集成Helm进行应用持续发布/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
 </div>
 
 
 
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-04-24T07:42:39.338Z">2019-04-24</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 121 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/04/24/hello-world/">Hello World</a>
-            
-        </h1>
-        <div class="content">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="hljs-string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    
 <div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/page/4/">Previous</a>
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/11/JUnit5入门学习(一)/">
+                <span class="level-item">JUnit5入门学习(一)</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        <div class="pagination-next is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/page/6/">Next</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
-            
-            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/page/4/">4</a></li>
-            
-            <li><a class="pagination-link is-current" href="/page/5/">5</a></li>
-            
-        </ul>
-    </nav>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '07bd1be05349a17a8209',
+        clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
+        id: 'a01ea99a5410d5c369d43e874e8c9634',
+        repo: 'yuexine.github.io',
+        owner: 'yuexine',
+        admin: "yuexine"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
 </div>
 </div>
                 
@@ -428,6 +441,81 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#测试类和方法">
+        <span class="has-mr-6">1</span>
+        <span>测试类和方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#显示名生成器">
+        <span class="has-mr-6">2</span>
+        <span>显示名生成器</span>
+        </a></li><li>
+        <a class="is-flex" href="#断言">
+        <span class="has-mr-6">3</span>
+        <span>断言</span>
+        </a></li><li>
+        <a class="is-flex" href="#假定">
+        <span class="has-mr-6">4</span>
+        <span>假定</span>
+        </a></li><li>
+        <a class="is-flex" href="#禁用测试">
+        <span class="has-mr-6">5</span>
+        <span>禁用测试</span>
+        </a></li><li>
+        <a class="is-flex" href="#测试运行条件">
+        <span class="has-mr-6">6</span>
+        <span>测试运行条件</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Operating-System-Conditions">
+        <span class="has-mr-6">6.1</span>
+        <span>Operating System Conditions</span>
+        </a></li><li>
+        <a class="is-flex" href="#Java-Runtime-Environment-Conditions">
+        <span class="has-mr-6">6.2</span>
+        <span>Java Runtime Environment Conditions</span>
+        </a></li><li>
+        <a class="is-flex" href="#System-Property-Conditions">
+        <span class="has-mr-6">6.3</span>
+        <span>System Property Conditions</span>
+        </a></li><li>
+        <a class="is-flex" href="#Environment-Variable-Conditions">
+        <span class="has-mr-6">6.4</span>
+        <span>Environment Variable Conditions</span>
+        </a></li><li>
+        <a class="is-flex" href="#Script-based-Conditions">
+        <span class="has-mr-6">6.5</span>
+        <span>Script-based Conditions</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#测试方法执行顺序">
+        <span class="has-mr-6">7</span>
+        <span>测试方法执行顺序</span>
+        </a></li><li>
+        <a class="is-flex" href="#内部类测试">
+        <span class="has-mr-6">8</span>
+        <span>内部类测试</span>
+        </a></li><li>
+        <a class="is-flex" href="#依赖注入">
+        <span class="has-mr-6">9</span>
+        <span>依赖注入</span>
+        </a></li><li>
+        <a class="is-flex" href="#重复测试">
+        <span class="has-mr-6">10</span>
+        <span>重复测试</span>
+        </a></li><li>
+        <a class="is-flex" href="#参考">
+        <span class="has-mr-6">11</span>
+        <span>参考</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -1218,7 +1306,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="JUnit5入门学习(二)" height="28">
                 
                 </a>
                 <p class="is-size-7">

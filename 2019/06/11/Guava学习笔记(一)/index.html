@@ -2,25 +2,25 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>构建基于kubernetes的DevOps平台(一) - Yuexin-Space</title>
+<title>Guava学习笔记(一) - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="在开始学习k8s前，需要部署一套k8s系统，部署k8s主要有2种方式(我知道的，可能更多)，一种是通过二进制部署，另外一种是通过kubeadm进行部署，这里我们使用kubeadm进行部署。">
-<meta name="keywords" content="devops,kubernetes">
+    <meta name="description" content="本节主要包含的内容为基础工具库的使用。">
+<meta name="keywords" content="guava">
 <meta property="og:type" content="article">
-<meta property="og:title" content="构建基于kubernetes的DevOps平台(一)">
-<meta property="og:url" content="http://yuexine.github.io/2019/05/27/构建基于kubernetes的DevOps平台(一)/index.html">
+<meta property="og:title" content="Guava学习笔记(一)">
+<meta property="og:url" content="http://yuexine.github.io/2019/06/11/Guava学习笔记(一)/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="在开始学习k8s前，需要部署一套k8s系统，部署k8s主要有2种方式(我知道的，可能更多)，一种是通过二进制部署，另外一种是通过kubeadm进行部署，这里我们使用kubeadm进行部署。">
+<meta property="og:description" content="本节主要包含的内容为基础工具库的使用。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/28/devops.png">
-<meta property="og:updated_time" content="2019-06-05T09:33:59.281Z">
+<meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602193213290.jpg">
+<meta property="og:updated_time" content="2019-06-11T02:18:09.775Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="构建基于kubernetes的DevOps平台(一)">
-<meta name="twitter:description" content="在开始学习k8s前，需要部署一套k8s系统，部署k8s主要有2种方式(我知道的，可能更多)，一种是通过二进制部署，另外一种是通过kubeadm进行部署，这里我们使用kubeadm进行部署。">
-<meta name="twitter:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/28/devops.png">
+<meta name="twitter:title" content="Guava学习笔记(一)">
+<meta name="twitter:description" content="本节主要包含的内容为基础工具库的使用。">
+<meta name="twitter:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602193213290.jpg">
 
 
 
@@ -98,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="构建基于kubernetes的DevOps平台(一)" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Guava学习笔记(一)" height="28">
             
             </a>
         </div>
@@ -151,7 +151,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/28/devops.png" alt="构建基于kubernetes的DevOps平台(一)">
+            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602193213290.jpg" alt="Guava学习笔记(一)">
         </span>
     </div>
     
@@ -159,17 +159,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-27T09:45:05.000Z">2019-05-27</time>
+                <time class="level-item has-text-grey" datetime="2019-06-11T02:16:38.000Z">2019-06-11</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/CloudComputing/">CloudComputing</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/CloudComputing/Kubernetes/">Kubernetes</a>
+                <a class="has-link-grey -link" href="/categories/Java/">Java</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    11 minutes read (About 1651 words)
+                    6 minutes read (About 969 words)
                 </span>
                 
                 
@@ -183,130 +183,56 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                构建基于kubernetes的DevOps平台(一)
+                Guava学习笔记(一)
             
         </h1>
         <div class="content">
-            <p>在开始学习k8s前，需要部署一套k8s系统，部署k8s主要有2种方式(我知道的，可能更多)，一种是通过二进制部署，另外一种是通过kubeadm进行部署，这里我们使用kubeadm进行部署。</p>
+            <p>本节主要包含的内容为基础工具库的使用。</p>
 <a id="more"></a>
-<h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><p>这里我想通过kubeadm部署一个多master的k8s集群，这也更加符合生产环境的需要。更多的k8s的基础知识不想多做赘述。</p>
-<h3 id="服务器及IP"><a href="#服务器及IP" class="headerlink" title="服务器及IP"></a>服务器及IP</h3><table>
-<thead>
-<tr>
-<th>Hostname</th>
-<th>Role</th>
-<th>Ip</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>k8s-m1</td>
-<td>master1</td>
-<td>172.16.26.81</td>
-</tr>
-<tr>
-<td>k8s-m2</td>
-<td>master2</td>
-<td>172.16.26.82</td>
-</tr>
-<tr>
-<td>k8s-m3</td>
-<td>master3</td>
-<td>172.16.26.83</td>
-</tr>
-<tr>
-<td>k8s-n1</td>
-<td>node1</td>
-<td>172.16.26.121</td>
-</tr>
-<tr>
-<td>k8s-n2</td>
-<td>node2</td>
-<td>172.16.26.122</td>
-</tr>
-<tr>
-<td>k8s-n3</td>
-<td>node3</td>
-<td>172.16.26.123</td>
-</tr>
-</tbody>
-</table>
-<p>浮动IP(VIP): 172.16.26.80</p>
-<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h3><p>安装的初始操作系统为centos7.5桌面版，里面已经包含了一部分的系统自带软件，如wget等, 系统配置需要在所有节点执行</p>
-<h4 id="关闭SELinux、防火墙"><a href="#关闭SELinux、防火墙" class="headerlink" title="关闭SELinux、防火墙"></a>关闭SELinux、防火墙</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl disable firewalld</span><br><span class="line">setenforce 0</span><br><span class="line">sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config</span><br></pre></td></tr></table></figure>
-<h4 id="关闭系统的Swap"><a href="#关闭系统的Swap" class="headerlink" title="关闭系统的Swap"></a>关闭系统的Swap</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">swapoff -a</span><br><span class="line">yes | cp /etc/fstab /etc/fstab_bak</span><br><span class="line">cat /etc/fstab_bak |grep -v swap &gt; /etc/fstab</span><br></pre></td></tr></table></figure>
-<h4 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">modprobe br_netfilter</span><br><span class="line"></span><br><span class="line">echo """</span><br><span class="line">vm.swappiness = 0</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">""" &gt; /etc/sysctl.conf</span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
-<h4 id="内核升级"><a href="#内核升级" class="headerlink" title="内核升级"></a>内核升级</h4><ol>
-<li><p>安装内核依赖包</p>
- <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ ! -f /usr/bin/perl ] &amp;&amp; yum install perl -y</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>升级内核需要使用 elrepo 的yum 源,首先我们导入 elrepo 的 key并安装 elrepo 源</p>
- <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br><span class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm</span><br></pre></td></tr></table></figure>
+<h2 id="为什么学习Guava？"><a href="#为什么学习Guava？" class="headerlink" title="为什么学习Guava？"></a>为什么学习Guava？</h2><p>Guava是Google的一套基础类库，学习它除了提高开发效率外，其它就是提升逼格了。</p>
+<h2 id="Using-avoiding-null"><a href="#Using-avoiding-null" class="headerlink" title="Using/avoiding null"></a>Using/avoiding null</h2><p>在Guava中有一个Optional抽象类，它和Jdk提供的功能差不多，用来避免使用null对象，jdk8中的Optional是不是从Guava抄来的？如果使用8以下版本的jdk，Guava倒也是一个选择。</p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15601466997244.jpg" alt="-w409"></p>
+<p>上述图列出了Guava Optional class中包含的方法，大致上也分为了3类和jdk的一样，这里不做过多的赘述。</p>
+<h2 id="Preconditions"><a href="#Preconditions" class="headerlink" title="Preconditions"></a>Preconditions</h2><p>这是Guava提供的一组类似断言的前置检查工具方法。</p>
+<p>这些方法Guava强烈建议我们静态倒入。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> com.google.common.base.Preconditions.*;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">5</span>;</span><br><span class="line"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">10</span>;</span><br><span class="line"><span class="hljs-keyword">private</span> String z = <span class="hljs-keyword">null</span>;</span><br><span class="line">    </span><br><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    checkArgument(i &gt; j, <span class="hljs-string">"message %s"</span>, <span class="hljs-string">"bad"</span>);</span><br><span class="line"></span><br><span class="line">    checkNotNull(z);</span><br><span class="line"></span><br><span class="line">    checkState(i &gt; j);</span><br><span class="line">    <span class="hljs-comment">//这个会抛出异常，不包含5</span></span><br><span class="line">    checkElementIndex(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>);</span><br><span class="line">    <span class="hljs-comment">//这个没有问题，包含5，这也是和上面的区别</span></span><br><span class="line">    checkPositionIndex(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>);</span><br><span class="line"></span><br><span class="line">    checkPositionIndexes(-<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下图列出了方法名说明等，我把他们分为2类，一个是对值的校验，另一个是对数组位置的校验。</p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15601529206779.jpg" alt="-w640"></p>
+<h2 id="Ordering"><a href="#Ordering" class="headerlink" title="Ordering"></a>Ordering</h2><p>Ordering本身实现了比较器接口，所以可以结合Java的Collections类进行快速排序。主要使用场景用来快速构建较为复杂的排序逻辑，在Java8之后Comparator类新增了一些方法，也可以支持构建多级排序规则。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ordering</span>&lt;<span class="hljs-title">T</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">Comparator</span>&lt;<span class="hljs-title">T</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><ol>
+<li><p>natural()</p>
+<p> 对可排序的类型做自然排序</p>
+ <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">8</span>, <span class="hljs-number">2</span>);</span><br><span class="line">Collections.sort(list, Ordering.natural());</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<ol start="3">
-<li><p>查看可用的内核</p>
- <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum --disablerepo="*" --enablerepo="elrepo-kernel" list available --showduplicates</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>最新内核安装</p>
- <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    yum --disablerepo="*" --enablerepo="elrepo-kernel" list available --showduplicates | grep -Po '^kernel-ml.x86_64\s+\K\S+(?=.el7)'</span><br><span class="line">yum --disablerepo="*" --enablerepo=elrepo-kernel install -y kernel-ml&#123;,-devel&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改内核默认的启动顺序</p>
-</li>
-</ol>
-<pre><code><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub2-set-default 0 &amp;&amp; grub2-mkconfig -o /etc/grub2.cfg</span><br></pre></td></tr></table></figure>
-</code></pre><ol start="6">
-<li><p>重启后查看当前内核</p>
- <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br><span class="line">grubby --default-kernel</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="IPVS"><a href="#IPVS" class="headerlink" title="IPVS"></a>IPVS</h4><p>安装IPVS</p>
-<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install ipvsadm ipset sysstat conntrack libseccomp -y</span><br></pre></td></tr></table></figure>
-<p>设置加载的内核模块</p>
-<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ipvs_modules="ip_vs ip_vs_lc ip_vs_wlc ip_vs_rr ip_vs_wrr   ip_vs_lblc ip_vs_lblcr ip_vs_dh ip_vs_sh ip_vs_fo   ip_vs_nq ip_vs_sed ip_vs_ftp nf_conntrack"</span><br><span class="line">for kernel_module in \$&#123;ipvs_modules&#125;; do</span><br><span class="line">    /sbin/modinfo -F filename \$&#123;kernel_module&#125; &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">    if [ $? -eq 0 ]; then</span><br><span class="line">        /sbin/modprobe \$&#123;kernel_module&#125;</span><br><span class="line">    fi</span><br><span class="line">done</span><br><span class="line">EOF</span><br><span class="line">chmod 755 /etc/sysconfig/modules/ipvs.modules &amp;&amp; bash /etc/sysconfig/modules/ipvs.modules &amp;&amp; lsmod | grep ip_vs</span><br></pre></td></tr></table></figure>
-<h4 id="k8s参数设置"><a href="#k8s参数设置" class="headerlink" title="k8s参数设置"></a>k8s参数设置</h4><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/sysctl.d/k8s.conf</span><br><span class="line">net.ipv4.tcp_keepalive_time = 600</span><br><span class="line">net.ipv4.tcp_keepalive_intvl = 30</span><br><span class="line">net.ipv4.tcp_keepalive_probes = 10</span><br><span class="line">net.ipv6.conf.all.disable_ipv6 = 1</span><br><span class="line">net.ipv6.conf.default.disable_ipv6 = 1</span><br><span class="line">net.ipv6.conf.lo.disable_ipv6 = 1</span><br><span class="line">net.ipv4.neigh.default.gc_stale_time = 120</span><br><span class="line">net.ipv4.conf.all.rp_filter = 0</span><br><span class="line">net.ipv4.conf.default.rp_filter = 0</span><br><span class="line">net.ipv4.conf.default.arp_announce = 2</span><br><span class="line">net.ipv4.conf.lo.arp_announce = 2</span><br><span class="line">net.ipv4.conf.all.arp_announce = 2</span><br><span class="line">net.ipv4.ip_forward = 1</span><br><span class="line">net.ipv4.tcp_max_tw_buckets = 5000</span><br><span class="line">net.ipv4.tcp_syncookies = 1</span><br><span class="line">net.ipv4.tcp_max_syn_backlog = 1024</span><br><span class="line">net.ipv4.tcp_synack_retries = 2</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">net.netfilter.nf_conntrack_max = 2310720</span><br><span class="line">fs.inotify.max_user_watches=89100</span><br><span class="line">fs.may_detach_mounts = 1</span><br><span class="line">fs.file-max = 52706963</span><br><span class="line">fs.nr_open = 52706963</span><br><span class="line">net.bridge.bridge-nf-call-arptables = 1</span><br><span class="line">vm.swappiness = 0</span><br><span class="line">vm.overcommit_memory=1</span><br><span class="line">vm.panic_on_oom=0</span><br><span class="line">EOF</span><br><span class="line">sysctl --system</span><br></pre></td></tr></table></figure>
-<h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><h4 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> 安装docker, 我用的是18.06.3-ce</span></span><br><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">yum-config-manager \</span><br><span class="line"> --add-repo \</span><br><span class="line"> https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">yum makecache fast</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment"># 列出Docker版本</span></span></span><br><span class="line">yum list docker-ce --showduplicates | sort -r</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment"># 安装指定版本</span></span></span><br><span class="line">sudo yum install docker-ce-&lt;VERSION_STRING&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="Kubernetes相关组件安装"><a href="#Kubernetes相关组件安装" class="headerlink" title="Kubernetes相关组件安装"></a>Kubernetes相关组件安装</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">repo_gpgcheck=0</span><br><span class="line">gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg</span><br><span class="line">        http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br><span class="line">yum install -y kubelet kubeadm kubectl ebtables</span><br></pre></td></tr></table></figure>
-<h4 id="Keepalived-Haproxy安装"><a href="#Keepalived-Haproxy安装" class="headerlink" title="Keepalived Haproxy安装"></a>Keepalived Haproxy安装</h4><p>(node节点不需要安装)</p>
-<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y socat keepalived haproxy</span><br></pre></td></tr></table></figure>
-<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><h6 id="变量设置"><a href="#变量设置" class="headerlink" title="变量设置"></a>变量设置</h6><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cd ~/</span><br><span class="line"># 创建集群信息文件</span><br><span class="line">echo &quot;&quot;&quot;</span><br><span class="line">CP0_IP=172.16.26.81</span><br><span class="line">CP1_IP=172.16.26.82</span><br><span class="line">CP2_IP=172.16.26.83</span><br><span class="line">VIP=172.16.26.80</span><br><span class="line">NET_IF=eth0</span><br><span class="line">CIDR=10.244.0.0/16</span><br><span class="line">&quot;&quot;&quot; &gt; ./cluster-info</span><br><span class="line"></span><br><span class="line"># 配置haproxy和keepeelived</span><br><span class="line">bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/hnbcao/kubeadm-ha-master/v1.14.0/keepalived-haproxy.sh)&quot;</span><br></pre></td></tr></table></figure>
-<h4 id="服务开机启动"><a href="#服务开机启动" class="headerlink" title="服务开机启动"></a>服务开机启动</h4><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> 启动docker</span></span><br><span class="line">sed -i "13i ExecStartPost=/usr/sbin/iptables -P FORWARD ACCEPT" /usr/lib/systemd/system/docker.service</span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl enable docker</span><br><span class="line">systemctl start docker</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> 设置kubelet开机启动</span></span><br><span class="line">systemctl enable kubelet</span><br><span class="line"></span><br><span class="line">systemctl enable keepalived</span><br><span class="line">systemctl enable haproxy</span><br></pre></td></tr></table></figure>
-<h2 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h2><h3 id="master节点初始化"><a href="#master节点初始化" class="headerlink" title="master节点初始化"></a>master节点初始化</h3><p>在开始前配置master1到其它节点的免密登陆，简单-略过</p>
-<ol>
-<li><p>初始化master1</p>
- <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">echo """</span><br><span class="line">apiVersion: kubeadm.k8s.io/v1beta1</span><br><span class="line">kind: ClusterConfiguration</span><br><span class="line">kubernetesVersion: v1.13.0</span><br><span class="line">controlPlaneEndpoint: "$&#123;VIP&#125;:8443"</span><br><span class="line">maxPods: 100</span><br><span class="line">networkPlugin: cni</span><br><span class="line">imageRepository: registry.aliyuncs.com/google_containers</span><br><span class="line">apiServer:</span><br><span class="line">  certSANs:</span><br><span class="line">  - $&#123;CP0_IP&#125;</span><br><span class="line">  - $&#123;CP1_IP&#125;</span><br><span class="line">  - $&#123;CP2_IP&#125;</span><br><span class="line">  - $&#123;VIP&#125;</span><br><span class="line">networking:</span><br><span class="line"><span class="hljs-meta">  #</span><span class="hljs-bash"> This CIDR is a Calico default. Substitute or remove <span class="hljs-keyword">for</span> your CNI provider.</span></span><br><span class="line">  podSubnet: $&#123;CIDR&#125;</span><br><span class="line"><span class="hljs-meta">---#</span><span class="hljs-bash"></span></span><br><span class="line">apiVersion: kubeproxy.config.k8s.io/v1alpha1</span><br><span class="line">kind: KubeProxyConfiguration</span><br><span class="line">mode: ipvs</span><br><span class="line">""" &gt; /etc/kubernetes/kubeadm-config.yaml</span><br><span class="line">kubeadm init --config /etc/kubernetes/kubeadm-config.yaml</span><br><span class="line">mkdir -p $HOME/.kube</span><br><span class="line">cp -f /etc/kubernetes/admin.conf $&#123;HOME&#125;/.kube/config</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>拷贝相关证书到master2、master3</p>
- <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">for index in 1 2; do</span><br><span class="line">  ip=$&#123;IPS[$&#123;index&#125;]&#125;</span><br><span class="line">  ssh $ip "mkdir -p /etc/kubernetes/pki/etcd; mkdir -p ~/.kube/"</span><br><span class="line">  scp /etc/kubernetes/pki/ca.crt $ip:/etc/kubernetes/pki/ca.crt</span><br><span class="line">  scp /etc/kubernetes/pki/ca.key $ip:/etc/kubernetes/pki/ca.key</span><br><span class="line">  scp /etc/kubernetes/pki/sa.key $ip:/etc/kubernetes/pki/sa.key</span><br><span class="line">  scp /etc/kubernetes/pki/sa.pub $ip:/etc/kubernetes/pki/sa.pub</span><br><span class="line">  scp /etc/kubernetes/pki/front-proxy-ca.crt $ip:/etc/kubernetes/pki/front-proxy-ca.crt</span><br><span class="line">  scp /etc/kubernetes/pki/front-proxy-ca.key $ip:/etc/kubernetes/pki/front-proxy-ca.key</span><br><span class="line">  scp /etc/kubernetes/pki/etcd/ca.crt $ip:/etc/kubernetes/pki/etcd/ca.crt</span><br><span class="line">  scp /etc/kubernetes/pki/etcd/ca.key $ip:/etc/kubernetes/pki/etcd/ca.key</span><br><span class="line">  scp /etc/kubernetes/admin.conf $ip:/etc/kubernetes/admin.conf</span><br><span class="line">  scp /etc/kubernetes/admin.conf $ip:~/.kube/config</span><br><span class="line"></span><br><span class="line">  ssh $&#123;ip&#125; "$&#123;JOIN_CMD&#125; --experimental-control-plane"</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>master2、master3加入节点</p>
- <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JOIN_CMD=`kubeadm token create --print-join-command` ssh $&#123;ip&#125; "$&#123;JOIN_CMD&#125; --experimental-control-plane"</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="node节点加入"><a href="#node节点加入" class="headerlink" title="node节点加入"></a>node节点加入</h3><p>获取节点加入命令</p>
-<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm token create --print-join-command</span><br></pre></td></tr></table></figure>
-<p>分别在node上执行获得的命令</p>
-<h3 id="集群网络安装"><a href="#集群网络安装" class="headerlink" title="集群网络安装"></a>集群网络安装</h3><p><a href="https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins" target="_blank" rel="noopener">网络插件选择</a></p>
-<p><a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/" target="_blank" rel="noopener">网络插件安装</a></p>
-<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ol>
-<li>docker mtu 的配置 <br> 配置/etc/docker/daemon.json</li>
-</ol>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],</span><br><span class="line">    &quot;registry-mirrors&quot;: [&quot;https://axejqb6p.mirror.aliyuncs.com&quot;],</span><br><span class="line">    &quot;mtu&quot;: 1450,</span><br><span class="line">    &quot;storage-driver&quot;: &quot;overlay2&quot;,</span><br><span class="line">    &quot;storage-opts&quot;: [</span><br><span class="line">        &quot;overlay2.override_kernel_check=true&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;log-driver&quot;: &quot;json-file&quot;,</span><br><span class="line">    &quot;log-opts&quot;: &#123;</span><br><span class="line">        &quot;max-size&quot;: &quot;100m&quot;,</span><br><span class="line">        &quot;max-file&quot;: &quot;3&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol start="2">
-<li>vip的转移</li>
+<li><p>usingToString()</p>
+<p> 按对象的字符串形式进行字典排序</p>
+</li>
+<li><p>Ordering.from(Comparator)</p>
+<p> 使用预先的比较器进行构建</p>
+</li>
 </ol>
-<p>我当前使用的配置</p>
-<p>/etc/haproxy/haproxy.cfg</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">global</span><br><span class="line">    log         127.0.0.1 local2</span><br><span class="line">    chroot      /var/lib/haproxy</span><br><span class="line">    pidfile     /var/run/haproxy.pid</span><br><span class="line">    maxconn     4000</span><br><span class="line">    user        haproxy</span><br><span class="line">    group       haproxy</span><br><span class="line">    daemon</span><br><span class="line">    stats socket /var/lib/haproxy/stats</span><br><span class="line">defaults</span><br><span class="line">    mode                    tcp</span><br><span class="line">    log                     global</span><br><span class="line">    option                  tcplog</span><br><span class="line">    option                  dontlognull</span><br><span class="line">    option                  redispatch</span><br><span class="line">    retries                 3</span><br><span class="line">    timeout queue           1m</span><br><span class="line">    timeout connect         10s</span><br><span class="line">    timeout client          1m</span><br><span class="line">    timeout server          1m</span><br><span class="line">    timeout check           10s</span><br><span class="line">    maxconn                 3000</span><br><span class="line">listen stats</span><br><span class="line">    mode   http</span><br><span class="line">    bind :10086</span><br><span class="line">    stats   enable</span><br><span class="line">    stats   uri     /admin?stats</span><br><span class="line">    stats   auth    admin:admin</span><br><span class="line">    stats   admin   if TRUE</span><br><span class="line">frontend  k8s_https *:8443</span><br><span class="line">    mode      tcp</span><br><span class="line">    maxconn      2000</span><br><span class="line">    default_backend     https_sri</span><br><span class="line">backend https_sri</span><br><span class="line">    balance      roundrobin</span><br><span class="line">    server master1-api 172.16.26.81:6443  check inter 10000 fall 2 rise 2 weight 1</span><br><span class="line">    server master2-api 172.16.26.82:6443  check inter 10000 fall 2 rise 2 weight 1</span><br><span class="line">    server master3-api 172.16.26.83:6443  check inter 10000 fall 2 rise 2 weight 1</span><br></pre></td></tr></table></figure>
-<p>/etc/keepalived/check_haproxy.sh</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">VIRTUAL_IP=172.16.26.80</span><br><span class="line">errorExit() &#123;</span><br><span class="line">    echo &quot;*** $*&quot; 1&gt;&amp;2</span><br><span class="line">    exit 1</span><br><span class="line">&#125;</span><br><span class="line">if ip addr | grep -q $VIRTUAL_IP ; then</span><br><span class="line">    curl -s --max-time 2 --insecure https://$&#123;VIRTUAL_IP&#125;:8443/ -o /dev/null || errorExit &quot;Error GET https://$&#123;VIRTUAL_IP&#125;:8443/&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p>/etc/keepalived/keepalived.conf</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">vrrp_script haproxy-check &#123;</span><br><span class="line">    script &quot;/bin/bash /etc/keepalived/check_haproxy.sh&quot;</span><br><span class="line">    interval 3</span><br><span class="line">    weight -2</span><br><span class="line">    fall 10</span><br><span class="line">    rise 2</span><br><span class="line">&#125;</span><br><span class="line">vrrp_instance haproxy-vip &#123;</span><br><span class="line">    state BACKUP</span><br><span class="line">    priority 101</span><br><span class="line">    interface eth0</span><br><span class="line">    virtual_router_id 47</span><br><span class="line">    advert_int 3</span><br><span class="line">    unicast_peer &#123;</span><br><span class="line">        172.16.26.81</span><br><span class="line">        172.16.26.82</span><br><span class="line">        172.16.26.83</span><br><span class="line">    &#125;</span><br><span class="line">    virtual_ipaddress &#123;</span><br><span class="line">        172.16.26.80</span><br><span class="line">    &#125;</span><br><span class="line">    track_script &#123;</span><br><span class="line">        haproxy-check</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> <img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/27/15589501755806.jpg" alt="-w732"></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://kubernetes.io/docs/setup/independent/high-availability/" target="_blank" rel="noopener">官方文档</a></li>
-<li><a href="https://www.kubernetes.org.cn/5273.html" target="_blank" rel="noopener">社区教程</a></li>
-</ul>
+<h3 id="比较器链"><a href="#比较器链" class="headerlink" title="比较器链"></a>比较器链</h3><p>这个才是Ordering比较强的地方，可以由给定的比较器组合出其它的比较器，，可以做到多字段排序，更多详细的示例在参考中有描述</p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602164610214.jpg" alt="-w710"></p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>Ordering同时也提供了一组方法，可以用来直接操作集合，直接操作集合。</p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602167603683.jpg" alt="-w714"></p>
+<h3 id="对比Java8的Comparator"><a href="#对比Java8的Comparator" class="headerlink" title="对比Java8的Comparator"></a>对比Java8的Comparator</h3><p>我觉得Guava Ordering最强的地方就是链式的组合多个比较器，从而可以做到多字段的比较，在Java8的Comparator对象中新增了</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">default</span> Comparator&lt;T&gt; <span class="hljs-title">thenComparing</span><span class="hljs-params">(Comparator&lt;? <span class="hljs-keyword">super</span> T&gt; other)</span></span></span><br></pre></td></tr></table></figure>
+<p>同样也可以实现用多个字段比较。</p>
+<h2 id="Object-methods"><a href="#Object-methods" class="headerlink" title="Object methods"></a>Object methods</h2><p>Object的方法主要有4个</p>
+<h3 id="equals"><a href="#equals" class="headerlink" title="equals"></a>equals</h3><p>用来判断2个对象是否相等，需要注意的是jdk util包中也有一个Objects对象，里面的euqals方法和这个是等效的</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Objects.equal(<span class="hljs-keyword">null</span>, <span class="hljs-string">"a"</span>); <span class="hljs-comment">// returns false</span></span><br></pre></td></tr></table></figure>
+<h3 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode"></a>hashCode</h3><p>Guava的<code>Objects.hashCode(Object...)</code>提供了一个比较实用的为一组对象生成HashCode</p>
+<h3 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a>toString</h3><p>也是一个比较好用的方法</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(MoreObjects.toStringHelper(<span class="hljs-keyword">this</span>).add(<span class="hljs-string">"i"</span>, i).toString());</span><br><span class="line"><span class="hljs-comment">//输出 GuavaTest&#123;i=5&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="compare-compareTo"><a href="#compare-compareTo" class="headerlink" title="compare/compareTo"></a>compare/compareTo</h3><p>这个也挺有意思的，使用<code>ComparisonChain</code>对象创建一个多级比较，更多的介绍看<a href="https://github.com/google/guava/wiki/CommonObjectUtilitiesExplained#comparecompareto" target="_blank" rel="noopener">文档</a></p>
+<h2 id="Throwables"><a href="#Throwables" class="headerlink" title="Throwables"></a>Throwables</h2><p>Throwables类的使用场景我还没想好，我觉得并不是一个必须使用的，文档上给了这么个示例</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">try</span> &#123;</span><br><span class="line">  someMethodThatCouldThrowAnything();</span><br><span class="line">&#125; <span class="hljs-keyword">catch</span> (IKnowWhatToDoWithThisException e) &#123;</span><br><span class="line">  handle(e); <span class="hljs-comment">//1</span></span><br><span class="line">&#125; <span class="hljs-keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">  Throwables.propagateIfInstanceOf(t, IOException.class); <span class="hljs-comment">//2</span></span><br><span class="line">  Throwables.propagateIfInstanceOf(t, SQLException.class); <span class="hljs-comment">//3</span></span><br><span class="line">  <span class="hljs-keyword">throw</span> Throwables.propagate(t); <span class="hljs-comment">//4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码中，标记1表示捕捉并处理了我们已知的异常，2和3表示如果捕捉的异常是IOException和SQLException则抛出这两个异常，4再抛出异常t</p>
+<p>这一块我也不是很理解</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/u012881904/article/details/79280059" target="_blank" rel="noopener">1. Guava Ordering的使用</a><br><a href="https://blog.csdn.net/qq_21508059/article/details/80446078" target="_blank" rel="noopener">2. Ordering与Java8排序比较</a></p>
 
         </div>
         
@@ -314,7 +240,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/devops/">devops</a>, <a class="has-link-grey -link" href="/tags/kubernetes/">kubernetes</a>
+                    <a class="has-link-grey -link" href="/tags/guava/">guava</a>
                 </div>
             </div>
         </div>
@@ -354,17 +280,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/05/30/理解ForkJoinPool/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">理解ForkJoinPool</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/24/Vim资料整理/">
-                <span class="level-item">Vim资料整理</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/10/Optional是这样用吗/">
+                <span class="level-item">Optional是这样用吗?</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -385,7 +304,7 @@
     var gitalk = new Gitalk({
         clientID: '07bd1be05349a17a8209',
         clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
-        id: 'e9a988c7415ec386b5329b607b83262c',
+        id: '3e998803d0b075433186f7fd131f2be6',
         repo: 'yuexine.github.io',
         owner: 'yuexine',
         admin: "yuexine"
@@ -496,88 +415,64 @@
                 Catalogue
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#硬件准备">
+        <a class="is-flex" href="#为什么学习Guava？">
         <span class="has-mr-6">1</span>
-        <span>硬件准备</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#服务器及IP">
-        <span class="has-mr-6">1.1</span>
-        <span>服务器及IP</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#环境准备">
+        <span>为什么学习Guava？</span>
+        </a></li><li>
+        <a class="is-flex" href="#Using-avoiding-null">
         <span class="has-mr-6">2</span>
-        <span>环境准备</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#系统配置">
-        <span class="has-mr-6">2.1</span>
-        <span>系统配置</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#关闭SELinux、防火墙">
-        <span class="has-mr-6">2.1.1</span>
-        <span>关闭SELinux、防火墙</span>
+        <span>Using/avoiding null</span>
         </a></li><li>
-        <a class="is-flex" href="#关闭系统的Swap">
-        <span class="has-mr-6">2.1.2</span>
-        <span>关闭系统的Swap</span>
-        </a></li><li>
-        <a class="is-flex" href="#网络配置">
-        <span class="has-mr-6">2.1.3</span>
-        <span>网络配置</span>
-        </a></li><li>
-        <a class="is-flex" href="#内核升级">
-        <span class="has-mr-6">2.1.4</span>
-        <span>内核升级</span>
-        </a></li><li>
-        <a class="is-flex" href="#IPVS">
-        <span class="has-mr-6">2.1.5</span>
-        <span>IPVS</span>
-        </a></li><li>
-        <a class="is-flex" href="#k8s参数设置">
-        <span class="has-mr-6">2.1.6</span>
-        <span>k8s参数设置</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#软件安装">
-        <span class="has-mr-6">2.2</span>
-        <span>软件安装</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#Docker安装">
-        <span class="has-mr-6">2.2.1</span>
-        <span>Docker安装</span>
-        </a></li><li>
-        <a class="is-flex" href="#Kubernetes相关组件安装">
-        <span class="has-mr-6">2.2.2</span>
-        <span>Kubernetes相关组件安装</span>
-        </a></li><li>
-        <a class="is-flex" href="#Keepalived-Haproxy安装">
-        <span class="has-mr-6">2.2.3</span>
-        <span>Keepalived Haproxy安装</span>
-        </a></li><li>
-        <a class="is-flex" href="#服务开机启动">
-        <span class="has-mr-6">2.2.4</span>
-        <span>服务开机启动</span>
-        </a></li></ul></li></ul></li><li>
-        <a class="is-flex" href="#开始部署">
+        <a class="is-flex" href="#Preconditions">
         <span class="has-mr-6">3</span>
-        <span>开始部署</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#master节点初始化">
-        <span class="has-mr-6">3.1</span>
-        <span>master节点初始化</span>
+        <span>Preconditions</span>
         </a></li><li>
-        <a class="is-flex" href="#node节点加入">
-        <span class="has-mr-6">3.2</span>
-        <span>node节点加入</span>
-        </a></li><li>
-        <a class="is-flex" href="#集群网络安装">
-        <span class="has-mr-6">3.3</span>
-        <span>集群网络安装</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#遇到的问题">
+        <a class="is-flex" href="#Ordering">
         <span class="has-mr-6">4</span>
-        <span>遇到的问题</span>
+        <span>Ordering</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#创建">
+        <span class="has-mr-6">4.1</span>
+        <span>创建</span>
+        </a></li><li>
+        <a class="is-flex" href="#比较器链">
+        <span class="has-mr-6">4.2</span>
+        <span>比较器链</span>
+        </a></li><li>
+        <a class="is-flex" href="#应用">
+        <span class="has-mr-6">4.3</span>
+        <span>应用</span>
+        </a></li><li>
+        <a class="is-flex" href="#对比Java8的Comparator">
+        <span class="has-mr-6">4.4</span>
+        <span>对比Java8的Comparator</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Object-methods">
+        <span class="has-mr-6">5</span>
+        <span>Object methods</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#equals">
+        <span class="has-mr-6">5.1</span>
+        <span>equals</span>
+        </a></li><li>
+        <a class="is-flex" href="#hashCode">
+        <span class="has-mr-6">5.2</span>
+        <span>hashCode</span>
+        </a></li><li>
+        <a class="is-flex" href="#toString-NaN">
+        <span class="has-mr-6">5.3</span>
+        <span>toString</span>
+        </a></li><li>
+        <a class="is-flex" href="#compare-compareTo">
+        <span class="has-mr-6">5.4</span>
+        <span>compare/compareTo</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Throwables">
+        <span class="has-mr-6">6</span>
+        <span>Throwables</span>
         </a></li><li>
         <a class="is-flex" href="#参考">
-        <span class="has-mr-6">5</span>
+        <span class="has-mr-6">7</span>
         <span>参考</span>
         </a></li></ul>
         </div>
@@ -1352,7 +1247,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="构建基于kubernetes的DevOps平台(一)" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Guava学习笔记(一)" height="28">
                 
                 </a>
                 <p class="is-size-7">

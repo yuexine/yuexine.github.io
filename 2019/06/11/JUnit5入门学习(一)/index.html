@@ -2,25 +2,25 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Vim资料整理 - Yuexin-Space</title>
+<title>JUnit5入门学习(一) - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="vim命令速查">
-<meta name="keywords" content="linux,vim">
+    <meta name="description" content="我很崇拜那些单元测试写的很6的同学。">
+<meta name="keywords" content="java,junit5">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vim资料整理">
-<meta property="og:url" content="http://yuexine.github.io/2019/05/24/Vim资料整理/index.html">
+<meta property="og:title" content="JUnit5入门学习(一)">
+<meta property="og:url" content="http://yuexine.github.io/2019/06/11/JUnit5入门学习(一)/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="vim命令速查">
+<meta property="og:description" content="我很崇拜那些单元测试写的很6的同学。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/vim_v3.png">
-<meta property="og:updated_time" content="2019-05-24T07:00:32.889Z">
+<meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602386352413.jpg">
+<meta property="og:updated_time" content="2019-06-11T07:40:21.457Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vim资料整理">
-<meta name="twitter:description" content="vim命令速查">
-<meta name="twitter:image" content="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/vim_v3.png">
+<meta name="twitter:title" content="JUnit5入门学习(一)">
+<meta name="twitter:description" content="我很崇拜那些单元测试写的很6的同学。">
+<meta name="twitter:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602386352413.jpg">
 
 
 
@@ -98,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Vim资料整理" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="JUnit5入门学习(一)" height="28">
             
             </a>
         </div>
@@ -151,7 +151,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/vim_v3.png" alt="Vim资料整理">
+            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/11/15602386352413.jpg" alt="JUnit5入门学习(一)">
         </span>
     </div>
     
@@ -159,17 +159,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-24T06:36:23.000Z">2019-05-24</time>
+                <time class="level-item has-text-grey" datetime="2019-06-11T07:38:42.000Z">2019-06-11</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                <a class="has-link-grey -link" href="/categories/Java/">Java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Java/Test/">Test</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 39 words)
+                    3 minutes read (About 413 words)
                 </span>
                 
                 
@@ -183,20 +183,27 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Vim资料整理
+                JUnit5入门学习(一)
             
         </h1>
         <div class="content">
-            <ul>
-<li><a href="https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt" target="_blank" rel="noopener">vim命令速查</a></li>
-</ul>
+            <p>我很崇拜那些单元测试写的很6的同学。</p>
 <a id="more"></a>
+<p>JUnit4我也没系统的学过，也就是跟着写一写，今天脑子一热，想系统的了解一下JUnit框架的功能，于是打开了<a href="https://junit.org/junit5/docs/current/user-guide/" target="_blank" rel="noopener">JUnit官方用户手册</a>，也懒得看4了，不多说，直接上版本5。</p>
+<h2 id="什么是JUnit5"><a href="#什么是JUnit5" class="headerlink" title="什么是JUnit5"></a>什么是JUnit5</h2><p>和JUnit4相比，在结构上变化很大，JUnit5是由来自3个项目的多个模块组成的。</p>
+<p><strong>JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage</strong></p>
 <ul>
-<li><p><a href="https://github.com/macvim-dev/macvim" target="_blank" rel="noopener">MacVim下载</a></p>
-</li>
-<li><p><a href="https://github.com/yianwillis/vimcdoc/releases" target="_blank" rel="noopener">Vim文档中文翻译</a></p>
-</li>
+<li>JUnit Platform: JUnit的基础平台，定义了TestEngine的API，以及从命令行运行的控制台</li>
+<li>JUnit Jupiter: 组合了新的编程模型和扩展模型用在JUnit5中编写测试</li>
+<li>JUnit Vintage: 提供了一个测试引擎用来运行3和4版本的测试用例</li>
 </ul>
+<p>是不是到了6版本的时候，针对新版本做一个新的实现？这种设计还是值得借鉴的，把变化的与不变分开。</p>
+<h2 id="在Maven中集成JUnit5"><a href="#在Maven中集成JUnit5" class="headerlink" title="在Maven中集成JUnit5"></a>在Maven中集成JUnit5</h2><p>JUnit5需要Java8以上的运行环境</p>
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.junit.jupiter<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit-jupiter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.4.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在Maven项目中通过集成上述的依赖就可以使用JUnit5提供的基本功能了。需要注意的是这个依赖包是一个组合jar，它是由<code>junit-jupiter-api`</code>unit-jupiter-params<code></code>junit-jupiter-engine`组成</p>
+<h2 id="第一个JUnit5测试"><a href="#第一个JUnit5测试" class="headerlink" title="第一个JUnit5测试"></a>第一个JUnit5测试</h2><p>看上去是不是和JUnit4没什么区别？除了<code>@Test</code>包所在的位置不一样外</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.junit.jupiter.api.Assertions.assertEquals;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyFirstJUnitJupiterTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">addition</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        assertEquals(<span class="hljs-number">2</span>, <span class="hljs-number">1</span> + <span class="hljs-number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://junit.org/junit5/docs/current/user-guide/" target="_blank" rel="noopener">1. 官方用户手册</a></p>
 
         </div>
         
@@ -204,7 +211,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/linux/">linux</a>, <a class="has-link-grey -link" href="/tags/vim/">vim</a>
+                    <a class="has-link-grey -link" href="/tags/java/">java</a>, <a class="has-link-grey -link" href="/tags/junit5/">junit5</a>
                 </div>
             </div>
         </div>
@@ -244,17 +251,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/05/27/构建基于kubernetes的DevOps平台(一)/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">构建基于kubernetes的DevOps平台(一)</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/22/Spring-WebFlux源码学习笔记(二)/">
-                <span class="level-item">Spring WebFlux源码学习笔记(二)</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/11/Guava学习笔记(一)/">
+                <span class="level-item">Guava学习笔记(一)</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -275,7 +275,7 @@
     var gitalk = new Gitalk({
         clientID: '07bd1be05349a17a8209',
         clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
-        id: '2c7b299628e18a53c9265ce5b6bc1c80',
+        id: 'a14b757c5fc73b5a325ecf79f254460d',
         repo: 'yuexine.github.io',
         owner: 'yuexine',
         admin: "yuexine"
@@ -385,7 +385,23 @@
             <h3 class="menu-label">
                 Catalogue
             </h3>
-            
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#什么是JUnit5">
+        <span class="has-mr-6">1</span>
+        <span>什么是JUnit5</span>
+        </a></li><li>
+        <a class="is-flex" href="#在Maven中集成JUnit5">
+        <span class="has-mr-6">2</span>
+        <span>在Maven中集成JUnit5</span>
+        </a></li><li>
+        <a class="is-flex" href="#第一个JUnit5测试">
+        <span class="has-mr-6">3</span>
+        <span>第一个JUnit5测试</span>
+        </a></li><li>
+        <a class="is-flex" href="#参考">
+        <span class="has-mr-6">4</span>
+        <span>参考</span>
+        </a></li></ul>
         </div>
     </div>
 </div>
@@ -1180,7 +1196,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Vim资料整理" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="JUnit5入门学习(一)" height="28">
                 
                 </a>
                 <p class="is-size-7">

@@ -2,24 +2,25 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Hello World - Yuexin-Space</title>
+<title>JUnit5入门学习(三) - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="接着看JUnit的写法。">
+<meta name="keywords" content="java,junit5">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yuexine.github.io/2019/04/24/hello-world/index.html">
+<meta property="og:title" content="JUnit5入门学习(三)">
+<meta property="og:url" content="http://yuexine.github.io/2019/06/12/JUnit5入门学习(三)/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="接着看JUnit的写法。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-05-20T02:36:38.168Z">
+<meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/12/15603176926512.jpg">
+<meta property="og:updated_time" content="2019-06-12T05:36:42.587Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
+<meta name="twitter:title" content="JUnit5入门学习(三)">
+<meta name="twitter:description" content="接着看JUnit的写法。">
+<meta name="twitter:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/12/15603176926512.jpg">
 
 
 
@@ -97,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Hello World" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="JUnit5入门学习(三)" height="28">
             
             </a>
         </div>
@@ -129,6 +130,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -144,17 +149,27 @@
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/12/15603176926512.jpg" alt="JUnit5入门学习(三)">
+        </span>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-04-24T07:42:39.338Z">2019-04-24</time>
+                <time class="level-item has-text-grey" datetime="2019-06-12T05:35:37.000Z">2019-06-12</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Java/">Java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Java/Test/">Test</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 121 words)
+                    4 minutes read (About 605 words)
                 </span>
                 
                 
@@ -168,20 +183,38 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Hello World
+                JUnit5入门学习(三)
             
         </h1>
         <div class="content">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="hljs-string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>接着看JUnit的写法。</p>
+<a id="more"></a>
+<h2 id="测试接口与方法"><a href="#测试接口与方法" class="headerlink" title="测试接口与方法"></a>测试接口与方法</h2><p>在Java8中，接口里面可以定义default方法，并且有自己的默认实现，同理，在编写测试类的时候，我们可以把测试方法和生命周期方法定义在接口中或者抽象类中, <code>@BeforeAll</code> 和 <code>@AfterAll</code> 出现在接口时，需要在测试类上声明<code>@TestInstance(Lifecycle.PER_CLASS)</code></p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@TestInstance</span>(Lifecycle.PER_CLASS)</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">TestLifecycleLogger</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Logger logger = Logger.getLogger(TestLifecycleLogger.class.getName());</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@BeforeAll</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">beforeAllTests</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="hljs-string">"Before all tests"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@AfterAll</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterAllTests</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="hljs-string">"After all tests"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@BeforeEach</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">beforeEachTest</span><span class="hljs-params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">        logger.info(() -&gt; String.format(<span class="hljs-string">"About to execute [%s]"</span>,</span><br><span class="line">            testInfo.getDisplayName()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@AfterEach</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterEachTest</span><span class="hljs-params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">        logger.info(() -&gt; String.format(<span class="hljs-string">"Finished executing [%s]"</span>,</span><br><span class="line">            testInfo.getDisplayName()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更多完整的示例参考<a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-test-interfaces-and-default-methods" target="_blank" rel="noopener">文档</a></p>
+<h2 id="带参数的测试"><a href="#带参数的测试" class="headerlink" title="带参数的测试"></a>带参数的测试</h2><p>前面提到过JUnit5内置了几个对象的依赖注入，除了这种方式可以传人测试参数外，JUnit5提供了带参数的测试</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@ParameterizedTest</span></span><br><span class="line"><span class="hljs-meta">@ValueSource</span>(strings = &#123; <span class="hljs-string">"racecar"</span>, <span class="hljs-string">"radar"</span>, <span class="hljs-string">"able was I ere I saw elba"</span> &#125;)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">palindromes</span><span class="hljs-params">(String candidate)</span> </span>&#123;</span><br><span class="line">    assertTrue(StringUtils.isPalindrome(candidate));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/12/15603048120302.jpg" alt="-w457"></p>
+<p>带参数的测试会执行多次，会为每个参数都测试一遍，怎么样？是不是很实用的功能</p>
+<p>支持的参数种类有很多，这里就不一一说明，<a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests" target="_blank" rel="noopener">文档</a>写的很详细</p>
+<h2 id="测试模版"><a href="#测试模版" class="headerlink" title="测试模版"></a>测试模版</h2><p>我理解下来，这就是一个自定义的多参数化执行的测试</p>
+<p><a href="https://junit.org/junit5/docs/current/user-guide/#extensions-test-templates" target="_blank" rel="noopener">Demo</a></p>
+<h2 id="动态测试"><a href="#动态测试" class="headerlink" title="动态测试"></a>动态测试</h2><p>动态测试的意思是在运行时生成的测试用例，听过 <code>@TestFactory</code>来声明这是一个动态测试</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@TestFactory</span></span><br><span class="line"><span class="hljs-function">Stream&lt;DynamicTest&gt; <span class="hljs-title">generateRandomNumberOfTests</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// Generates random positive integers between 0 and 100 until</span></span><br><span class="line">    <span class="hljs-comment">// a number evenly divisible by 7 is encountered.</span></span><br><span class="line">    Iterator&lt;Integer&gt; inputGenerator = <span class="hljs-keyword">new</span> Iterator&lt;Integer&gt;() &#123;</span><br><span class="line"></span><br><span class="line">        Random random = <span class="hljs-keyword">new</span> Random();</span><br><span class="line">        <span class="hljs-keyword">int</span> current;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-meta">@Override</span></span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hasNext</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">            current = random.nextInt(<span class="hljs-number">100</span>);</span><br><span class="line">            <span class="hljs-keyword">return</span> current % <span class="hljs-number">7</span> != <span class="hljs-number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-meta">@Override</span></span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">next</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">            <span class="hljs-keyword">return</span> current;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// Generates display names like: input:5, input:37, input:85, etc.</span></span><br><span class="line">    Function&lt;Integer, String&gt; displayNameGenerator = (input) -&gt; <span class="hljs-string">"input:"</span> + input;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// Executes tests based on the current input value.</span></span><br><span class="line">    ThrowingConsumer&lt;Integer&gt; testExecutor = (input) -&gt; assertTrue(input % <span class="hljs-number">7</span> != <span class="hljs-number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// Returns a stream of dynamic tests.</span></span><br><span class="line">    <span class="hljs-keyword">return</span> DynamicTest.stream(inputGenerator, displayNameGenerator, testExecutor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于这一块我也还不是很懂，后面在看</p>
+<h2 id="并行执行"><a href="#并行执行" class="headerlink" title="并行执行"></a>并行执行</h2><p>并行执行是通过参数配置来实现的，具体的配置方法后面再谈</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">junit.jupiter.execution.parallel.enabled = true</span><br><span class="line">junit.jupiter.execution.parallel.mode.default = concurrent</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这一部分测试的写法相比之前常规的方式是不是好玩了一些？</p>
 
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/java/">java</a>, <a class="has-link-grey -link" href="/tags/junit5/">junit5</a>
+                </div>
+            </div>
         </div>
         
         
@@ -219,13 +252,13 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/04/25/Jenkins集成Helm进行应用持续发布/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Jenkins集成Helm进行应用持续发布</span>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/11/JUnit5入门学习(二)/">
+                <span class="level-item">JUnit5入门学习(二)</span>
+                <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
-        
         
     </div>
 </div>
@@ -243,7 +276,7 @@
     var gitalk = new Gitalk({
         clientID: '07bd1be05349a17a8209',
         clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
-        id: 'bd0d36262d6f534653618405db56e93e',
+        id: '9394629e0bcf80dc7988879d6e1b31ee',
         repo: 'yuexine.github.io',
         owner: 'yuexine',
         admin: "yuexine"
@@ -347,6 +380,41 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#测试接口与方法">
+        <span class="has-mr-6">1</span>
+        <span>测试接口与方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#带参数的测试">
+        <span class="has-mr-6">2</span>
+        <span>带参数的测试</span>
+        </a></li><li>
+        <a class="is-flex" href="#测试模版">
+        <span class="has-mr-6">3</span>
+        <span>测试模版</span>
+        </a></li><li>
+        <a class="is-flex" href="#动态测试">
+        <span class="has-mr-6">4</span>
+        <span>动态测试</span>
+        </a></li><li>
+        <a class="is-flex" href="#并行执行">
+        <span class="has-mr-6">5</span>
+        <span>并行执行</span>
+        </a></li><li>
+        <a class="is-flex" href="#总结">
+        <span class="has-mr-6">6</span>
+        <span>总结</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -1137,7 +1205,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Hello World" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="JUnit5入门学习(三)" height="28">
                 
                 </a>
                 <p class="is-size-7">

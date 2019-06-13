@@ -2,20 +2,25 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Category: Concurrent - Yuexin-Space</title>
+<title>JUnit5入门学习(五) - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Yuexin-Space">
-<meta property="og:url" content="http://yuexine.github.io/categories/Java/Concurrent/index.html">
+    <meta name="description" content="本节主要笔记扩展模块的相关知识">
+<meta name="keywords" content="java,junit5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JUnit5入门学习(五)">
+<meta property="og:url" content="http://yuexine.github.io/2019/06/13/JUnit5入门学习(五)/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
+<meta property="og:description" content="本节主要笔记扩展模块的相关知识">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
+<meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/13/15604167254361.jpg">
+<meta property="og:updated_time" content="2019-06-13T09:09:37.114Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuexin-Space">
-<meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
+<meta name="twitter:title" content="JUnit5入门学习(五)">
+<meta name="twitter:description" content="本节主要笔记扩展模块的相关知识">
+<meta name="twitter:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/13/15604167254361.jpg">
 
 
 
@@ -93,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="JUnit5入门学习(五)" height="28">
             
             </a>
         </div>
@@ -125,6 +130,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -139,135 +148,155 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/13/15604167254361.jpg" alt="JUnit5入门学习(五)">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-13T09:06:09.000Z">2019-06-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Java/">Java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Java/Test/">Test</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 472 words)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                JUnit5入门学习(五)
+            
+        </h1>
+        <div class="content">
+            <p>本节主要笔记扩展模块的相关知识</p>
+<a id="more"></a>
+<h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>JUnit5提供了一个扩张模型，它可以用来扩展JUnit的核心功能，本节重点看扩展模型的简单用法。分为定义和使用2个部分</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>JUnit5定义了一组可扩展的接口</p>
+<p>通过实现这些接口，从而获得扩展的能力。</p>
+<h3 id="Conditional-Test-Execution"><a href="#Conditional-Test-Execution" class="headerlink" title="Conditional Test Execution"></a>Conditional Test Execution</h3><p>ExecutionCondition接口用来扩展测试是否执行或者跳过</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestCondition</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ExecutionCondition</span> </span>&#123;</span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> ConditionEvaluationResult <span class="hljs-title">evaluateExecutionCondition</span><span class="hljs-params">(ExtensionContext context)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> ConditionEvaluationResult.enabled(<span class="hljs-string">"allowed"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Test-Instance-Factories"><a href="#Test-Instance-Factories" class="headerlink" title="Test Instance Factories"></a>Test Instance Factories</h3><p>TestInstanceFactory接口的用法我也还不清楚怎么用，可能是没有掌握@TestFactory原因</p>
+<h3 id="Test-Instance-Post-processing"><a href="#Test-Instance-Post-processing" class="headerlink" title="Test Instance Post-processing"></a>Test Instance Post-processing</h3><p>TestInstancePostProcessor接口用在执行测试方法之前做一些初始化的业务，执行顺序在BeforeEach 之前BeforeAll之后</p>
+<h3 id="Parameter-Resolution"><a href="#Parameter-Resolution" class="headerlink" title="Parameter Resolution"></a>Parameter Resolution</h3><p>ParameterResolver用来在运行时解析方法参数</p>
+<h3 id="Test-Result-Processing"><a href="#Test-Result-Processing" class="headerlink" title="Test Result Processing"></a>Test Result Processing</h3><p>实现TestWatcher接口用来处理测试用例在各种结果下的业务处理，包括执行禁止，执行中断，执行成功或失败</p>
+<h3 id="Test-Lifecycle-Callbacks"><a href="#Test-Lifecycle-Callbacks" class="headerlink" title="Test Lifecycle Callbacks"></a>Test Lifecycle Callbacks</h3><p>用在测试用例执行的各个阶段的回掉</p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/13/15604149611838.jpg" alt="-w347"></p>
+<h3 id="Before-and-After-Test-Execution-Callbacks"><a href="#Before-and-After-Test-Execution-Callbacks" class="headerlink" title="Before and After Test Execution Callbacks"></a>Before and After Test Execution Callbacks</h3><p>用来在测试方法执行前后的回掉业务，文档中给出了一个记录测试用例执行时间的<a href="https://junit.org/junit5/docs/current/user-guide/#extensions-lifecycle-callbacks-before-after-execution" target="_blank" rel="noopener">示例</a></p>
+<h3 id="Exception-Handling"><a href="#Exception-Handling" class="headerlink" title="Exception Handling"></a>Exception Handling</h3><p>TestExecutionExceptionHandler接口用来处理测试过程中产生的异常</p>
+<h3 id="Providing-Invocation-Contexts-for-Test-Templates"><a href="#Providing-Invocation-Contexts-for-Test-Templates" class="headerlink" title="Providing Invocation Contexts for Test Templates"></a>Providing Invocation Contexts for Test Templates</h3><p>略过</p>
+<h3 id="Keeping-State-in-Extensions"><a href="#Keeping-State-in-Extensions" class="headerlink" title="Keeping State in Extensions"></a>Keeping State in Extensions</h3><p>一个容器，用来记录测试过程中的需要暂存的数据</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>使用就很简单了</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-meta">@ExtendWith</span>(&#123; DatabaseExtension.class, WebServerExtension.class &#125;)</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyFirstTests</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-meta">@ExtendWith</span>(DatabaseExtension.class)</span><br><span class="line"><span class="hljs-meta">@ExtendWith</span>(WebServerExtension.class)</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MySecondTests</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>JUnit5提供了相当丰富的一组扩展用来满足一些特别的测试场景，感觉挺好用的样子。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/java/">java</a>, <a class="has-link-grey -link" href="/tags/junit5/">junit5</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/categories">Categories</a></li>
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
             
-            <li><a href="/categories/Java/">Java</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">Concurrent</a></li>
-        </ul>
-        </nav>
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/wechat_pay.jpg" alt="Wechat"></div>
+</a>
+
+                
+        </div>
     </div>
 </div>
 
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/05/30/理解ForkJoinPool/" class="image is-7by1">
-            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/05/30/15592077895194.jpg" alt="理解ForkJoinPool">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-30T09:05:51.000Z">2019-05-30</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Java/">Java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Java/Concurrent/">Concurrent</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 336 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/05/30/理解ForkJoinPool/">理解ForkJoinPool</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>ForkJoinPool是Java Executor框架的一个实现，它是对于ThreadPoolExecutor的补充，主要使用场景是处理比较大的异步计算任务。<br></p>
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/13/JUnit5入门学习(六)/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">JUnit5入门学习(六)</span>
+            </a>
         </div>
         
         
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/30/理解ForkJoinPool/#more">Read More</a>
-                </div>
-            </div>
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/13/JUnit5入门学习(四)/">
+                <span class="level-item">JUnit5入门学习(四)</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '07bd1be05349a17a8209',
+        clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
+        id: 'a6f10a41de6348b32a7b312b451bee17',
+        repo: 'yuexine.github.io',
+        owner: 'yuexine',
+        admin: "yuexine"
+    })
+    gitalk.render('comment-container')
+</script>
 
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/05/20/理解CompletableFuture/" class="image is-7by1">
-            <img class="thumbnail" src="http://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/java2.jpg" alt="理解CompletableFuture">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-20T07:48:18.000Z">2019-05-20</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Java/">Java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Java/Concurrent/">Concurrent</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 minutes read (About 1055 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/05/20/理解CompletableFuture/">理解CompletableFuture</a>
-            
-        </h1>
-        <div class="content">
-            <p><code>CompletableFuture</code>是java8新增的一个接口，它提供了对异步程序执行的另一种方式。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/20/理解CompletableFuture/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
 </div>
-
-
-
-
-
-
-
-
 </div>
                 
 
@@ -362,6 +391,73 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#What">
+        <span class="has-mr-6">1</span>
+        <span>What</span>
+        </a></li><li>
+        <a class="is-flex" href="#定义">
+        <span class="has-mr-6">2</span>
+        <span>定义</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Conditional-Test-Execution">
+        <span class="has-mr-6">2.1</span>
+        <span>Conditional Test Execution</span>
+        </a></li><li>
+        <a class="is-flex" href="#Test-Instance-Factories">
+        <span class="has-mr-6">2.2</span>
+        <span>Test Instance Factories</span>
+        </a></li><li>
+        <a class="is-flex" href="#Test-Instance-Post-processing">
+        <span class="has-mr-6">2.3</span>
+        <span>Test Instance Post-processing</span>
+        </a></li><li>
+        <a class="is-flex" href="#Parameter-Resolution">
+        <span class="has-mr-6">2.4</span>
+        <span>Parameter Resolution</span>
+        </a></li><li>
+        <a class="is-flex" href="#Test-Result-Processing">
+        <span class="has-mr-6">2.5</span>
+        <span>Test Result Processing</span>
+        </a></li><li>
+        <a class="is-flex" href="#Test-Lifecycle-Callbacks">
+        <span class="has-mr-6">2.6</span>
+        <span>Test Lifecycle Callbacks</span>
+        </a></li><li>
+        <a class="is-flex" href="#Before-and-After-Test-Execution-Callbacks">
+        <span class="has-mr-6">2.7</span>
+        <span>Before and After Test Execution Callbacks</span>
+        </a></li><li>
+        <a class="is-flex" href="#Exception-Handling">
+        <span class="has-mr-6">2.8</span>
+        <span>Exception Handling</span>
+        </a></li><li>
+        <a class="is-flex" href="#Providing-Invocation-Contexts-for-Test-Templates">
+        <span class="has-mr-6">2.9</span>
+        <span>Providing Invocation Contexts for Test Templates</span>
+        </a></li><li>
+        <a class="is-flex" href="#Keeping-State-in-Extensions">
+        <span class="has-mr-6">2.10</span>
+        <span>Keeping State in Extensions</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#使用">
+        <span class="has-mr-6">3</span>
+        <span>使用</span>
+        </a></li><li>
+        <a class="is-flex" href="#总结">
+        <span class="has-mr-6">4</span>
+        <span>总结</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -1182,7 +1278,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="JUnit5入门学习(五)" height="28">
                 
                 </a>
                 <p class="is-size-7">

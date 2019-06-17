@@ -2,20 +2,25 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Yuexin-Space</title>
+<title>Guava学习笔记(四) - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Yuexin-Space">
-<meta property="og:url" content="http://yuexine.github.io/page/2/index.html">
+    <meta name="description" content="本部分学习Guava的String相关的操作">
+<meta name="keywords" content="guava">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Guava学习笔记(四)">
+<meta property="og:url" content="http://yuexine.github.io/2019/06/17/Guava学习笔记(四)/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
+<meta property="og:description" content="本部分学习Guava的String相关的操作">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
+<meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/17/15607639191678.jpg">
+<meta property="og:updated_time" content="2019-06-17T09:32:35.372Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuexin-Space">
-<meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
+<meta name="twitter:title" content="Guava学习笔记(四)">
+<meta name="twitter:description" content="本部分学习Guava的String相关的操作">
+<meta name="twitter:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/17/15607639191678.jpg">
 
 
 
@@ -93,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Guava学习笔记(四)" height="28">
             
             </a>
         </div>
@@ -125,6 +130,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -138,136 +147,19 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-    <div class="card">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     
     <div class="card-image">
-        <a href="/2019/06/13/JUnit5入门学习(四)/" class="image is-7by1">
-            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/13/15604166958931.jpg" alt="JUnit5入门学习(四)">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/17/15607639191678.jpg" alt="Guava学习笔记(四)">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-13T09:06:02.000Z">2019-06-13</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Java/">Java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Java/Test/">Test</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 296 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/06/13/JUnit5入门学习(四)/">JUnit5入门学习(四)</a>
-            
-        </h1>
-        <div class="content">
-            <p>本节主要包含的主题是运行JUnit5测试用例</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/06/13/JUnit5入门学习(四)/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/06/13/体验Travis-ci/" class="image is-7by1">
-            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/13/15603922207802.jpg" alt="体验Travis-ci">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-13T02:22:32.000Z">2019-06-13</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/CI/">CI</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/CI/Travis-ci/">Travis-ci</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 minutes read (About 713 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/06/13/体验Travis-ci/">体验Travis-ci</a>
-            
-        </h1>
-        <div class="content">
-            <p><a href="https://travis-ci.org" target="_blank" rel="noopener">Travis-ci</a>是一个持续集成工具，作用和Jenkins类似，在Github上很多开源项目都用它来集成, 如<a href="https://travis-ci.org/google" target="_blank" rel="noopener">Google仓库</a>的集成</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/06/13/体验Travis-ci/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/06/13/Guava学习笔记(二)/" class="image is-7by1">
-            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/13/15603915450639.jpg" alt="Guava学习笔记(二)">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-13T02:06:20.000Z">2019-06-13</time>
+                <time class="level-item has-text-grey" datetime="2019-06-17T09:30:52.000Z">2019-06-17</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Java/">Java</a>
@@ -277,182 +169,126 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 832 words)
+                    2 minutes read (About 335 words)
                 </span>
                 
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/06/13/Guava学习笔记(二)/">Guava学习笔记(二)</a>
+                Guava学习笔记(四)
             
         </h1>
         <div class="content">
-            <p>本部分主要笔记Guava之Collections的用法</p>
+            <p>本部分学习Guava的String相关的操作</p>
+<a id="more"></a>
+<h2 id="Joiner"><a href="#Joiner" class="headerlink" title="Joiner"></a>Joiner</h2><p>你还在不停的append吗？Joiner提供了流式的操作</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Joiner joiner = Joiner.on(<span class="hljs-string">"; "</span>).skipNulls();</span><br><span class="line"><span class="hljs-comment">//返回String: Harry; Ron; Hermione</span></span><br><span class="line"><span class="hljs-keyword">return</span> joiner.join(<span class="hljs-string">"Harry"</span>, <span class="hljs-keyword">null</span>, <span class="hljs-string">"Ron"</span>, <span class="hljs-string">"Hermione"</span>);</span><br></pre></td></tr></table></figure>
+<p>Joiner里面可以拼接一个迭代器的实例。</p>
+<h2 id="Splitter"><a href="#Splitter" class="headerlink" title="Splitter"></a>Splitter</h2><p>Splitter支持复杂的控制用来切分字符串</p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/17/15607624232583.jpg" alt="-w750"></p>
+<p>上图展示的是不同的切分方法</p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/17/15607625234341.jpg" alt="-w564"></p>
+<p>同时提供了一组方法用来处理切分后的String</p>
+<p>示例</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Splitter.on(CharMatcher.anyOf(<span class="hljs-string">"abcf"</span>))</span><br><span class="line">    .trimResults(CharMatcher.is(<span class="hljs-string">'_'</span>))</span><br><span class="line">    .omitEmptyStrings()</span><br><span class="line">    .limit(<span class="hljs-number">3</span>) <span class="hljs-comment">//切分完前三个后停止切分</span></span><br><span class="line">    .split(<span class="hljs-string">"abcdef a_cg"</span>)</span><br><span class="line">    .forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<h2 id="CharMatcher"><a href="#CharMatcher" class="headerlink" title="CharMatcher"></a>CharMatcher</h2><p>在前面切分时用到了CharMatcher，用来设定切分规则，CharMatcher里面定义了多个方法。希望后面能想起来用这个功能</p>
+<h2 id="Charsets"><a href="#Charsets" class="headerlink" title="Charsets"></a>Charsets</h2><p>在使用指定编码读取String时，不要用下面这张方式指定</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">try</span> &#123;</span><br><span class="line">  bytes = string.getBytes(<span class="hljs-string">"UTF-8"</span>);</span><br><span class="line">&#125; <span class="hljs-keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">  <span class="hljs-comment">// how can this possibly happen?</span></span><br><span class="line">  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AssertionError(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而是用</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bytes = string.getBytes(Charsets.UTF_8);</span><br></pre></td></tr></table></figure>
+<h2 id="CaseFormat"><a href="#CaseFormat" class="headerlink" title="CaseFormat"></a>CaseFormat</h2><p>CaseFormat提供了对字符串进行大小写操作</p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/17/15607619018042.jpg" alt="-w340"></p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, <span class="hljs-string">"CONSTANT_NAME"</span>)); <span class="hljs-comment">// returns "constantName"</span></span><br></pre></td></tr></table></figure>
+<p>看起来挺好用的</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Guava提供的这几个功能还是挺实用的，尤其是字符串的拼接和切分</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/06/13/Guava学习笔记(二)/#more">Read More</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/guava/">guava</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/06/12/Java注解知识整理/" class="image is-7by1">
-            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/12/15603232930641.jpg" alt="Java注解知识整理">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-12T07:08:53.000Z">2019-06-12</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Java/">Java</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 425 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
             
-                <a class="has-link-black-ter" href="/2019/06/12/Java注解知识整理/">Java注解知识整理</a>
-            
-        </h1>
-        <div class="content">
-            <p>本节主要大致整理一下注解的内容。</p>
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/wechat_pay.jpg" alt="Wechat"></div>
+</a>
+
+                
         </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/06/12/Java注解知识整理/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
 </div>
 
 
 
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/06/12/JUnit5入门学习(三)/" class="image is-7by1">
-            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/12/15603176926512.jpg" alt="JUnit5入门学习(三)">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-12T05:35:37.000Z">2019-06-12</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Java/">Java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Java/Test/">Test</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 605 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/06/12/JUnit5入门学习(三)/">JUnit5入门学习(三)</a>
-            
-        </h1>
-        <div class="content">
-            <p>接着看JUnit的写法。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/06/12/JUnit5入门学习(三)/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    
 <div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/">Previous</a>
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/16/读《黑客与画家》/">
+                <span class="level-item">读《黑客与画家》</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/page/3/">Next</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
-            
-            <li><a class="pagination-link is-current" href="/page/2/">2</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/page/3/">3</a></li>
-            
-            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/page/7/">7</a></li>
-            
-        </ul>
-    </nav>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '07bd1be05349a17a8209',
+        clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
+        id: '24091902a193801c29d4df046563040d',
+        repo: 'yuexine.github.io',
+        owner: 'yuexine',
+        admin: "yuexine"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
 </div>
 </div>
                 
@@ -548,6 +384,41 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#Joiner">
+        <span class="has-mr-6">1</span>
+        <span>Joiner</span>
+        </a></li><li>
+        <a class="is-flex" href="#Splitter">
+        <span class="has-mr-6">2</span>
+        <span>Splitter</span>
+        </a></li><li>
+        <a class="is-flex" href="#CharMatcher">
+        <span class="has-mr-6">3</span>
+        <span>CharMatcher</span>
+        </a></li><li>
+        <a class="is-flex" href="#Charsets">
+        <span class="has-mr-6">4</span>
+        <span>Charsets</span>
+        </a></li><li>
+        <a class="is-flex" href="#CaseFormat">
+        <span class="has-mr-6">5</span>
+        <span>CaseFormat</span>
+        </a></li><li>
+        <a class="is-flex" href="#总结">
+        <span class="has-mr-6">6</span>
+        <span>总结</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -1368,7 +1239,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Guava学习笔记(四)" height="28">
                 
                 </a>
                 <p class="is-size-7">

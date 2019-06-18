@@ -2,20 +2,25 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Category: SpringFramework - Yuexin-Space</title>
+<title>Guava学习笔记(五) - Yuexin-Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Yuexin-Space">
-<meta property="og:url" content="http://yuexine.github.io/categories/Spring/SpringFramework/index.html">
+    <meta name="description" content="本节学习Guava的InternetDomainName、I/O utilities、Ranges和Hashing">
+<meta name="keywords" content="guava">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Guava学习笔记(五)">
+<meta property="og:url" content="http://yuexine.github.io/2019/06/18/Guava学习笔记(五)/index.html">
 <meta property="og:site_name" content="Yuexin-Space">
+<meta property="og:description" content="本节学习Guava的InternetDomainName、I/O utilities、Ranges和Hashing">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yuexine.github.io/images/og_image.png">
+<meta property="og:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/18/15608459419748.jpg">
+<meta property="og:updated_time" content="2019-06-18T08:23:26.217Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuexin-Space">
-<meta name="twitter:image" content="http://yuexine.github.io/images/og_image.png">
+<meta name="twitter:title" content="Guava学习笔记(五)">
+<meta name="twitter:description" content="本节学习Guava的InternetDomainName、I/O utilities、Ranges和Hashing">
+<meta name="twitter:image" content="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/18/15608459419748.jpg">
 
 
 
@@ -93,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Guava学习笔记(五)" height="28">
             
             </a>
         </div>
@@ -125,6 +130,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -139,135 +148,141 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/18/15608459419748.jpg" alt="Guava学习笔记(五)">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-18T08:22:31.000Z">2019-06-18</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Java/">Java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Java/Guava/">Guava</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 306 words)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Guava学习笔记(五)
+            
+        </h1>
+        <div class="content">
+            <p>本节学习Guava的InternetDomainName、I/O utilities、Ranges和Hashing</p>
+<a id="more"></a>
+<h2 id="InternetDomainName"><a href="#InternetDomainName" class="headerlink" title="InternetDomainName"></a>InternetDomainName</h2><p>一个域名解析库，用到的时候再来看看。</p>
+<h2 id="I-O-utilities"><a href="#I-O-utilities" class="headerlink" title="I/O utilities"></a>I/O utilities</h2><h3 id="Closing-Resources"><a href="#Closing-Resources" class="headerlink" title="Closing Resources"></a>Closing Resources</h3><p>在操作完读写流时，我们需要关闭流，这个代码看起来很长。怎么解决呢？</p>
+<p><code>Closer</code>是一个Guava类，使用它可以管理我们的流对象</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Closer closer = Closer.create();</span><br><span class="line"><span class="hljs-keyword">try</span> &#123;</span><br><span class="line">  InputStream in = closer.register(openInputStream());</span><br><span class="line">  OutputStream out = closer.register(openOutputStream());</span><br><span class="line">  <span class="hljs-comment">// do stuff with in and out</span></span><br><span class="line">&#125; <span class="hljs-keyword">catch</span> (Throwable e) &#123; <span class="hljs-comment">// must catch Throwable</span></span><br><span class="line">  <span class="hljs-keyword">throw</span> closer.rethrow(e);</span><br><span class="line">&#125; <span class="hljs-keyword">finally</span> &#123;</span><br><span class="line">  closer.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Ranges"><a href="#Ranges" class="headerlink" title="Ranges"></a>Ranges</h2><p>一个区间库，好像之前还没场景用过这个，插个眼，有需要的时候再看看</p>
+<p><img src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/18/15608454957118.jpg" alt="-w288"></p>
+<h2 id="Hashing"><a href="#Hashing" class="headerlink" title="Hashing"></a>Hashing</h2><p>我理解下来，这就是一个Hash生成器，功能肯定是比JDK自带的要好用，组要体现在把算法与数据进行了分解。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    HashFunction hashFunction = Hashing.sha256(); <span class="hljs-comment">//1</span></span><br><span class="line">    HashCode hashCode= hashFunction.newHasher()</span><br><span class="line">        .putString(<span class="hljs-string">"wuyuexin"</span>, Charset.defaultCharset())</span><br><span class="line">        .putInt(<span class="hljs-number">18</span>)</span><br><span class="line">        .hash(); <span class="hljs-comment">//2</span></span><br><span class="line">    System.out.println(hashCode.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>声明了需要使用的Hash算法，Guava内置了很多默认的Hash算法</li>
+<li>对需要加密的数据进行hash，最后会得到一个HashCode对象，就能拿到Hash后的值</li>
+</ol>
+<p>备注: emm。BloomFilter部分没看懂</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/guava/">guava</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/categories">Categories</a></li>
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
             
-            <li><a href="/categories/Spring/">Spring</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">SpringFramework</a></li>
-        </ul>
-        </nav>
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/wechat_pay.jpg" alt="Wechat"></div>
+</a>
+
+                
+        </div>
     </div>
 </div>
 
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/05/22/Spring-WebFlux源码学习笔记(二)/" class="image is-7by1">
-            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/webflux.jpg" alt="Spring WebFlux源码学习笔记(二)">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-22T12:20:21.000Z">2019-05-22</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Spring/SpringFramework/">SpringFramework</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 439 words)
-                </span>
-                
-                
-            </div>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/17/Guava学习笔记(四)/">
+                <span class="level-item">Guava学习笔记(四)</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/05/22/Spring-WebFlux源码学习笔记(二)/">Spring WebFlux源码学习笔记(二)</a>
-            
-        </h1>
-        <div class="content">
-            <p>继续前面的学习</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/22/Spring-WebFlux源码学习笔记(二)/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '07bd1be05349a17a8209',
+        clientSecret: '7d187bfa4b5a2affd815aadd229d0094b0e793d8',
+        id: '38703b20716aa44d6971b56428195333',
+        repo: 'yuexine.github.io',
+        owner: 'yuexine',
+        admin: "yuexine"
+    })
+    gitalk.render('comment-container')
+</script>
 
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/05/21/Spring-WebFlux源码学习笔记(一)/" class="image is-7by1">
-            <img class="thumbnail" src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201905/webflux.jpg" alt="Spring WebFlux源码学习笔记(一)">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-21T15:26:21.000Z">2019-05-21</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Spring/SpringFramework/">SpringFramework</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 minutes read (About 851 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/05/21/Spring-WebFlux源码学习笔记(一)/">Spring WebFlux源码学习笔记(一)</a>
-            
-        </h1>
-        <div class="content">
-            <p>在开始学习WebFlux之前，需要对Java的函数式编程有一定的了解，熟悉相关函数式接口的用法，包括Function，BiFunction等</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/21/Spring-WebFlux源码学习笔记(一)/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
 </div>
-
-
-
-
-
-
-
-
 </div>
                 
 
@@ -311,7 +326,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -321,7 +336,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        18
+                        17
                     </p>
                 </div>
             </div>
@@ -362,6 +377,37 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#InternetDomainName">
+        <span class="has-mr-6">1</span>
+        <span>InternetDomainName</span>
+        </a></li><li>
+        <a class="is-flex" href="#I-O-utilities">
+        <span class="has-mr-6">2</span>
+        <span>I/O utilities</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Closing-Resources">
+        <span class="has-mr-6">2.1</span>
+        <span>Closing Resources</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Ranges">
+        <span class="has-mr-6">3</span>
+        <span>Ranges</span>
+        </a></li><li>
+        <a class="is-flex" href="#Hashing">
+        <span class="has-mr-6">4</span>
+        <span>Hashing</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -453,31 +499,47 @@
                 <span class="level-item">Java</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">15</span>
+                <span class="level-item tag">22</span>
             </span>
         </a><ul><li>
-        <a class="level is-marginless" href="/categories/Java/Concurrent/">
+        <a class="level is-marginless" href="/categories/Java/Guava/">
             <span class="level-start">
-                <span class="level-item">Concurrent</span>
+                <span class="level-item">Guava</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">5</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/Java/Functional/">
+        <a class="level is-marginless" href="/categories/Java/JUnit5/">
             <span class="level-start">
-                <span class="level-item">Functional</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Java/Test/">
-            <span class="level-start">
-                <span class="level-item">Test</span>
+                <span class="level-item">JUnit5</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java/JavaSE/">
+            <span class="level-start">
+                <span class="level-item">JavaSE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java/SpringCloud/">
+            <span class="level-start">
+                <span class="level-item">SpringCloud</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java/SpringFramework/">
+            <span class="level-start">
+                <span class="level-item">SpringFramework</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Linux/">
@@ -504,30 +566,6 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/Spring/">
-            <span class="level-start">
-                <span class="level-item">Spring</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">6</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Spring/SpringCloud/">
-            <span class="level-start">
-                <span class="level-item">SpringCloud</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">4</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Spring/SpringFramework/">
-            <span class="level-start">
-                <span class="level-item">SpringFramework</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Work/">
             <span class="level-start">
                 <span class="level-item">Work</span>
@@ -555,7 +593,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/grpc/" style="font-size: 10px;">grpc</a> <a href="/tags/guava/" style="font-size: 15px;">guava</a> <a href="/tags/helm/" style="font-size: 10px;">helm</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/junit5/" style="font-size: 17.5px;">junit5</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openshift/" style="font-size: 12.5px;">openshift</a> <a href="/tags/reading/" style="font-size: 12.5px;">reading</a> <a href="/tags/spring/" style="font-size: 17.5px;">spring</a> <a href="/tags/springcloud/" style="font-size: 15px;">springcloud</a> <a href="/tags/springframework/" style="font-size: 12.5px;">springframework</a> <a href="/tags/travis-ci/" style="font-size: 10px;">travis-ci</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/work/" style="font-size: 10px;">work</a>
+        <a href="/tags/devops/" style="font-size: 14px;">devops</a> <a href="/tags/grpc/" style="font-size: 10px;">grpc</a> <a href="/tags/guava/" style="font-size: 16px;">guava</a> <a href="/tags/helm/" style="font-size: 10px;">helm</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/junit5/" style="font-size: 18px;">junit5</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openshift/" style="font-size: 12px;">openshift</a> <a href="/tags/reading/" style="font-size: 12px;">reading</a> <a href="/tags/spring/" style="font-size: 18px;">spring</a> <a href="/tags/springcloud/" style="font-size: 14px;">springcloud</a> <a href="/tags/springframework/" style="font-size: 12px;">springframework</a> <a href="/tags/travis-ci/" style="font-size: 10px;">travis-ci</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/work/" style="font-size: 10px;">work</a>
     </div>
 </div>
 
@@ -572,6 +610,25 @@
         
         <article class="media">
             
+            <a href="/2019/06/18/Guava学习笔记(五)/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/18/15608459419748.jpg" alt="Guava学习笔记(五)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-18T08:22:31.000Z">2019-06-18</time></div>
+                    <a href="/2019/06/18/Guava学习笔记(五)/" class="has-link-black-ter is-size-6">Guava学习笔记(五)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/Guava/">Guava</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/06/17/Guava学习笔记(四)/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/17/15607639191678.jpg" alt="Guava学习笔记(四)">
@@ -583,7 +640,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-17T09:30:52.000Z">2019-06-17</time></div>
                     <a href="/2019/06/17/Guava学习笔记(四)/" class="has-link-black-ter is-size-6">Guava学习笔记(四)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/Guava/">Guava</a>
                     </p>
                 </div>
             </div>
@@ -621,7 +678,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-14T05:55:58.000Z">2019-06-14</time></div>
                     <a href="/2019/06/14/Guava学习笔记(三)/" class="has-link-black-ter is-size-6">Guava学习笔记(三)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/Guava/">Guava</a>
                     </p>
                 </div>
             </div>
@@ -640,26 +697,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-13T09:06:14.000Z">2019-06-13</time></div>
                     <a href="/2019/06/13/JUnit5入门学习(六)/" class="has-link-black-ter is-size-6">JUnit5入门学习(六)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/Test/">Test</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/06/13/JUnit5入门学习(五)/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/13/15604167254361.jpg" alt="JUnit5入门学习(五)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-13T09:06:09.000Z">2019-06-13</time></div>
-                    <a href="/2019/06/13/JUnit5入门学习(五)/" class="has-link-black-ter is-size-6">JUnit5入门学习(五)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/Test/">Test</a>
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/JUnit5/">JUnit5</a>
                     </p>
                 </div>
             </div>
@@ -683,7 +721,7 @@
                     <span class="level-item">June 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">17</span>
+                    <span class="level-item tag">18</span>
                 </span>
             </a>
         </li>
@@ -740,7 +778,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/guava/">
                         <span class="tag">guava</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -881,6 +919,25 @@
         
         <article class="media">
             
+            <a href="/2019/06/18/Guava学习笔记(五)/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/18/15608459419748.jpg" alt="Guava学习笔记(五)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-18T08:22:31.000Z">2019-06-18</time></div>
+                    <a href="/2019/06/18/Guava学习笔记(五)/" class="has-link-black-ter is-size-6">Guava学习笔记(五)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/Guava/">Guava</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/06/17/Guava学习笔记(四)/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/17/15607639191678.jpg" alt="Guava学习笔记(四)">
@@ -892,7 +949,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-17T09:30:52.000Z">2019-06-17</time></div>
                     <a href="/2019/06/17/Guava学习笔记(四)/" class="has-link-black-ter is-size-6">Guava学习笔记(四)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/Guava/">Guava</a>
                     </p>
                 </div>
             </div>
@@ -930,7 +987,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-14T05:55:58.000Z">2019-06-14</time></div>
                     <a href="/2019/06/14/Guava学习笔记(三)/" class="has-link-black-ter is-size-6">Guava学习笔记(三)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/Guava/">Guava</a>
                     </p>
                 </div>
             </div>
@@ -949,26 +1006,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-13T09:06:14.000Z">2019-06-13</time></div>
                     <a href="/2019/06/13/JUnit5入门学习(六)/" class="has-link-black-ter is-size-6">JUnit5入门学习(六)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/Test/">Test</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/06/13/JUnit5入门学习(五)/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-1253295701.cos.ap-shanghai.myqcloud.com/2019/06/13/15604167254361.jpg" alt="JUnit5入门学习(五)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-13T09:06:09.000Z">2019-06-13</time></div>
-                    <a href="/2019/06/13/JUnit5入门学习(五)/" class="has-link-black-ter is-size-6">JUnit5入门学习(五)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/Test/">Test</a>
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a> / <a class="has-link-grey -link" href="/categories/Java/JUnit5/">JUnit5</a>
                     </p>
                 </div>
             </div>
@@ -992,7 +1030,7 @@
                     <span class="level-item">June 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">17</span>
+                    <span class="level-item tag">18</span>
                 </span>
             </a>
         </li>
@@ -1049,7 +1087,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/guava/">
                         <span class="tag">guava</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1182,7 +1220,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Yuexin-Space" height="28">
+                    <img src="https://yuexinspace.oss-cn-shanghai.aliyuncs.com/201904/1556182787242.jpg" alt="Guava学习笔记(五)" height="28">
                 
                 </a>
                 <p class="is-size-7">
